@@ -10,12 +10,13 @@ const app = express();
 // server.js middleware and use methods
 app.use(favicon(__dirname + '/client/build/favicon.ico'));
 
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, '/client/build')));
+// lines 14 and 15 will be used later in deployment
+// app.use(express.static(__dirname));
+// app.use(express.static(path.join(__dirname, '/client/build')));
 
 // route that servers our production build out
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '/client/public', 'index.html'));
 });
 
 // starts our server listening
