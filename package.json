@@ -28,6 +28,7 @@
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "nodemon": "^2.0.3",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react-router-dom": "^5.1.2"
   }
 }
