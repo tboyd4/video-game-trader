@@ -4,7 +4,8 @@
   "description": "Video Game Trading App",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,10 @@
   },
   "homepage": "https://github.com/tboyd4/video-game-trader#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "express": "^4.17.1",
-    "nodemon": "^2.0.3"
+    "express-favicon": "^2.0.1",
+    "nodemon": "^2.0.3",
+    "path": "^0.12.7"
   }
 }
