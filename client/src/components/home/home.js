@@ -4,10 +4,10 @@ import GameDisplay from '../gameDisplay/gameDisplay';
 
 function Home () {
     return (
-        <div>
+        <main>
             <h1>I am Home Page</h1>
             <GameDisplay />
-        </div>
+        </main>
     )
 }
 
