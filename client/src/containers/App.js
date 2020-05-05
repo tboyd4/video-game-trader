@@ -1,39 +1,36 @@
-import React from 'react';
-import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import React from "react";
+import "./App.css";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Home from '../components/home/home';
-import BuySell from '../components/buysellPage/buySellPage';
-import User from '../components/userPage/userPage';
-import Login from '../components/authenticationPages/login';
+import Home from "../components/home/home";
+import BuySell from "../components/buysellPage/buySellPage";
+import User from "../components/userPage/userPage";
+import Login from "../components/authenticationPages/login";
+import FootBar from "../components/appWide/footer/footBar";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello. I will someday become a video game trader</h1>
-      <Router>
-        <Switch>
-          <Route path="/">
-            <Login />
-          </Route>
-          <Route path="/user">
-            <User />
-          </Route>
-          <Route path="/buysell">
-            <BuySell />
-          </Route>
-          <Route path="/home">
-            <Home />
-          </Route>
-        </Switch>
-    </Router>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div className="container">
+        <header>
+          <h1>Hello. I will someday become a video game trader</h1>
+        </header>
+        
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/" component={Login} />
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/buysell" component={BuySell} />
+              <Route exact path="/user" component={User} />
+            </Switch>
+          </BrowserRouter>
+
+          <div className="filler"></div>
+        
+        <FootBar />
+      </div>
+    );
+  }
 }
 
 export default App;
