@@ -8,7 +8,11 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 
 // Requiring our models for syncing
-var db = require("./models");
+const db = require("./models");
+
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // server.js middleware and use methods
 app.use(favicon(__dirname + '/client/build/favicon.ico'));
@@ -21,6 +25,10 @@ app.use(favicon(__dirname + '/client/build/favicon.ico'));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '/client/public', 'index.html'));
 });
+
+// Routes
+// =============================================================
+require("./routes/test-api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

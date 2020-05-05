@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var Game = sequelize.define("games", {
+    var Game = sequelize.define("Game", {
       title: {
           type: DataTypes.STRING,
           allowNull: false,
@@ -20,8 +20,7 @@ module.exports = function(sequelize, DataTypes) {
           validate: {
               len: [1]
           }
-      },
-      wasSold: DataTypes.BOOLEAN
+      }
     });
    
     Game.associate = (models) => {
