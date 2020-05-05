@@ -1,5 +1,8 @@
 import React from "react";
-import Pic from "../../images/test-img.jpg";
+import Pic1 from "../../images/test-img.jpg";
+import Pic2 from "../../images/dis-pic.jpg";
+import Pic3 from "../../images/resi-pic.jpg";
+
 import "./gameDisplay.css";
 
 function GameDisplay() {
@@ -7,19 +10,19 @@ function GameDisplay() {
     {
       title: "Game1",
       released: "2001",
-      image: Pic,
+      image: Pic1,
       price: "$15.00",
     },
     {
       title: "Game2",
       released: "2005",
-      image: Pic,
+      image: Pic2,
       price: "$45.00",
     },
     {
       title: "Game3",
       released: "2011",
-      image: Pic,
+      image: Pic3,
       price: "$16.00",
     },
   ];
@@ -36,16 +39,16 @@ function GameDisplay() {
                   </div>
                 </div>
               </div>
-              <div className="col s12 m6">
-                <div className="card black-text game-style">
-                  <div className="card-content green accent-3">
-                    <span className="card-title text-spacing">
+              <div className="col s12 m6 ">
+                <div className="card black-text game-style grey darken-2">
+                  <div className="card-content green accent-3 text-content">
+                    <p className="card-title text-spacing" id="title">
                       {game.title}
-                    </span>
+                    </p>
                   </div>
-                  <div className="card-content green accent-3">
-                    <p className="text-spacing">Released: {game.released}</p>
-                    <p className="text-spacing">Price: {game.price}</p>
+                  <div className="card-content green accent-3 text-content">
+                    <p className="text-spacing" id="para">Released: {game.released}</p>
+                    <p className="text-spacing" id="para">Price: {game.price}</p>
                   </div>
                 </div>
               </div>

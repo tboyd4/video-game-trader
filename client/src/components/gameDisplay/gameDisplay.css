@@ -16,3 +16,16 @@
 .game-style {
     border-radius: 10px;
 }
+
+.text-content {
+    margin-bottom: 15px;
+}
+
+#title {
+    font-size: 50px;
+    font-weight: thin;
+}
+
+#para {
+    font-size: 30px;
+}
