@@ -2,3 +2,17 @@
     max-width: 300px;
     max-height: 400px;
 }
+
+.text-spacing {
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 15px;
+}
+
+.panel-background {
+    height: 100%;
+}
+
+.game-style {
+    border-radius: 10px;
+}
