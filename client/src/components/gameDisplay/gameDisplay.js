@@ -25,18 +25,24 @@ function GameDisplay() {
   ];
 
   return (
-    <div class="row">
-      {data.map((game) => {
+    <div>
+      {data.map((game, i) => {
         return (
-          <div class="col s12 m7 image-style">
-            <div class="card">
-              <div class="card-image">
-                <img src={game.image} alt="hello"></img>
+          <div className="row" key={i}>
+            <div className="col s12 m6">
+            <div className="card">
+                <div className="card-image">
+                  <img src={game.image} alt="hello"></img>
+                </div>
               </div>
-              <div class="card-content">
-                <span class="card-title">{game.title}</span>
-                <p>Released: {game.released}</p>
-                <p>Price: {game.price}</p>
+            </div>
+            <div className="col s12 m6">
+              <div className="card black-text">
+                <div className="card-content">
+                  <span className="card-title">{game.title}</span>
+                  <p>Released: {game.released}</p>
+                  <p>Price: {game.price}</p>
+                </div>
               </div>
             </div>
           </div>

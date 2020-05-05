@@ -2,11 +2,11 @@ import React from 'react';
 
 function FootBar() {
     return (
-        <footer class="page-footer green accent-3">
-          <div class="container">
+        <footer className="page-footer green accent-3">
+          <div className="container">
           </div>
-          <div class="footer-copyright">
-            <div class="container black-text">
+          <div className="footer-copyright">
+            <div className="container black-text">
             © 2020 Tyler Boyd, Jacob Borgen, Kyle Clark, Sheri Rhoades
             </div>
           </div>

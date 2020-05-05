@@ -11,7 +11,7 @@ import FootBar from "../components/appWide/footer/footBar";
 class App extends React.Component {
   render() {
     return (
-      <div class="container">
+      <div className="container">
         <header>
           <h1>Hello. I will someday become a video game trader</h1>
         </header>
@@ -25,7 +25,7 @@ class App extends React.Component {
             </Switch>
           </BrowserRouter>
 
-          <div class="filler"></div>
+          <div className="filler"></div>
         
         <FootBar />
       </div>
