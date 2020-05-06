@@ -7,12 +7,12 @@ import SearchBar from "./SearchBar"
 
 function loadGames() {
     API.multisearch(query)
-      .then(res => setGames(res.data)
-      )
-      .catch(err => console.log(err));
-    };
+        .then(res => setGames(res.data)
+        )
+        .catch(err => console.log(err));
+};
 
-function Home () {
+function Home() {
     return (
         <main>
             <h1>I am Home Page</h1>
