@@ -33,7 +33,7 @@ function GameDisplay(props) {
                     <p className="text-spacing" id="para">Game Details</p>
                   </div>
                   <div>
-                    <a href="/buysell" className="waves-effect waves-light green accent-3 black-text btn">Purchase</a>
+                    <a className="waves-effect waves-light green accent-3 black-text btn" onClick={() => props.addCart()}>Purchase</a>
                   </div>
                 </div>
               </div>

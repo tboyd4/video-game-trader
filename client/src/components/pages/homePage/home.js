@@ -4,12 +4,12 @@ import GameDisplay from '../../gameDisplay/gameDisplay';
 // import SearchBar from "./SearchBar"
 
 
-function Home() {
+function Home(props) {
     return (
         <main>
             <h1>I am Home Page</h1>
             {/* <SearchBar /> */}
-            <GameDisplay />            
+            <GameDisplay addCart={props.addCart} />            
         </main>
     )
 }

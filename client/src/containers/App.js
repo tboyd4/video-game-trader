@@ -42,14 +42,25 @@ function App() {
       },
     ],
     userCart: [
+      'before'
+    ],
+  });
+
+  function addToCart () {
+    console.log(gameState.userCart);
+    gameState.userCart = [
       {
         title: "Game3",
         released: "2011",
         image: Pic3,
         price: "$16.00",
       },
-    ],
-  });
+    ]
+    setGameState({
+      ...gameState
+    });
+    console.log(gameState.userCart);
+  }
 
   return (
     <div className="container">
@@ -66,7 +77,7 @@ function App() {
             <Route
               exact
               path="/home"
-              component={(props) => <Home {...props} />}
+              component={(props) => <Home {...props} addCart={addToCart} />}
             />
             <Route
               exact
