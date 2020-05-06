@@ -16,8 +16,8 @@ function Home() {
     return (
         <main>
             <h1>I am Home Page</h1>
-            <GameDisplay />
             <SearchBar />
+            <GameDisplay />            
         </main>
     )
 }
