@@ -8,6 +8,7 @@ import Home from "../components/pages/homePage/home";
 import BuySell from "../components/pages/buysellPage/buySellPage";
 import User from "../components/pages/userPage/userPage";
 import Login from "../components/pages/authenticationPages/login";
+import Register from "../components/pages/authenticationPages/register";
 import FootBar from "../components/appWide/footer/footBar";
 
 // class component
@@ -18,18 +19,19 @@ class App extends React.Component {
         <header>
           <h1>Hello. I will someday become a video game trader</h1>
         </header>
-          {/* Router will set to a page component. All other components will be placed into those page components */}
-          <BrowserRouter>
-            <Switch>
-              <Route exact path="/" component={Login} />
-              <Route exact path="/home" component={Home} />
-              <Route exact path="/buysell" component={BuySell} />
-              <Route exact path="/user" component={User} />
-            </Switch>
-          </BrowserRouter>
 
-          <div className="filler"></div>
-        
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/" component={Register} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/buysell" component={BuySell} />
+            <Route exact path="/user" component={User} />
+          </Switch>
+        </BrowserRouter>
+
+        <div className="filler"></div>
+
         <FootBar />
       </div>
     );
