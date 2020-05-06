@@ -42,21 +42,18 @@ function App() {
         price: "$16.00",
       },
     ],
-    userCart: [
-      'before'
-    ],
+    userCart: [],
   });
 
   function addToCart () {
     console.log(gameState.userCart);
-    gameState.userCart = [
-      {
-        title: "Game3",
+    let addedGame = {
+      title: "Game3",
         released: "2011",
         image: Pic3,
         price: "$16.00",
-      },
-    ]
+    }
+    gameState.userCart.push(addedGame)
     setGameState({
       ...gameState
     });
