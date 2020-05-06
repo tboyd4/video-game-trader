@@ -1,14 +1,18 @@
+// dependency imports
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, } from "react-router-dom";
 
-import Home from "../components/home/home";
-import BuySell from "../components/buysellPage/buySellPage";
-import User from "../components/userPage/userPage";
-import Login from "../components/authenticationPages/login";
+// component imports
+import Home from "../components/pages/homePage/home";
+import BuySell from "../components/pages/buysellPage/buySellPage";
+import User from "../components/pages/userPage/userPage";
+import Login from "../components/pages/authenticationPages/login";
+import Register from "../components/pages/authenticationPages/register";
 import FootBar from "../components/appWide/footer/footBar";
 import HeadBar from "../components/appWide/header/headBar";
 
+// class component
 class App extends React.Component {
   render() {
     return (
@@ -26,8 +30,8 @@ class App extends React.Component {
             </HeadBar>
           </BrowserRouter>
 
-          <div className="filler"></div>
-        
+        <div className="filler"></div>
+
         <FootBar />
       </div>
     );
