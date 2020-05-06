@@ -1,35 +1,15 @@
-import React from "react";
-import Pic1 from "../../images/test-img.jpg";
-import Pic2 from "../../images/dis-pic.jpg";
-import Pic3 from "../../images/resi-pic.jpg";
+import React, { useContext } from "react";
 
 import "./gameDisplay.css";
+import GameContext from '../../utils/GameContext'
 
-function GameDisplay() {
-  const data = [
-    {
-      title: "Game1",
-      released: "2001",
-      image: Pic1,
-      price: "$15.00",
-    },
-    {
-      title: "Game2",
-      released: "2005",
-      image: Pic2,
-      price: "$45.00",
-    },
-    {
-      title: "Game3",
-      released: "2011",
-      image: Pic3,
-      price: "$16.00",
-    },
-  ];
+function GameDisplay(props) {
+
+  const { testData } = useContext(GameContext);
 
   return (
     <div>
-      {data.map((game, i) => {
+      {testData.map((game, i) => {
         return (
           <div className="row grey darken-2 game-style" key={i}>
               <div className="col s12 m6">

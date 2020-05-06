@@ -1,5 +1,5 @@
 // dependency imports
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
@@ -12,28 +12,81 @@ import Register from "../components/pages/authenticationPages/register";
 import FootBar from "../components/appWide/footer/footBar";
 import HeadBar from "../components/appWide/header/headBar";
 
+// utility imports
+import GameContext from "../utils/GameContext";
+import Pic1 from "../images/test-img.jpg";
+import Pic2 from "../images/dis-pic.jpg";
+import Pic3 from "../images/resi-pic.jpg";
+
 // class component
-class App extends React.Component {
-  render() {
-    return (
-      <div className="container">
+function App() {
+  const [gameState, setGameState] = useState({
+    testData: [
+      {
+        title: "Game1",
+        released: "2001",
+        image: Pic1,
+        price: "$15.00",
+      },
+      {
+        title: "Game2",
+        released: "2005",
+        image: Pic2,
+        price: "$45.00",
+      },
+      {
+        title: "Game3",
+        released: "2011",
+        image: Pic3,
+        price: "$16.00",
+      },
+    ],
+    userCart: [
+      {
+        title: "Game3",
+        released: "2011",
+        image: Pic3,
+        price: "$16.00",
+      },
+    ],
+  });
+
+  return (
+    <div className="container">
+      <GameContext.Provider value={gameState}>
         <BrowserRouter>
           <HeadBar />
           <Switch>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/buysell" component={BuySell} />
-            <Route exact path="/user" component={User} />
+            <Route exact path="/" component={(props) => <Login {...props} />} />
+            <Route
+              exact
+              path="/register"
+              component={(props) => <Register {...props} />}
+            />
+            <Route
+              exact
+              path="/home"
+              component={(props) => <Home {...props} />}
+            />
+            <Route
+              exact
+              path="/buysell"
+              component={(props) => <BuySell {...props} />}
+            />
+            <Route
+              exact
+              path="/user"
+              component={(props) => <User {...props} />}
+            />
           </Switch>
         </BrowserRouter>
+      </GameContext.Provider>
 
-        <div className="filler"></div>
+      <div className="filler"></div>
 
-        <FootBar />
-      </div>
-    );
-  }
+      <FootBar />
+    </div>
+  );
 }
 
 export default App;
