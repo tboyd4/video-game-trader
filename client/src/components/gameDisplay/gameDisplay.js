@@ -39,8 +39,8 @@ function GameDisplay() {
                   </div>
                 </div>
               </div>
-              <div className="col s12 m6 ">
-                <div className="card black-text game-style grey darken-2">
+              <div className="col s12 m6  ">
+                <div className="card z-depth-0 black-text game-style grey darken-2">
                   <div className="card-content green accent-3 text-content">
                     <p className="card-title text-spacing" id="title">
                       {game.title}
@@ -49,6 +49,11 @@ function GameDisplay() {
                   <div className="card-content green accent-3 text-content">
                     <p className="text-spacing" id="para">Released: {game.released}</p>
                     <p className="text-spacing" id="para">Price: {game.price}</p>
+                    <p className="text-spacing" id="para">Game Details</p>
+                    <p className="text-spacing" id="para">Game Details</p>
+                  </div>
+                  <div>
+                    <a className="waves-effect waves-light green accent-3 black-text btn">Purchase</a>
                   </div>
                 </div>
               </div>
