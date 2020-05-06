@@ -1,6 +1,6 @@
 import React from 'react'
 
-import GameDisplay from '../gameDisplay/gameDisplay';
+import GameDisplay from '../../gameDisplay/gameDisplay';
 
 function Home () {
     return (

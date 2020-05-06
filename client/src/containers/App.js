@@ -1,14 +1,17 @@
+// dependency imports
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Home from "../components/home/home";
-import BuySell from "../components/buysellPage/buySellPage";
-import User from "../components/userPage/userPage";
-import Login from "../components/authenticationPages/login";
-import Register from "../components/authenticationPages/register";
+// component imports
+import Home from "../components/pages/homePage/home";
+import BuySell from "../components/pages/buysellPage/buySellPage";
+import User from "../components/pages/userPage/userPage";
+import Login from "../components/pages/authenticationPages/login";
+import Register from "../components/pages/authenticationPages/register";
 import FootBar from "../components/appWide/footer/footBar";
 
+// class component
 class App extends React.Component {
   render() {
     return (
