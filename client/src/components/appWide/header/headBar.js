@@ -13,6 +13,7 @@ function HeadBar() {
           <li><Link className="black-text" to="/">Login</Link></li>
           <li><Link className="black-text" to="/buysell">Sell</Link></li>
           <li><Link className="black-text" to="/user">User Dashboard</Link></li>
+          <li><Link className="black-text" to="/cart">Cart</Link></li>
         </ul>
       </div>
     </nav>

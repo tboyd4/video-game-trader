@@ -11,6 +11,7 @@ import Login from "../components/pages/authenticationPages/login";
 import Register from "../components/pages/authenticationPages/register";
 import FootBar from "../components/appWide/footer/footBar";
 import HeadBar from "../components/appWide/header/headBar";
+import Cart from '../components/pages/cartPage/cartPage';
 
 // utility imports
 import GameContext from "../utils/GameContext";
@@ -88,6 +89,11 @@ function App() {
               exact
               path="/user"
               component={(props) => <User {...props} />}
+            />
+            <Route
+              exact
+              path="/cart"
+              component={(props) => <Cart {...props} />}
             />
           </Switch>
         </BrowserRouter>
