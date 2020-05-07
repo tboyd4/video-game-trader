@@ -1,7 +1,7 @@
 // dependency imports
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Switch, Route, } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // component imports
 import Home from "../components/pages/homePage/home";
@@ -16,9 +16,7 @@ import HeadBar from "../components/appWide/header/headBar";
 class App extends React.Component {
   render() {
     return (
-
       <div className="container">
-
         <BrowserRouter>
           <HeadBar />
           <Switch>
@@ -27,7 +25,6 @@ class App extends React.Component {
             <Route exact path="/buysell" component={BuySell} />
             <Route exact path="/user" component={User} />
           </Switch>
-
         </BrowserRouter>
 
         <div className="filler"></div>

@@ -7,7 +7,7 @@ export default {
     return axios.get("https://www.pricecharting.com/api/products?t=" + APIKEY + "&q=" + query);
   },
 
-  idsearch: function(query) {
-    return axios.get("https://www.pricecharting.com/api/product?t=" + APIKEY + "&id=" + query)
+  idsearch: function(id) {
+    return axios.get("https://www.pricecharting.com/api/product?t=" + APIKEY + "&id=" + id)
   }
 };
