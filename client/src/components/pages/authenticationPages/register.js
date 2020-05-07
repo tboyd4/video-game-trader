@@ -40,9 +40,6 @@ class Login extends Component {
   // This checks the password
   handlePWChange(e) {
     console.log(e.target.value);
-    // let target = e.target;
-    // let value = target.type === "checkbox" ? target.checked : target.value;
-    // let name = target.name;
 
     this.setState({
       password: e.target.value,
