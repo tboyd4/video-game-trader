@@ -18,17 +18,17 @@ class App extends React.Component {
     return (
 
       <div className="container">
-        
-          <BrowserRouter>
-            <HeadBar>
-            <Switch>
-              <Route exact path="/" component={Login} />
-              <Route exact path="/home" component={Home} />
-              <Route exact path="/buysell" component={BuySell} />
-              <Route exact path="/user" component={User} />
-            </Switch>
-            </HeadBar>
-          </BrowserRouter>
+
+        <BrowserRouter>
+          <HeadBar />
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/buysell" component={BuySell} />
+            <Route exact path="/user" component={User} />
+          </Switch>
+
+        </BrowserRouter>
 
         <div className="filler"></div>
 
