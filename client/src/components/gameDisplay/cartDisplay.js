@@ -7,6 +7,12 @@ function GameDisplay(props) {
 
   const { userCart } = useContext(GameContext);
 
+  let cartPrice = 0
+  userCart.forEach((game) => {
+    console.log(cartPrice);
+    cartPrice = cartPrice + game.price;
+  })
+
   return (
     <div>
       {userCart.map((game, i) => {
@@ -39,6 +45,7 @@ function GameDisplay(props) {
           </div>
         );
       })}
+      <h1>TOTAL COST: ${cartPrice}</h1>
     </div>
   );
 }

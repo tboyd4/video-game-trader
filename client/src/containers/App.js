@@ -27,19 +27,19 @@ function App() {
         title: "Game1",
         released: "2001",
         image: Pic1,
-        price: "$15.00",
+        price: 15,
       },
       {
         title: "Game2",
         released: "2005",
         image: Pic2,
-        price: "$45.00",
+        price: 45,
       },
       {
         title: "Game3",
         released: "2011",
         image: Pic3,
-        price: "$16.00",
+        price: 16,
       },
     ],
     userCart: [],
@@ -51,7 +51,7 @@ function App() {
       title: "Game3",
         released: "2011",
         image: Pic3,
-        price: "$16.00",
+        price: 16,
     }
     gameState.userCart.push(addedGame)
     setGameState({
