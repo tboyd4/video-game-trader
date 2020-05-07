@@ -11,7 +11,7 @@ import Login from "../components/pages/authenticationPages/login";
 import Register from "../components/pages/authenticationPages/register";
 import FootBar from "../components/appWide/footer/footBar";
 import HeadBar from "../components/appWide/header/headBar";
-import Cart from '../components/pages/cartPage/cartPage';
+import Cart from "../components/pages/cartPage/cartPage";
 
 // utility imports
 import GameContext from "../utils/GameContext";
@@ -24,18 +24,21 @@ function App() {
   const [gameState, setGameState] = useState({
     testData: [
       {
+        id: 1,
         title: "Game1",
         released: "2001",
         image: Pic1,
         price: 15,
       },
       {
+        id: 2,
         title: "Game2",
         released: "2005",
         image: Pic2,
         price: 45,
       },
       {
+        id: 3,
         title: "Game3",
         released: "2011",
         image: Pic3,
@@ -45,19 +48,38 @@ function App() {
     userCart: [],
   });
 
-  function addToCart () {
-    console.log(gameState.userCart);
+  function addToCart() {
     let addedGame = {
+      id: 3,
       title: "Game3",
-        released: "2011",
-        image: Pic3,
-        price: 16,
-    }
-    gameState.userCart.push(addedGame)
+      released: "2011",
+      image: Pic3,
+      price: 16,
+    };
+    gameState.userCart.push(addedGame);
     setGameState({
-      ...gameState
+      ...gameState,
     });
-    console.log(gameState.userCart);
+  }
+
+  function removeFromCart(event) {
+    let idRemove = event;
+
+    console.log("I'm the remove function, running");
+    console.log(idRemove);
+    let newCart = gameState.userCart.filter((game) => {
+      if (game.id !== idRemove) {
+        return game;
+      }
+    });
+    console.log(
+      "I'm the remove function, and here's the new cart " +
+        JSON.stringify(newCart)
+    );
+    gameState.userCart = newCart;
+    setGameState({
+      ...gameState,
+    });
   }
 
   return (
@@ -90,7 +112,9 @@ function App() {
             <Route
               exact
               path="/cart"
-              component={(props) => <Cart {...props} />}
+              component={(props) => (
+                <Cart {...props} removeCart={removeFromCart} />
+              )}
             />
           </Switch>
         </BrowserRouter>

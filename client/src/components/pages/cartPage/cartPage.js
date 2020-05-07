@@ -8,7 +8,7 @@ function Cart(props) {
     return (
         <main>
             <h1>I am Cart Page</h1>
-            <CartDisplay/>            
+            <CartDisplay removeCart={props.removeCart}/>            
         </main>
     )
 }
