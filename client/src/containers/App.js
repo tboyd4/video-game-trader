@@ -49,7 +49,7 @@ function App() {
   });
 
   function addToCart(game) {
-    console.log(JSON.stringify(game))
+    console.log(JSON.stringify(game));
     gameState.userCart.push(game);
     setGameState({
       ...gameState,
@@ -58,17 +58,10 @@ function App() {
 
   function removeFromCart(event) {
     let idRemove = event.target.dataset.tag;
-
-    console.log("I'm the remove function, running");
-    console.log(idRemove);
-    let newCart = gameState.userCart.filter(game => game.id != idRemove)
-    console.log(
-      "I'm the remove function, and here's the new cart " +
-        JSON.stringify(newCart)
-    );
+    let newCart = gameState.userCart.filter((game) => game.id != idRemove);
     setGameState({
       ...gameState,
-      userCart: newCart
+      userCart: newCart,
     });
   }
 
