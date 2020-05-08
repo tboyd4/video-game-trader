@@ -38,7 +38,7 @@ function GameDisplay(props) {
                     <p className="text-spacing" id="para">Game Details</p>
                   </div>
                   <div>
-                    <a className="waves-effect waves-light green accent-3 black-text btn" data-remove={userCart.id} onClick={props.removeCart} >Remove From Cart</a>
+                    <a className="waves-effect waves-light green accent-3 black-text btn" data-tag={game.id} onClick={props.removeCart} >Remove From Cart</a>
                   </div>
                 </div>
               </div>
@@ -51,6 +51,3 @@ function GameDisplay(props) {
 }
 
 export default GameDisplay;
-
-// https://stackoverflow.com/questions/37639122/using-event-target-with-react-components
-// this is a good link for the event.target problem

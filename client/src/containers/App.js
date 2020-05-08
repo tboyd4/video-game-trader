@@ -63,14 +63,12 @@ function App() {
   }
 
   function removeFromCart(event) {
-    let idRemove = event;
+    let idRemove = event.target.dataset.tag;
 
     console.log("I'm the remove function, running");
     console.log(idRemove);
     let newCart = gameState.userCart.filter((game) => {
-      if (game.id !== idRemove) {
-        return game;
-      }
+      return game.id === idRemove
     });
     console.log(
       "I'm the remove function, and here's the new cart " +
