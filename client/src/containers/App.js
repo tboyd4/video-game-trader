@@ -88,7 +88,6 @@ function App() {
         <BrowserRouter>
           <HeadBar />
           <Switch>
-<<<<<<< HEAD
             <Route exact path="/" component={(props) => <Login {...props} />} />
             <Route
               exact
@@ -117,12 +116,6 @@ function App() {
                 <Cart {...props} removeCart={removeFromCart} />
               )}
             />
-=======
-            <Route exact path="/" component={Login} />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/buysell" component={BuySell} />
-            <Route exact path="/user" component={User} />
->>>>>>> master
           </Switch>
         </BrowserRouter>
       </GameContext.Provider>
