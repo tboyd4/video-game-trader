@@ -21,7 +21,6 @@ class App extends React.Component {
           <HeadBar />
           <Switch>
             <Route exact path="/" component={Login} />
-            <Route exact path="/register" component={Register} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/buysell" component={BuySell} />
             <Route exact path="/user" component={User} />
