@@ -61,16 +61,14 @@ function App() {
 
     console.log("I'm the remove function, running");
     console.log(idRemove);
-    let newCart = gameState.userCart.filter((game) => {
-      return game.id === idRemove
-    });
+    let newCart = gameState.userCart.filter(game => game.id != idRemove)
     console.log(
       "I'm the remove function, and here's the new cart " +
         JSON.stringify(newCart)
     );
-    gameState.userCart = newCart;
     setGameState({
       ...gameState,
+      userCart: newCart
     });
   }
 
