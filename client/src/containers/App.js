@@ -48,15 +48,9 @@ function App() {
     userCart: [],
   });
 
-  function addToCart() {
-    let addedGame = {
-      id: 3,
-      title: "Game3",
-      released: "2011",
-      image: Pic3,
-      price: 16,
-    };
-    gameState.userCart.push(addedGame);
+  function addToCart(game) {
+    console.log(JSON.stringify(game))
+    gameState.userCart.push(game);
     setGameState({
       ...gameState,
     });
