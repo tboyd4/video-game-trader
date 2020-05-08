@@ -14,7 +14,7 @@ function GameDisplay(props) {
 
   return (
     <div>
-      {userCart.map((game, i) => {
+      {userCart.length > 0 ? userCart.map((game, i) => {
         return (
           <div className="row grey darken-2 game-style" key={i}>
               <div className="col s12 m6">
@@ -44,7 +44,8 @@ function GameDisplay(props) {
               </div>
           </div>
         );
-      })}
+      }) : <h1>Empty Cart? Go add some games!</h1>}
+      
       <h1>TOTAL COST: ${cartPrice}</h1>
     </div>
   );
