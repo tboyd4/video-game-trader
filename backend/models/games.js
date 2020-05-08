@@ -29,7 +29,14 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
       },
     });
-  };
+   
+    // Game.associate = (models) => {
+    //     Game.belongsTo(models.User, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
 
   return Game;
 };
