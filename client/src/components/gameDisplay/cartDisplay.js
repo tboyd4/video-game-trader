@@ -5,11 +5,16 @@ import GameContext from '../../utils/GameContext'
 
 function GameDisplay(props) {
 
-  const { testData } = useContext(GameContext);
+  const { userCart } = useContext(GameContext);
+
+  let cartPrice = 0
+  userCart.forEach((game) => {
+    cartPrice = cartPrice + game.price;
+  })
 
   return (
     <div>
-      {testData.map((game, i) => {
+      {userCart.map((game, i) => {
         return (
           <div className="row grey darken-2 game-style" key={i}>
               <div className="col s12 m6">
@@ -33,15 +38,19 @@ function GameDisplay(props) {
                     <p className="text-spacing" id="para">Game Details</p>
                   </div>
                   <div>
-                    <a className="waves-effect waves-light green accent-3 black-text btn" onClick={() => props.addCart()}>Purchase</a>
+                    <a className="waves-effect waves-light green accent-3 black-text btn" data-remove={userCart.id} onClick={props.removeCart} >Remove From Cart</a>
                   </div>
                 </div>
               </div>
           </div>
         );
       })}
+      <h1>TOTAL COST: ${cartPrice}</h1>
     </div>
   );
 }
 
 export default GameDisplay;
+
+// https://stackoverflow.com/questions/37639122/using-event-target-with-react-components
+// this is a good link for the event.target problem

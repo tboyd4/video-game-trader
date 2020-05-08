@@ -7,12 +7,14 @@ import SearchResults from './SearchResults'
 
     function Home() {
 
-        const [search, setSearch] = useState("");
+        const [search, setSearch] = useState({
+            result: ''
+        });
 
         const handleInputChange = event => {
             event.preventDefault();
-            setSearch(event.target.value);
-            console.log(search)
+            setSearch({result: event.target.value});
+            console.log(search.result)
         };
         
         const handleFormSubmit = event => {
