@@ -12,12 +12,12 @@ import SearchResults from './SearchResults'
         });
 
         const handleInputChange = event => {
-            event.preventDefault();
             setSearch({result: event.target.value});
-            console.log(search.result)
+            
         };
         
         const handleFormSubmit = event => {
+            console.log(search.result);
             event.preventDefault();
         };
 
