@@ -6,7 +6,7 @@ import SearchContext from '../../../utils/SearchContext'
 import SearchResults from './SearchResults'
 import API from '../../../utils/API'
 
-    function Home() {
+    function Home(props) {
 
         const [search, setSearch] = useState({
             searchItem: '',
@@ -42,7 +42,7 @@ import API from '../../../utils/API'
                     />
 
                     <SearchResults/>
-                    <GameDisplay />
+                    <GameDisplay addCart={props.addCart} />
                 </main>
             </SearchContext.Provider>
         )
