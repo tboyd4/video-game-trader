@@ -38,7 +38,7 @@ app.use(favicon(__dirname + "/client/build/favicon.ico"));
 
 // route that servers our production build out
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "/client/public", "index.html"));
+  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
 });
 
 // Routes
