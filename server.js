@@ -24,7 +24,7 @@ app.use(passport.initialize());
 
 
 // Requiring our models for syncing
-const db = require("./backend/models");
+const db = require("./models");
 
 // server.js middleware and use methods
 app.use(favicon(__dirname + "/client/build/favicon.ico"));
