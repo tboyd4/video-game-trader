@@ -18,6 +18,7 @@ import GameContext from "../utils/GameContext";
 import Pic1 from "../images/test-img.jpg";
 import Pic2 from "../images/dis-pic.jpg";
 import Pic3 from "../images/resi-pic.jpg";
+import M from 'materialize-css';
 
 // class component
 function App() {
@@ -48,37 +49,21 @@ function App() {
     userCart: [],
   });
 
-  function addToCart() {
-    let addedGame = {
-      id: 3,
-      title: "Game3",
-      released: "2011",
-      image: Pic3,
-      price: 16,
-    };
-    gameState.userCart.push(addedGame);
+  function addToCart(game) {
+    console.log(JSON.stringify(game));
+    gameState.userCart.push(game);
     setGameState({
       ...gameState,
     });
+    M.toast({html: 'Added to Cart!'})
   }
 
   function removeFromCart(event) {
-    let idRemove = event;
-
-    console.log("I'm the remove function, running");
-    console.log(idRemove);
-    let newCart = gameState.userCart.filter((game) => {
-      if (game.id !== idRemove) {
-        return game;
-      }
-    });
-    console.log(
-      "I'm the remove function, and here's the new cart " +
-        JSON.stringify(newCart)
-    );
-    gameState.userCart = newCart;
+    let idRemove = event.target.dataset.tag;
+    let newCart = gameState.userCart.filter((game) => game.id != idRemove);
     setGameState({
       ...gameState,
+      userCart: newCart,
     });
   }
 

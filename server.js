@@ -26,11 +26,8 @@ app.get("/", function (req, res) {
   res.send("Welcome to Passport with Sequelize");
 });
 
-//Models
-var models = require("./models");
-
 // Requiring our models for syncing
-const db = require("./models");
+const db = require("./backend/models");
 
 // server.js middleware and use methods
 app.use(favicon(__dirname + "/client/build/favicon.ico"));

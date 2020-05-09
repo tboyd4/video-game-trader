@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar/SearchBar"
 import SearchContext from '../../../utils/SearchContext'
 import SearchResults from './SearchResults'
 
-    function Home() {
+    function Home(props) {
 
         const [search, setSearch] = useState({
             result: ''
@@ -32,7 +32,7 @@ import SearchResults from './SearchResults'
                     />
 
                     <SearchResults/>
-                    <GameDisplay />
+                    <GameDisplay addCart={props.addCart} />
                 </main>
             </SearchContext.Provider>
         )
