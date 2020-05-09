@@ -3,11 +3,13 @@ import React from 'react'
 import CartDisplay from '../../gameDisplay/cartDisplay';
 // import SearchBar from "./SearchBar"
 
+import './cartPage.css'
+
 
 function Cart(props) {
     return (
         <main>
-            <h1>I am Cart Page</h1>
+            <h1 class="black-text center-align cart-title">Your Cart</h1>
             <CartDisplay removeCart={props.removeCart}/>            
         </main>
     )
