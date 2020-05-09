@@ -6,46 +6,66 @@ import SearchContext from '../../../utils/SearchContext'
 import SearchResults from './SearchResults'
 
 
-function BuySell() {
-    
-    const [search, setSearch] = useState({
-        result: ''
-    });
-
+class BuySell extends React.Component {
+    state = {
+        value: "",
+        books: []
+    };
     componentDidMount() {
         this.searchGames("The Matrix");
     }
 
+    makeGame = game => {
+        return {
+            id: game.id,
+            title: game.product-name,
+            console: game.console-name,
+        }
+    };
+
+
+    // function getGameData = game.id => {
+    //     API.idsearch(game.id)
+    //      .then(res => this.setState({ result: res.data}))
+    //     .catch(err => console.log(err));
+    // };
+ 
+
     searchGames = query => {
         API.multisearch(query)
-            .then(res => this.setState({ result: res.data }))
+            .then(res => this.setState({ result: res.data.items.map(
+                game => this.makeGame(game))
+             }))
             .catch(err => console.log(err));
     };
 
-    const handleInputChange = event => {
+    handleInputChange = event => {
         event.preventDefault();
         setSearch({ result: event.target.value });
         console.log(search.result)
     };  
 
-    const handleFormSubmit = event => {
+    handleFormSubmit = event => {
         event.preventDefault();
     };
 
+render() {
     return (
         <SearchContext.Provider value={search}>
             <main>
-                <h1>What games would you like to trade?</h1>
+                <h1>I am Home Page</h1>
                 <SearchBar
                     handleFormSubmit={handleFormSubmit}
                     handleInputChange={handleInputChange}
                     results={search}
                 />
-                <SearchResults />
-                <SellDisplay />
+
+                <SearchResults/>
+                <GameDisplay />
             </main>
         </SearchContext.Provider>
     )
+}
 }
 
 export default BuySell;

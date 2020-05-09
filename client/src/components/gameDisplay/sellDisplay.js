@@ -30,7 +30,7 @@ function SellDisplay(props) {
                     <p className="text-spacing" id="para">Released: {game.released}</p>
                     <p className="text-spacing" id="para">Price: {game.price}</p>
                     <p className="text-spacing" id="para">Trade Price: {game.price * .5}</p>
-                    <p className="text-spacing" id="para">Game Details</p>
+                    <p className="text-spacing" id="para">{game.id}</p>
                     <p className="text-spacing" id="para">Game Details</p>
                   </div>
                   <div>
