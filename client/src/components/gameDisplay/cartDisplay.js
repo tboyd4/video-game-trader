@@ -16,37 +16,25 @@ function GameDisplay(props) {
     <div>
       {userCart.length > 0 ? userCart.map((game, i) => {
         return (
-          <div className="row grey darken-2 game-style" key={i}>
-              <div className="col s12 m6">
-                <div className="card">
-                  <div className="card-image">
-                    <img src={game.image} alt="hello"></img>
-                  </div>
+          <div class="col s12 m7">
+            <div class="card horizontal small cart-games">
+              <div class="card-image">
+                <img src={game.image} alt="hello"></img>
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <h2 class="header black-text">{game.title}</h2>
+                  <p className="text-spacing black-text" id="para">Price: ${game.price}</p>
+                  <a className="waves-effect waves-light green accent-3 black-text btn" data-tag={game.id} onClick={props.removeCart} >Remove From Cart</a>
                 </div>
               </div>
-              <div className="col s12 m6  ">
-                <div className="card z-depth-0 black-text game-style grey darken-2">
-                  <div className="card-content green accent-3 text-content">
-                    <p className="card-title text-spacing" id="title">
-                      {game.title}
-                    </p>
-                  </div>
-                  <div className="card-content green accent-3 text-content">
-                    <p className="text-spacing" id="para">Released: {game.released}</p>
-                    <p className="text-spacing" id="para">Price: {game.price}</p>
-                    <p className="text-spacing" id="para">Game Details</p>
-                    <p className="text-spacing" id="para">Game Details</p>
-                  </div>
-                  <div>
-                    <a className="waves-effect waves-light green accent-3 black-text btn" data-tag={game.id} onClick={props.removeCart} >Remove From Cart</a>
-                  </div>
-                </div>
-              </div>
+            </div>
           </div>
         );
       }) : <h1>Empty Cart? Go add some games!</h1>}
-      
-      <h1>TOTAL COST: ${cartPrice}</h1>
+      <div className="filler"></div>
+      <div className="filler"></div>
+      <h1 class="black-text center-align cart-title cart-games">TOTAL COST: ${cartPrice}</h1>
     </div>
   );
 }
