@@ -20,11 +20,8 @@ app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
 ); // session secret
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+// app.use(passport.session()); // persistent login sessions
 
-app.get("/", function (req, res) {
-  res.send("Welcome to Passport with Sequelize");
-});
 
 // Requiring our models for syncing
 const db = require("./backend/models");
@@ -33,13 +30,8 @@ const db = require("./backend/models");
 app.use(favicon(__dirname + "/client/build/favicon.ico"));
 
 // lines 14 and 15 will be used later in deployment
-// app.use(express.static(__dirname));
-// app.use(express.static(path.join(__dirname, '/client/build')));
-
-// route that servers our production build out
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
-});
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, '/client/build')));
 
 // Routes
 require("./routes/test-api-routes.js")(app);
@@ -49,6 +41,11 @@ require("./routes/user-routes")(app);
 require("../video-game-trader/config/passport");
 //require("./config/passport")(passport, models);
 //require("./config/passport")(passport, models.user);
+
+// route that servers our production build out
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+});
 
 // Syncing our sequelize models and then starting our Express app
 db.sequelize.sync().then(function () {
