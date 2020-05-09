@@ -4,22 +4,33 @@ import GameDisplay from '../../gameDisplay/gameDisplay';
 import SearchBar from "./SearchBar/SearchBar"
 import SearchContext from '../../../utils/SearchContext'
 import SearchResults from './SearchResults'
+import API from '../../../utils/API'
 
     function Home() {
 
         const [search, setSearch] = useState({
-            result: ''
+            searchItem: '',
+            result: {}
         });
 
+        const searchGames = query => {
+            API.search(query)
+              .then(res => this.setSearch({ result: res.data }))
+              .catch(err => console.log(err));
+          };
+
         const handleInputChange = event => {
-            setSearch({result: event.target.value});
+            setSearch({searchItem: event.target.value});
             
         };
         
         const handleFormSubmit = event => {
-            console.log(search.result);
+            const data = searchGames(search.searchItem);
+            console.log(search.searchItem);
+            console.log(data)
             event.preventDefault();
         };
+
 
         return (
             <SearchContext.Provider value={search}>
@@ -28,7 +39,6 @@ import SearchResults from './SearchResults'
                     <SearchBar
                         handleFormSubmit={handleFormSubmit}
                         handleInputChange={handleInputChange}
-                        results={search}
                     />
 
                     <SearchResults/>
