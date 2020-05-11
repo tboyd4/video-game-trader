@@ -1,6 +1,5 @@
 //import React from "react";
 import React, { Component } from "react";
-// import "./authenticationPages.css";
 import { Link } from "react-router-dom";
 
 class Login extends Component {
@@ -43,11 +42,22 @@ class Login extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col s12">
+        <div className="col s12 m4 l2"></div>
+        <div
+          className="col s12 m4 l8"
+          style={{
+            marginTop: "3rem",
+            borderstyle: "6",
+            borderWidth: "1rem",
+            borderColor: "#eeeeee",
+          }}
+        >
           <div className="FormCenter">
             <form className="FormFields" onSubmit={this.handleSubmit}>
+              <h4 className="center-align" style={{ padding: "1rem" }}>
+                Sign In
+              </h4>
               <div className="input-field">
-                <label for="email">E-Mail Address</label>
                 <input
                   type="email"
                   id="email"
@@ -61,9 +71,6 @@ class Login extends Component {
               </div>
 
               <div className="FormField">
-                <label className="FormField__Label" htmlFor="password">
-                  Password
-                </label>
                 <input
                   type="password"
                   id="password"
@@ -77,14 +84,27 @@ class Login extends Component {
               </div>
 
               <div className="FormField">
-                <button className="FormField__Button mr-20">Sign In</button>{" "}
-                <Link to="/" className="FormField__Link">
-                  Create an account
+                <button
+                  className="FormField__Button mr-20"
+                  style={{
+                    padding: "12px",
+                    marginRight: "3rem",
+                  }}
+                >
+                  Sign In
+                </button>{" "}
+                <Link
+                  to="/register"
+                  className="FormField__Link"
+                  style={{ color: "white" }}
+                >
+                  <p>Or click to Create an account</p>
                 </Link>
               </div>
             </form>
           </div>
         </div>
+        <div className="col s12 m4 l2"></div>
       </div>
     );
   }
