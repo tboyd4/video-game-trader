@@ -32,7 +32,7 @@ app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, "/client/build")));
 
 // Routes
-require("./routes/test-api-routes.js")(app);
+require("./routes/gameRoutes.js")(app);
 require("./routes/user-routes")(app);
 
 // route that servers our production build out

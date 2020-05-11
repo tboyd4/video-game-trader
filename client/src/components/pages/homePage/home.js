@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import GameDisplay from '../../gameDisplay/gameDisplay';
 import SearchBar from "./SearchBar/SearchBar"
 import SearchContext from '../../../utils/SearchContext'
 import SearchResults from './SearchResults'
-import API from '../../../utils/API'
+import API from '../../../utils/GamesAPI'
 
     function Home(props) {
 
@@ -21,12 +21,10 @@ import API from '../../../utils/API'
 
         const handleInputChange = event => {
             setSearch({searchItem: event.target.value});
-            
         };
         
         const handleFormSubmit = event => {
             const data = searchGames(search.searchItem);
-            console.log(search.searchItem);
             console.log(data)
             event.preventDefault();
         };
