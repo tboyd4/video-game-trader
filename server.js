@@ -1,15 +1,17 @@
 // import statements for server.js
 const express = require("express");
+const passport = require("passport");
+const session = require("express-session");
+const bodyParser = require("body-parser");
+const env = require("dotenv");
 const favicon = require("express-favicon");
 const path = require("path");
 
-// variable declaration
+// constiable declaration
 const PORT = process.env.PORT || 8080;
+// Requiring our models for syncing
+const db = require("./models");
 const app = express();
-var passport = require("passport");
-var session = require("express-session");
-var bodyParser = require("body-parser");
-var env = require("dotenv");
 
 //For BodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,27 +22,18 @@ app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
 ); // session secret
 app.use(passport.initialize());
-// app.use(passport.session()); // persistent login sessions
-
-
-// Requiring our models for syncing
-const db = require("./models");
+app.use(passport.session()); // persistent login sessions
 
 // server.js middleware and use methods
 app.use(favicon(__dirname + "/client/build/favicon.ico"));
 
 // lines 14 and 15 will be used later in deployment
 app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, '/client/build')));
+app.use(express.static(path.join(__dirname, "/client/build")));
 
 // Routes
 require("./routes/test-api-routes.js")(app);
 require("./routes/user-routes")(app);
-
-//load passport strategies
-require("../video-game-trader/config/passport");
-//require("./config/passport")(passport, models);
-//require("./config/passport")(passport, models.user);
 
 // route that servers our production build out
 app.get("/", function (req, res) {
@@ -48,7 +41,7 @@ app.get("/", function (req, res) {
 });
 
 // Syncing our sequelize models and then starting our Express app
-db.sequelize.sync().then(function () {
+db.sequelize.sync({ force: true }).then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });
