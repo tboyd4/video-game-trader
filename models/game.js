@@ -15,6 +15,19 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+
+    year: {
+      type: DataTypes.INTEGER,
+    },
+
+    description: {
+      type: DataTypes.INTEGER,
+    },
+
+    image: {
+      type: DataTypes.STRING,
+    },
+    
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
