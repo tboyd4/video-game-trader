@@ -1,49 +1,53 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import GameDisplay from '../../gameDisplay/gameDisplay';
 import SearchBar from "./SearchBar/SearchBar"
-import SearchContext from '../../../utils/SearchContext'
 import SearchResults from './SearchResults'
-import API from '../../../utils/GamesAPI'
-
-    function Home(props) {
-
-        const [search, setSearch] = useState({
-            searchItem: '',
-            result: {}
-        });
-
-        const searchGames = query => {
-            API.search(query)
-              .then(res => this.setSearch({ result: res.data }))
-              .catch(err => console.log(err));
-          };
-
-        const handleInputChange = event => {
-            setSearch({searchItem: event.target.value});
-        };
-        
-        const handleFormSubmit = event => {
-            const data = searchGames(search.searchItem);
-            console.log(data)
-            event.preventDefault();
-        };
+import gamesAPI from '../../../utils/gamesAPI'
 
 
-        return (
-            <SearchContext.Provider value={search}>
-                <main>
-                    <h1>I am Home Page</h1>
-                    <SearchBar
-                        handleFormSubmit={handleFormSubmit}
-                        handleInputChange={handleInputChange}
-                    />
+function Home(props) {
 
-                    <SearchResults/>
-                    <GameDisplay addCart={props.addCart} />
-                </main>
-            </SearchContext.Provider>
-        )
-    }
+    // Setting our component's initial state
+    const [games, setGames] = useState([])
+    const [gameDisplay, setGameDisplay] = useState({})
 
-    export default Home;
+
+    // Load all games and store them with setGames
+    useEffect(() => {
+        loadGames()
+        console.log(games)
+    }, [])
+
+
+    function loadGames() {
+        gamesAPI.getGames()
+        .then(res =>
+        setGames(res.data))
+        .catch(err => console.log(err));
+    };
+
+    function handleInputChange(event) {
+        const setGames = event.target.value;
+    };
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        console.log(games)
+    };
+
+
+    return (
+        <main>
+            <h1>I am Home Page</h1>
+            <SearchBar
+                handleFormSubmit={handleFormSubmit}
+                handleInputChange={handleInputChange}
+            />
+
+            <SearchResults />
+            <GameDisplay addCart={props.addCart} />
+        </main>
+    )
+}
+
+export default Home;
