@@ -29,7 +29,7 @@ app.use(favicon(__dirname + "/client/build/favicon.ico"));
 
 // lines 14 and 15 will be used later in deployment
 app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, "/client/build")));
+// app.use(express.static(path.join(__dirname, "/client/build")));
 
 var models = require("./models");
 
