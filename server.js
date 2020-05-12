@@ -29,11 +29,15 @@ app.use(favicon(__dirname + "/client/build/favicon.ico"));
 
 // lines 14 and 15 will be used later in deployment
 app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, "/client/build")));
+// app.use(express.static(path.join(__dirname, "/client/build")));
+
+var models = require("./models");
 
 // Routes
 require("./routes/test-api-routes.js")(app);
 require("./routes/user-routes")(app);
+
+require("./config/passport")(passport, models.User);
 
 // route that servers our production build out
 app.get("/", function (req, res) {
@@ -41,7 +45,7 @@ app.get("/", function (req, res) {
 });
 
 // Syncing our sequelize models and then starting our Express app
-db.sequelize.sync({ force: true }).then(function () {
+db.sequelize.sync({}).then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });

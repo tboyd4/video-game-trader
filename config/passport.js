@@ -1,51 +1,110 @@
-var passport = require("passport");
-var LocalStrategy = require("passport-local").Strategy;
+//load bcrypt
+var bCrypt = require("bcryptjs");
 
-var db = require("../models");
+module.exports = function (passport, user) {
+  var User = user;
+  var LocalStrategy = require("passport-local").Strategy;
 
-// Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
-passport.use(new LocalStrategy(
-  // Our user will sign in using an email, rather than a "username"
-  {
-    usernameField: "email"
-  },
-  function(email, password, done) {
-    // When a user tries to sign in this code runs
-    db.User.findOne({
-      where: {
-        email: email
+  passport.serializeUser(function (user, done) {
+    done(null, user.id);
+  });
+
+  // used to deserialize the user
+  passport.deserializeUser(function (id, done) {
+    User.findById(id).then(function (user) {
+      if (user) {
+        done(null, user.get());
+      } else {
+        done(user.errors, null);
       }
-    }).then(function(dbUser) {
-      // If there's no user with the given email
-      if (!dbUser) {
-        return done(null, false, {
-          message: "Incorrect email."
-        });
-      }
-      // If there is a user with the given email, but the password the user gives us is incorrect
-      else if (!dbUser.validPassword(password)) {
-        return done(null, false, {
-          message: "Incorrect password."
-        });
-      }
-      // If none of the above, return the user
-      return done(null, dbUser);
     });
-  }
-));
+  });
 
-// In order to help keep authentication state across HTTP requests,
-// Sequelize needs to serialize and deserialize the user
-// Just consider this part boilerplate needed to make it all work
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
-});
+  passport.use(
+    "local-signup",
+    new LocalStrategy(
+      {
+        usernameField: "userName",
+        passwordField: "password",
+        lastNameField: "lastName",
+        firstNameField: "firstName",
+        passReqToCallback: true, // allows us to pass back the entire request to the callback
+      },
 
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
-});
+      function (req, userName, password, done) {
+        var generateHash = function (password) {
+          return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+        };
 
+        User.findOne({ where: { userName: userName } }).then(function (user) {
+          if (user) {
+            return done(null, false, {
+              message: "That username is already taken",
+            });
+          } else {
+            var userPassword = generateHash(password);
+            var data = {
+              userName: req.body.userName,
+              email: req.body.email,
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+              password: userPassword,
+            };
 
+            User.create(data).then(function (newUser, created) {
+              if (!newUser) {
+                return done(null, false);
+              }
+              if (newUser) {
+                return done(null, newUser);
+              }
+            });
+          }
+        });
+      }
+    )
+  );
 
-// Exporting our configured passport
-module.exports = passport;
+  passport.use(
+    "local-signin",
+    new LocalStrategy(
+      {
+        usernameField: "userName",
+        passwordField: "password",
+        passReqToCallback: true,
+      },
+      function (req, userName, password, done) {
+        console.log(userName, password);
+        var isValidPassword = function (userpass, password) {
+          return bCrypt.compareSync(password, userpass);
+        };
+
+        User.findOne({ where: { userName: userName } })
+          .then(function (dbUser) {
+            if (!dbUser) {
+              return done(null, false, { message: "UserName does not exist" });
+            }
+            if (!isValidPassword(dbUser.password, password)) {
+              return done(null, false, { message: "Incorrect password." });
+            }
+
+            var userinfo = dbUser.get();
+            return done(null, userinfo);
+          })
+          .catch(function (err) {
+            console.log("Error:", err);
+            return done(null, false, {
+              message: "Something went wrong with your Signin",
+            });
+          });
+      }
+    )
+  );
+};
+
+// var config = {
+//   define: {
+//     createdAt: "createdat",
+//     updatedAt: "updatedat",
+//   },
+// };

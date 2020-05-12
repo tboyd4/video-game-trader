@@ -9,7 +9,7 @@ function SearchBar(props) {
     //)
    
     return (
-        <div class="nav-wrapper" >
+        <div className="nav-wrapper" >
             <form>
                 <div className="input-field green accent-3">
                     <input
@@ -18,7 +18,7 @@ function SearchBar(props) {
                      id="search" 
                      type="search" 
                      required />
-                    <label className="label-icon" for="search"><i className="material-icons">search</i></label>
+                    <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
                     <i className="material-icons">close</i>
                 </div>
             </form>
