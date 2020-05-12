@@ -24,24 +24,15 @@ module.exports = function (sequelize, DataTypes) {
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      foreignKey: true
-    }
+      foreignKey: true,
+    },
   });
 
   Game.associate = (models) => {
     Game.belongsTo(models.User, {
-      foreignKey: 'user_id'
+      foreignKey: "user_id",
     });
-  }
-   
-    // Game.associate = (models) => {
-    //     Game.belongsTo(models.User, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
-    // };
+  };
 
   return Game;
-}
-
+};
