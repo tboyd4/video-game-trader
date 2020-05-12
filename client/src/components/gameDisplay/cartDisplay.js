@@ -31,10 +31,10 @@ function GameDisplay(props) {
             </div>
           </div>
         );
-      }) : <h1>Empty Cart? Go add some games!</h1>}
+      }) : <h1>Your Cart is Empty!! Go add some games!</h1>}
       <div className="filler"></div>
+      <h1 className="black-text center-align cart-title cart-games">TOTAL COST: ${cartPrice}</h1>
       <div className="filler"></div>
-      <h1 class="black-text center-align cart-title cart-games">TOTAL COST: ${cartPrice}</h1>
     </div>
   );
 }

@@ -6,7 +6,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 // component imports
 import Home from "../components/pages/homePage/home";
 import BuySell from "../components/pages/buysellPage/buySellPage";
-import User from "../components/pages/userPage/userPage";
 import Login from "../components/pages/authenticationPages/login";
 import Register from "../components/pages/authenticationPages/register";
 import FootBar from "../components/appWide/footer/footBar";
@@ -88,11 +87,6 @@ function App() {
               exact
               path="/buysell"
               component={(props) => <BuySell {...props} />}
-            />
-            <Route
-              exact
-              path="/user"
-              component={(props) => <User {...props} />}
             />
             <Route
               exact
