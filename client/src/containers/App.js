@@ -49,20 +49,36 @@ function App() {
   });
 
   function addToCart(game) {
-    console.log(JSON.stringify(game));
+    // THIS FUNCTION WILL TAKE THE DATA BEING DISPLAYED FROM THE DATABASE, AND WILL ADD THAT GAME CHOSEN TO THE REACT STATE CART
+
+
+    // idRemove is the id of the game we are removing from the test data
+    let idRemove = game.id;
+  
+    // we are going to push the game being added to the cart THIS WILL EVENTUALLY PULL FROM DATABASE AND PUSH INTO CART STATE
     gameState.userCart.push(game);
+
+    // we are setting the state, so that what they add to cart will be removed from data. 
     setGameState({
-      ...gameState,
+      ...gameState
     });
     M.toast({html: 'Added to Cart!'})
   }
 
   function removeFromCart(event) {
+
+
+    // ALL THIS FUNCTION WILL DO IS REMOVE THE GAME FROM THE CART STATE
+
+    // idRemove is the id of the game we are removing
     let idRemove = event.target.dataset.tag;
+
+    // newCart is an array with all the game objects that are not being removed 
     let newCart = gameState.userCart.filter((game) => game.id != idRemove);
+
     setGameState({
       ...gameState,
-      userCart: newCart,
+      userCart: newCart,     // I want to set the cart state object as the new cart from above
     });
   }
 
