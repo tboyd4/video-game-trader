@@ -1,26 +1,21 @@
-// *********************************************************************************
-// api-routes.js - this file offers a set of routes for displaying and saving data to the db
-// *********************************************************************************
 
-// Dependencies
-// =============================================================
-
-// Requiring our Todo model
+// Requiring our Games model
 var db = require("../models");
 
 // Routes
 // =============================================================
 module.exports = function(app) {
 
-  // GET route for getting all of the posts
+  // GET route for getting all of the games
   app.get("/api/games", function(req, res) {
+      console.log("find all")
     db.Game.findAll({})
       .then(function(data) {
         res.json(data);
       });
   });
 
-  // Get route for retrieving a single post
+  // Get route for retrieving a single game
   app.get("/api/games/:id", function(req, res) {
     db.Game.findOne({
       where: {
@@ -32,20 +27,24 @@ module.exports = function(app) {
       });
   });
 
-  // POST route for saving a new post
+  // POST route for saving a new game
   app.post("/api/games", function(req, res) {
     console.log(req.body);
     db.Game.create({
       title: req.body.title,
-      body: req.body.body,
-      category: req.body.category
+      console: req.body.body,
+      price: req.body.price,
+      year: req.body.year,
+      description: req.body.description,
+      image: req.body.image
+
     })
       .then(function(data) {
         res.json(data);
       });
   });
 
-  // DELETE route for deleting posts
+  // DELETE route for deleting games
   app.delete("/api/games/:id", function(req, res) {
     db.Game.destroy({
       where: {
@@ -57,7 +56,7 @@ module.exports = function(app) {
       });
   });
 
-  // PUT route for updating posts
+  // PUT route for updating games
   app.put("/api/games", function(req, res) {
     db.Game.update(req.body,
       {
