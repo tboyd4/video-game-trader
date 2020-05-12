@@ -21,14 +21,18 @@ module.exports = function (sequelize, DataTypes) {
         len: [1],
       },
     },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      foreignKey: true
+    }
   });
 
   Game.associate = (models) => {
     Game.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false,
-      },
+      foreignKey: 'user_id'
     });
+  }
    
     // Game.associate = (models) => {
     //     Game.belongsTo(models.User, {
@@ -39,4 +43,5 @@ module.exports = function (sequelize, DataTypes) {
     // };
 
   return Game;
-};
+}
+
