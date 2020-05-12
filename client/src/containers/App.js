@@ -18,7 +18,7 @@ import GameContext from "../utils/GameContext";
 import Pic1 from "../images/test-img.jpg";
 import Pic2 from "../images/dis-pic.jpg";
 import Pic3 from "../images/resi-pic.jpg";
-import M from 'materialize-css';
+import M from "materialize-css";
 
 // class component
 function App() {
@@ -55,7 +55,7 @@ function App() {
     setGameState({
       ...gameState,
     });
-    M.toast({html: 'Added to Cart!'})
+    M.toast({ html: "Added to Cart!" });
   }
 
   function removeFromCart(event) {
