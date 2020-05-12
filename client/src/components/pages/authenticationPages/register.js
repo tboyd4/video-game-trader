@@ -121,7 +121,7 @@ class Login extends Component {
                 className="FormField__Link"
                 style={{ color: "white" }}
               >
-                <p>Or click to Sign In account</p>
+                <p>Or click to Sign In to your account</p>
               </Link>
             </div>
           </form>
