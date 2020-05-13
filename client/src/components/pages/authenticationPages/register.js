@@ -2,38 +2,55 @@
 import React, { Component } from "react";
 //import "./authenticationPages.css";
 import { Link } from "react-router-dom";
-import API from "../../../utils/API";
-import userFunctions from "./userFunctions";
+import UserAPI from "../../../utils/UserAPI";
+import { register } from "./userFunctions";
+//import userFunctions from "./userFunctions";
 
 class Login extends Component {
   constructor() {
     super();
 
     this.state = {
-      name: "",
+      firstName: "",
+      lastName: "",
+      userName: "",
       email: "",
       password: "",
     };
 
-    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handlefirstNameChange = this.handlefirstNameChange.bind(this);
+    this.handlelastNameChange = this.handlelastNameChange.bind(this);
+    this.handleuserNameChange = this.handleuserNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePWChange = this.handlePWChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // This checks the name
-  handleNameChange(e) {
+  handlefirstNameChange(e) {
     console.log(e.target.value);
-
     this.setState({
-      name: e.target.value,
+      firstName: e.target.value,
+    });
+  }
+
+  handlelastNameChange(e) {
+    console.log(e.target.value);
+    this.setState({
+      lastName: e.target.value,
+    });
+  }
+
+  handleuserNameChange(e) {
+    console.log(e.target.value);
+    this.setState({
+      userName: e.target.value,
     });
   }
 
   // This checks the email address
   handleEmailChange(e) {
     console.log(e.target.value);
-
     this.setState({
       email: e.target.value,
     });
@@ -50,9 +67,20 @@ class Login extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
     console.log("The form was submitted with the following data:");
     console.log(this.state);
+
+    const newUser = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      userName: this.state.userName,
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    register(newUser).then((res) => {
+      this.props.history.push(`/login`);
+    });
   }
 
   render() {
@@ -72,15 +100,40 @@ class Login extends Component {
             <div className="input-field">
               <input
                 type="text"
-                id="name"
+                id="firstName"
                 className="label-field"
-                placeholder="Enter your full name"
-                name="name"
-                value={this.state.name}
-                onChange={this.handleNameChange}
+                placeholder="Enter your first name"
+                name="firstName"
+                value={this.state.firstName}
+                onChange={this.handlefirstNameChange}
                 style={{ color: "white" }}
               />
             </div>
+            <div className="input-field">
+              <input
+                type="text"
+                id="lastName"
+                className="label-field"
+                placeholder="Enter your last name"
+                name="name"
+                value={this.state.lastName}
+                onChange={this.handlelastNameChange}
+                style={{ color: "white" }}
+              />
+            </div>
+            <div className="input-field">
+              <input
+                type="text"
+                id="userName"
+                className="label-field"
+                placeholder="Enter a user name"
+                name="name"
+                value={this.state.userName}
+                onChange={this.handleuserNameChange}
+                style={{ color: "white" }}
+              />
+            </div>
+
             <div className="input-field">
               <input
                 type="email"
