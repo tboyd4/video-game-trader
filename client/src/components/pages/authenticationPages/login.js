@@ -1,27 +1,26 @@
+//import React from "react";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import API from "../../../utils/API";
-import { login } from "./userFunctions";
 
 class Login extends Component {
   constructor() {
     super();
 
     this.state = {
-      userName: "",
+      email: "",
       password: "",
     };
 
-    this.handleuserNameChange = this.handleuserNameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePWChange = this.handlePWChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   // This checks the email address
-  handleuserNameChange(e) {
+  handleEmailChange(e) {
     console.log(e.target.value);
 
     this.setState({
-      userName: e.target.value,
+      email: e.target.value,
     });
   }
 
@@ -35,9 +34,9 @@ class Login extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
     console.log("The form was submitted with the following data:");
     console.log(this.state);
-    login(this.state);
   }
 
   render() {
