@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import GameDisplay from '../../gameDisplay/gameDisplay';
 import SearchBar from "./SearchBar/SearchBar"
@@ -24,7 +24,6 @@ import SearchResults from './SearchResults'
         return (
             <SearchContext.Provider value={search}>
                 <main>
-                    <h1>I am Home Page</h1>
                     <SearchBar
                         handleFormSubmit={handleFormSubmit}
                         handleInputChange={handleInputChange}

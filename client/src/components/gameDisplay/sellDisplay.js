@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import "./gameDisplay.css";
 import GameContext from '../../utils/GameContext'
 
-function GameDisplay(props) {
+function SellDisplay(props) {
 
   const { testData } = useContext(GameContext);
 
@@ -29,11 +29,12 @@ function GameDisplay(props) {
                   <div className="card-content green accent-3 text-content">
                     <p className="text-spacing" id="para">Released: {game.released}</p>
                     <p className="text-spacing" id="para">Price: {game.price}</p>
-                    <p className="text-spacing" id="para">Game Details</p>
+                    <p className="text-spacing" id="para">Trade Price: {game.price * .5}</p>
+                    <p className="text-spacing" id="para">{game.id}</p>
                     <p className="text-spacing" id="para">Game Details</p>
                   </div>
                   <div>
-                    <a className="waves-effect waves-light green accent-3 black-text btn-large" onClick={() => props.addCart(game)}>Purchase</a>
+                    <a className="waves-effect waves-light green accent-3 black-text btn" onClick={() => props.addCart()}>Sell Game</a>
                   </div>
                 </div>
               </div>
@@ -44,4 +45,4 @@ function GameDisplay(props) {
   );
 }
 
-export default GameDisplay;
+export default SellDisplay;
