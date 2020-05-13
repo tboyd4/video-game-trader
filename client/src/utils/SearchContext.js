@@ -1,7 +1,9 @@
 import React from "react";
 
 const SearchContext = React.createContext({
-  results: ''
+  title: "",
+  console: "",
+  
 });
 
 export default SearchContext;

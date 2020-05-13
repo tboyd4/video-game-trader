@@ -28,13 +28,13 @@ module.exports = function (Sequelize, DataTypes) {
     },
   });
 
-  User.associate = function (models) {
-    // Associating User with their character
-    // When a User is deleted, also delete any associated characters
-    User.hasMany(models.Game, {
-      onDelete: "cascade",
-    });
-  };
+  // User.associate = function (models) {
+  //   // Associating User with their character
+  //   // When a User is deleted, also delete any associated characters
+  //   User.hasMany(models.Game, {
+  //     onDelete: "cascade",
+  //   });
+  // };
 
   return User;
 };

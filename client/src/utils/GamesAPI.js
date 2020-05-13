@@ -8,6 +8,7 @@ export default {
   },
   // Gets the games with the given id
   getGame: function(id) {
+    console.log("trying to get!")
     return axios.get("/api/games/" + id);
   },
   // Deletes the games with the given id
