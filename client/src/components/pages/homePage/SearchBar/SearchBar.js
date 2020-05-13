@@ -1,6 +1,12 @@
 import React from 'react'
 
 function SearchBar(props) {
+
+    // database call
+    // .then( res => {
+            // let results = res
+    //}   
+    //)
    
     return (
         <div className="nav-wrapper" >
@@ -17,6 +23,9 @@ function SearchBar(props) {
                 </div>
             </form>
         </div>
+
+
+        // <GameDisplay data={results} />
     )
 }
 

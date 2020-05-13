@@ -6,7 +6,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 // component imports
 import Home from "../components/pages/homePage/home";
 import BuySell from "../components/pages/buysellPage/buySellPage";
-import User from "../components/pages/userPage/userPage";
 import Login from "../components/pages/authenticationPages/login";
 import Register from "../components/pages/authenticationPages/register";
 import FootBar from "../components/appWide/footer/footBar";
@@ -50,20 +49,34 @@ function App() {
   });
 
   function addToCart(game) {
-    console.log(JSON.stringify(game));
+    // THIS FUNCTION WILL TAKE THE DATA BEING DISPLAYED FROM THE DATABASE, AND WILL ADD THAT GAME CHOSEN TO THE REACT STATE CART
+
+    // idRemove is the id of the game we are removing from the test data
+    let idRemove = game.id;
+
+    // we are going to push the game being added to the cart THIS WILL EVENTUALLY PULL FROM DATABASE AND PUSH INTO CART STATE
     gameState.userCart.push(game);
+
+    // we are setting the state, so that what they add to cart will be removed from data.
     setGameState({
       ...gameState,
     });
     M.toast({ html: "Added to Cart!" });
   }
 
+  // NOTE FOR TYLER -- THERE WILL BE A BOUGHT or a SOLD FUNCTION THAT REMOVES OR ADDS THE GAME TO THE DATABASE. ALL THE CART FUNCTIONS SHOULD DO IS MOVE GAMES TO AND FROM THE CART STATE
+
   function removeFromCart(event) {
+    // ALL THIS FUNCTION WILL DO IS REMOVE THE GAME FROM THE CART STATE
+
+    // idRemove is the id of the game we are removing
     let idRemove = event.target.dataset.tag;
+
     let newCart = gameState.userCart.filter((game) => game.id !== idRemove);
+
     setGameState({
       ...gameState,
-      userCart: newCart,
+      userCart: newCart, // I want to set the cart state object as the new cart from above
     });
   }
 
@@ -88,11 +101,6 @@ function App() {
               exact
               path="/buysell"
               component={(props) => <BuySell {...props} />}
-            />
-            <Route
-              exact
-              path="/user"
-              component={(props) => <User {...props} />}
             />
             <Route
               exact
