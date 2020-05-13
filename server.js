@@ -33,8 +33,8 @@ app.use(express.static(__dirname));
 
 var models = require("./models");
 
-// Routes
-require("./routes/test-api-routes.js")(app);
+// Add routes
+require("./routes/gameRoutes")(app);
 require("./routes/user-routes")(app);
 
 require("./config/passport")(passport, models.User);
