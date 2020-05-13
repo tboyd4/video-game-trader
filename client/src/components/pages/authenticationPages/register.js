@@ -1,51 +1,39 @@
+//import React from "react";
 import React, { Component } from "react";
+//import "./authenticationPages.css";
 import { Link } from "react-router-dom";
 import API from "../../../utils/API";
-import { register } from "./userFunctions";
+import userFunctions from "./userFunctions";
 
-class Register extends Component {
+class Login extends Component {
   constructor() {
     super();
 
     this.state = {
-      firstName: "",
-      lastName: "",
-      userName: "",
-      password: "",
+      name: "",
       email: "",
+      password: "",
     };
 
-    this.handlefirstNameChange = this.handlefirstNameChange.bind(this);
-    this.handlelastNameChange = this.handlelastNameChange.bind(this);
-    this.handleuserNameChange = this.handleuserNameChange.bind(this);
-    this.handlePWChange = this.handlePWChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePWChange = this.handlePWChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // This checks the name
-  handlefirstNameChange(e) {
+  handleNameChange(e) {
     console.log(e.target.value);
+
     this.setState({
-      firstName: e.target.value,
-    });
-  }
-  handlelastNameChange(e) {
-    console.log(e.target.value);
-    this.setState({
-      lastName: e.target.value,
-    });
-  }
-  handleuserNameChange(e) {
-    console.log(e.target.value);
-    this.setState({
-      userName: e.target.value,
+      name: e.target.value,
     });
   }
 
   // This checks the email address
   handleEmailChange(e) {
     console.log(e.target.value);
+
     this.setState({
       email: e.target.value,
     });
@@ -54,6 +42,7 @@ class Register extends Component {
   // This checks the password
   handlePWChange(e) {
     console.log(e.target.value);
+
     this.setState({
       password: e.target.value,
     });
@@ -61,9 +50,9 @@ class Register extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
     console.log("The form was submitted with the following data:");
     console.log(this.state);
-    register(this.state);
   }
 
   render() {
@@ -83,40 +72,15 @@ class Register extends Component {
             <div className="input-field">
               <input
                 type="text"
-                id="firstname"
+                id="name"
                 className="label-field"
-                placeholder="Enter your First Name"
-                name="firstname"
-                value={this.state.firstName}
-                onChange={this.handlefirstNameChange}
+                placeholder="Enter your full name"
+                name="name"
+                value={this.state.name}
+                onChange={this.handleNameChange}
                 style={{ color: "white" }}
               />
             </div>
-            <div className="input-field">
-              <input
-                type="text"
-                id="lastname"
-                className="label-field"
-                placeholder="Enter your Last Name"
-                name="lastname"
-                value={this.state.lastName}
-                onChange={this.handlelastNameChange}
-                style={{ color: "white" }}
-              />
-            </div>
-            <div className="input-field">
-              <input
-                type="text"
-                id="username"
-                className="label-field"
-                placeholder="Enter your User Name"
-                name="username"
-                value={this.state.userName}
-                onChange={this.handleuserNameChange}
-                style={{ color: "white" }}
-              />
-            </div>
-
             <div className="input-field">
               <input
                 type="email"
@@ -170,4 +134,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default Login;
