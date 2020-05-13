@@ -17,24 +17,24 @@ function GameDisplay(props) {
       {userCart.length > 0 ? userCart.map((game, i) => {
         return (
           <div class="col s12 m7">
-            <div class="card horizontal small cart-games">
+            <div class="card horizontal small grey darken-2 cart-games">
               <div class="card-image">
                 <img src={game.image} alt="hello"></img>
               </div>
               <div class="card-stacked">
                 <div class="card-content">
-                  <h2 class="header black-text">{game.title}</h2>
-                  <p className="text-spacing black-text" id="para">Price: ${game.price}</p>
-                  <a className="waves-effect waves-light green accent-3 black-text btn" data-tag={game.id} onClick={props.removeCart} >Remove From Cart</a>
+                  <h2 class="header white-text">{game.title}</h2>
+                  <p className="text-spacing white-text" id="para">Price: ${game.price}</p>
                 </div>
+                <a className="waves-effect waves-light green accent-3 black-text btn" data-tag={game.id} onClick={props.removeCart} >Remove From Cart</a>
               </div>
             </div>
           </div>
         );
-      }) : <h1>Empty Cart? Go add some games!</h1>}
+      }) : <h1>Your Cart is Empty!! Go add some games!</h1>}
       <div className="filler"></div>
+      <h1 className="black-text center-align cart-title cart-games">TOTAL COST: ${cartPrice}</h1>
       <div className="filler"></div>
-      <h1 class="black-text center-align cart-title cart-games">TOTAL COST: ${cartPrice}</h1>
     </div>
   );
 }
