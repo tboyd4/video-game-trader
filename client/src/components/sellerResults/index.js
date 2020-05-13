@@ -42,7 +42,7 @@ class SellerResults extends Component {
                                         <div className="col-md-10">
                                             <div className="card-body">
                                                 <h5 className="card-title">{result.title} for {result.console}</h5>
-                                                <p className="card-text">{result.price}</p>
+                                                <p className="card-text">Trade Value: {result.price * .5}</p>
                                                 <div>
                                                     <a href={result.link} className="btn badge-pill btn-outline-dark mt-3">View</a>
                                                     <button onClick={() => this.handleSave(result)} 
