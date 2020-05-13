@@ -29,11 +29,15 @@ app.use(favicon(__dirname + "/client/build/favicon.ico"));
 
 // lines 14 and 15 will be used later in deployment
 app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, "/client/build")));
+// app.use(express.static(path.join(__dirname, "/client/build")));
+
+var models = require("./models");
 
 // Add routes
 require("./routes/gameRoutes")(app);
 require("./routes/user-routes")(app);
+
+require("./config/passport")(passport, models.User);
 
 // route that servers our production build out
 app.get("/", function (req, res) {
