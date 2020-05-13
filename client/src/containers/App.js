@@ -72,8 +72,7 @@ function App() {
     // idRemove is the id of the game we are removing
     let idRemove = event.target.dataset.tag;
 
-    // newCart is an array with all the game objects that are not being removed
-    let newCart = gameState.userCart.filter((game) => game.id != idRemove);
+    let newCart = gameState.userCart.filter((game) => game.id !== idRemove);
 
     setGameState({
       ...gameState,
