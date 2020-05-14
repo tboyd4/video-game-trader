@@ -1,16 +1,35 @@
-html,
-body {
-  height: 100%;
-}
-html {
-  display: table;
-  margin: auto;
-}
-body {
-  display: table-cell;
-  vertical-align: middle;
+.card {
+  width: 100%;
+  padding: 1rem;
 }
 
-.input-field {
-  color: white;
+input {
+  padding: 10px 10px !important;
+  border-radius: 10px !important;
+  outline: black !important;
+  border: 1px solid darkgray !important;
+}
+
+input::placeholder {
+  font-weight: lighter;
+  color: black;
+}
+
+.input.error {
+  border: 1px solid red;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.75em;
+  display: relative;
+}
+
+.firstName,
+.lastName,
+.email,
+.userName .password {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
 }
