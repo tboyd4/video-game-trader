@@ -8,7 +8,7 @@ return (
   <form>
     <div className="form-group">
       <label htmlFor="search"><h2>Search for your Game</h2></label>
-      <input
+      <input className="green accent-3"
         onChange={props.handleInputChange}
         value={props.search}
         name="search"

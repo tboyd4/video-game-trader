@@ -6,7 +6,7 @@ import SellerResults from '../../sellerResults/index'
 
 class BuySell extends React.Component {
     state = {
-        value: "",
+        value: 'Game Search',
         games: []
     };
     
@@ -16,26 +16,17 @@ class BuySell extends React.Component {
 
     makeGame = gameData => {
         return {
-            id: gameData.products.id,
-            title: gameData.products.name,
-            console: gameData.console,
-            value: gameData.products.loose.price
+            _id: gameData.id,
+            title: gameData['product-name'],
+            console: gameData['console-name'],
+            price: gameData['loose-price']
         }
     };
 
 
-    // function getGameData = game.id => {
-    //     API.idsearch(game.id)
-    //      .then(res => this.setState({ result: res.data}))
-    //     .catch(err => console.log(err));
-    // };
-
-
     searchGames = query => {
         API.multisearch(query)
-            .then(res => this.setState({
-                result: res.data.items.map(gameData => this.makeGame(gameData))
-            }))
+            .then(res => this.setState({ games: res.data.products.map(gameData => this.makeGame(gameData))  }))
             .catch(err => console.log(err));
     };
 
