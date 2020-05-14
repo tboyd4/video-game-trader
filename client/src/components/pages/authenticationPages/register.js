@@ -211,7 +211,7 @@ class Register extends Component {
                   className="FormField__Link center-align"
                   style={{ color: "black", padding: "1rem" }}
                 >
-                  <p>Or click here to Sign In to your account</p>
+                  <p>Or click here to Login to your account</p>
                 </Link>
               </div>
             </form>

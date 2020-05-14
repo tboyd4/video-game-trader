@@ -52,70 +52,65 @@ class Login extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col s12 m4 l2"></div>
-        <div
-          className="col s12 m4 l8"
-          style={{
-            marginTop: "3rem",
-            borderstyle: "6",
-            borderWidth: "1rem",
-            borderColor: "#eeeeee",
-          }}
-        >
-          <div className="FormCenter">
-            <form className="FormFields" onSubmit={this.handleSubmit}>
-              <h4 className="center-align" style={{ padding: "1rem" }}>
-                Sign In
-              </h4>
+        <div className="col s3"></div>
+        <div className="col s6 center-align">
+          <div className="card">
+            <div className="black-text center-align">
+              <h3>Login</h3>
+            </div>
 
-              <div className="input-field">
-                <input
-                  type="text"
-                  id="userName"
-                  className="label-field"
-                  placeholder="Enter your user name"
-                  name="name"
-                  value={this.state.userName}
-                  onChange={this.handleuserNameChange}
-                  style={{ color: "white" }}
-                />
-              </div>
+            <form onSubmit={this.handleSubmit} noValidate>
+              <div className="card-content">
+                <div className="form-field">
+                  <label htmlFor="userName">User Name</label>
+                  <input
+                    //className={formErrors.userName.length > 0 ? "error" : null}
+                    placeholder="Enter your User Name"
+                    type="text"
+                    name="userName"
+                    noValidate
+                    onChange={this.handleuserNameChange}
+                  />
+                  {/* {formErrors.userName.length > 0 && (
+                    <span className="errorMessage">{formErrors.userName}</span>
+                  )} */}
+                </div>
 
-              <div className="FormField">
-                <input
-                  type="password"
-                  id="password"
-                  className="FormField__Input"
-                  placeholder="Enter your password"
-                  name="password"
-                  value={this.state.password}
-                  style={{ color: "white" }}
-                  onChange={this.handlePWChange}
-                />
-              </div>
+                <div className="form-field">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    // className={formErrors.password.length > 0 ? "error" : null}
+                    placeholder="Enter your Password"
+                    type="password"
+                    name="password"
+                    noValidate
+                    onChange={this.handlePWChange}
+                  />
+                  {/* {formErrors.password.length > 0 && (
+                    <span className="errorMessage">{formErrors.password}</span>
+                  )} */}
+                </div>
 
-              <div className="FormField">
-                <button
-                  className="FormField__Button mr-20"
-                  style={{
-                    padding: "12px",
-                    marginRight: "3rem",
-                  }}
-                >
-                  Sign In
-                </button>{" "}
+                <div className="form-field" style={{ padding: "1rem" }}>
+                  <button
+                    className="btn-large green accent-3 .center-align"
+                    style={{ width: "100%", color: "black" }}
+                  >
+                    Login
+                  </button>
+                </div>
                 <Link
-                  to="/register"
-                  className="FormField__Link"
-                  style={{ color: "white" }}
+                  to="/"
+                  className="FormField__Link center-align"
+                  style={{ color: "black", padding: "1rem" }}
                 >
-                  <p>Or click to Create an account</p>
+                  <p>Or click here to Register for an account</p>
                 </Link>
               </div>
             </form>
           </div>
         </div>
-        <div className="col s12 m4 l2"></div>
+        <div className="col s3"></div>
       </div>
     );
   }
