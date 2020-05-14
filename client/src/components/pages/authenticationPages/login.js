@@ -1,26 +1,27 @@
-//import React from "react";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import UserAPI from "../../../utils/UserAPI";
+import { login } from "./userFunctions";
 
 class Login extends Component {
   constructor() {
     super();
 
     this.state = {
-      email: "",
+      userName: "",
       password: "",
     };
 
-    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleuserNameChange = this.handleuserNameChange.bind(this);
     this.handlePWChange = this.handlePWChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   // This checks the email address
-  handleEmailChange(e) {
+  handleuserNameChange(e) {
     console.log(e.target.value);
 
     this.setState({
-      email: e.target.value,
+      userName: e.target.value,
     });
   }
 
@@ -37,6 +38,15 @@ class Login extends Component {
 
     console.log("The form was submitted with the following data:");
     console.log(this.state);
+
+    const user = {
+      userName: this.state.userName,
+      password: this.state.password,
+    };
+
+    login(user).then((res) => {
+      this.props.history.push(`/login`);
+    });
   }
 
   render() {
@@ -57,15 +67,16 @@ class Login extends Component {
               <h4 className="center-align" style={{ padding: "1rem" }}>
                 Sign In
               </h4>
+
               <div className="input-field">
                 <input
-                  type="email"
-                  id="email"
+                  type="text"
+                  id="userName"
                   className="label-field"
-                  placeholder="Enter your email"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.handleEmailChange}
+                  placeholder="Enter your user name"
+                  name="name"
+                  value={this.state.userName}
+                  onChange={this.handleuserNameChange}
                   style={{ color: "white" }}
                 />
               </div>
