@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import GameDisplay from '../../gameDisplay/gameDisplay';
 import SearchBar from "./SearchBar/SearchBar"
 import GameContext from "../../../utils/GameContext";
-import GameDisplay from "../../gameDisplay/gameDisplay";
-import gamesAPI from "../../../utils/GamesAPI";
+// import gamesAPI from "../../../utils/gamesAPI";
 
 function Home(props) {
 
@@ -14,7 +13,7 @@ function Home(props) {
             console: "Nintendo 64",
             price: 50,
             year: 1996,
-            image: "client/src/components/pages/homePage/images/zeldaOcarina.png"
+            image: "http://localhost:3000/images/zeldaOcarina.png"
         },
 
         {
@@ -22,7 +21,7 @@ function Home(props) {
             console: "Nintendo 64",
             price: 50,
             year: 1996,
-            image: "client/src/components/pages/homePage/images/zeldaOcarina.png"
+            image: "http://localhost:3000/images/zeldaOcarina.png"
         },
 
         {
@@ -30,7 +29,7 @@ function Home(props) {
             console: "Nintendo 64",
             price: 50,
             year: 1996,
-            image: "client/src/components/pages/homePage/images/zeldaOcarina.png"
+            image: "http://localhost:3000/images/zeldaOcarina.png"
         },
 
         {
@@ -38,7 +37,7 @@ function Home(props) {
             console: "Nintendo 64",
             price: 50,
             year: 1996,
-            image: "client/src/components/pages/homePage/images/zeldaOcarina.png"
+            image: "http://localhost:3000/images/zeldaOcarina.png"
         },
 
         {
@@ -46,7 +45,7 @@ function Home(props) {
             console: "Nintendo 64",
             price: 50,
             year: 1996,
-            image: "client/src/components/pages/homePage/images/zeldaOcarina.png"
+            image: "http://localhost:3000/images/zeldaOcarina.png"
         }
 
     ]);
