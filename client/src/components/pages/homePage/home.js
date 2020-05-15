@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import GameDisplay from '../../gameDisplay/gameDisplay';
 import SearchBar from "./SearchBar/SearchBar"
 import GameContext from "../../../utils/GameContext";
-// import gamesAPI from '../../../utils/gamesAPI'
-
+import GameDisplay from "../../gameDisplay/gameDisplay";
+import gamesAPI from "../../../utils/GamesAPI";
 
 function Home(props) {
 

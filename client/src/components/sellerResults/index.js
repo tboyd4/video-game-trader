@@ -15,16 +15,17 @@ class SellerResults extends Component {
 
     handleSave = game => {
 
-        if (this.state.savedGames.map(book => game._id).includes(game._id)) {
-            API.deleteBook(game._id)
-                .then(deleteGame => this.setState({ savedGame: this.state.savedGames.filter(game => game._id !== deleteGame._id) }))
+        if (this.state.savedGames.map(game => game.id).includes(game.id)) {
+            API.deleteBook(game.id)
+                .then(deletedGame => this.setState({ savedGames: this.state.savedGames.filter(game => game.id !== deletedGame.id) }))
                 .catch(err => console.error(err));
         } else {
-            API.saveBook(game)
+            API.saveGame(game)
                 .then(savedGame => this.setState({ savedGames: this.state.savedGames.concat([savedGame]) }))
                 .catch(err => console.error(err));
         }
     }
+
 
     render() {
         return (
@@ -34,15 +35,13 @@ class SellerResults extends Component {
                 ) : (
                         <div>
                             {this.props.games.map(result => (
-                                <div className="card mb-3" key={result._id}>
+                                <div className="card card z-depth-0 black-text game-style grey darken-2 mb-3" key={result.id}>
                                     <div className="row">
-                                        <div className="col-md-2">
-                                            <img alt={result.title} className="img-fluid" src={result.image} />
-                                        </div>
                                         <div className="col-md-10">
-                                            <div className="card-body">
-                                                <h5 className="card-title">{result.title} for {result.console}</h5>
-                                                <p className="card-text">{result.price}</p>
+                                            <div className="card-body green accent-3">
+                                                <h5 className="card-title">{result.title}</h5>
+                                                  <h6> Console: {result.console}</h6>
+                                                <p className="card-text">Trade Value: {result.price * .5} Centaurs</p>
                                                 <div>
                                                     <a href={result.link} className="btn badge-pill btn-outline-dark mt-3">View</a>
                                                     <button onClick={() => this.handleSave(result)} 
