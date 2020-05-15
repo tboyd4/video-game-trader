@@ -13,8 +13,8 @@ function SearchBar(props) {
             <form>
                 <div className="input-field green accent-3">
                     <input
-                     value={props.search}
-                     onChange={props.handleInputChange}
+                     value={props.title}
+                     onChange={props.handleOnChange}
                      id="search" 
                      type="search" 
                      required />

@@ -1,137 +1,226 @@
-//import React from "react";
 import React, { Component } from "react";
-//import "./authenticationPages.css";
-import { Link } from "react-router-dom";
-import API from "../../../utils/API";
-import userFunctions from "./userFunctions";
 
-class Login extends Component {
-  constructor() {
-    super();
+import "./authenticationPages.css";
+import { Link } from "react-router-dom";
+import UserAPI from "../../../utils/UserAPI";
+import { register } from "./userFunctions";
+
+const emailRegect = RegExp(
+  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+);
+
+const formValid = ({ formErrors, ...rest }) => {
+  let valid = true;
+
+  // validate form errors being empty
+  Object.values(formErrors).forEach((val) => {
+    val.length > 0 && (valid = false);
+  });
+
+  // validate the form was filled out
+  Object.values(rest).forEach((val) => {
+    val === null && (valid = false);
+  });
+
+  return valid;
+};
+
+class Register extends Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
-      name: "",
+      firstName: "",
+      lastName: "",
+      userName: "",
       email: "",
       password: "",
+      formErrors: {
+        firstName: "",
+        lastName: "",
+        userName: "",
+        email: "",
+        password: "",
+      },
     };
-
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePWChange = this.handlePWChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // This checks the name
-  handleNameChange(e) {
-    console.log(e.target.value);
-
-    this.setState({
-      name: e.target.value,
-    });
-  }
-
-  // This checks the email address
-  handleEmailChange(e) {
-    console.log(e.target.value);
-
-    this.setState({
-      email: e.target.value,
-    });
-  }
-
-  // This checks the password
-  handlePWChange(e) {
-    console.log(e.target.value);
-
-    this.setState({
-      password: e.target.value,
-    });
-  }
-
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("The form was submitted with the following data:");
-    console.log(this.state);
-  }
+    if (formValid(this.state)) {
+      const newUser = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        userName: this.state.userName,
+        email: this.state.email,
+        password: this.state.password,
+      };
+
+      register(newUser).then((res) => {
+        this.props.history.push(`/login`);
+      });
+
+      console.log(`
+        --SUBMITTING--
+        First Name: ${this.state.firstName}
+        Last Name: ${this.state.lastName}
+        Email: ${this.state.email}
+        User Name: ${this.state.userName}
+        Password: ${this.state.password}
+      `);
+    } else {
+      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+    }
+  };
+
+  handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    let formErrors = { ...this.state.formErrors };
+
+    switch (name) {
+      case "firstName":
+        formErrors.firstName =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "lastName":
+        formErrors.lastName =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "email":
+        formErrors.email = emailRegect.test(value)
+          ? ""
+          : "invalid email address";
+        break;
+      case "userName":
+        formErrors.userName =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "password":
+        formErrors.password =
+          value.length < 6 ? "minimum 6 characaters required" : "";
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+  };
 
   render() {
+    const { formErrors } = this.state;
+
     return (
       <div className="row">
-        <div className="col s12 m4 l2"></div>
-        <div
-          className="col s12 m4 l8"
-          style={{
-            marginTop: "3rem",
-          }}
-        >
-          <form className="FormFields" onSubmit={this.handleSubmit}>
-            <h4 className="center-align" style={{ padding: "1rem" }}>
-              Register
-            </h4>
-            <div className="input-field">
-              <input
-                type="text"
-                id="name"
-                className="label-field"
-                placeholder="Enter your full name"
-                name="name"
-                value={this.state.name}
-                onChange={this.handleNameChange}
-                style={{ color: "white" }}
-              />
-            </div>
-            <div className="input-field">
-              <input
-                type="email"
-                id="email"
-                className="label-field"
-                placeholder="Enter your email"
-                name="email"
-                value={this.state.email}
-                onChange={this.handleEmailChange}
-                style={{ color: "white" }}
-              />
+        <div className="col s3"></div>
+        <div className="col s6 center-align">
+          <div className="card">
+            <div className="black-text center-align">
+              <h3>Register</h3>
             </div>
 
-            <div className="FormField">
-              <input
-                type="password"
-                id="password"
-                className="FormField__Input"
-                placeholder="Enter your password"
-                name="password"
-                value={this.state.password}
-                style={{ color: "white" }}
-                onChange={this.handlePWChange}
-              />
-            </div>
+            <form onSubmit={this.handleSubmit} noValidate>
+              <div className="card-content">
+                <div className="form-field">
+                  <label htmlFor="firstName">First Name</label> */}
+                  <input
+                    className={formErrors.firstName.length > 0 ? "error" : null}
+                    placeholder="Enter your First Name"
+                    style={{ color: "black" }}
+                    type="text"
+                    name="firstName"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.firstName.length > 0 && (
+                    <span className="errorMessage">{formErrors.firstName}</span>
+                  )}
+                </div>
 
-            <div className="FormField">
-              <button
-                className="FormField__Button mr-20"
-                style={{
-                  padding: "12px",
-                  marginRight: "3rem",
-                  color: "00e676",
-                }}
-              >
-                Create Account
-              </button>{" "}
-              <Link
-                to="/"
-                className="FormField__Link"
-                style={{ color: "white" }}
-              >
-                <p>Or click to Sign In to your account</p>
-              </Link>
-            </div>
-          </form>
+                <div className="form-field">
+                  <label htmlFor="lastName">Last Name</label>
+                  <input
+                    className={formErrors.lastName.length > 0 ? "error" : null}
+                    placeholder="Enter your Last Name"
+                    type="text"
+                    name="lastName"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.lastName.length > 0 && (
+                    <span className="errorMessage">{formErrors.lastName}</span>
+                  )}
+                </div>
+
+                <div className="form-field">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    className={formErrors.email.length > 0 ? "error" : null}
+                    placeholder="Enter your Email"
+                    type="email"
+                    name="email"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.email.length > 0 && (
+                    <span className="errorMessage">{formErrors.email}</span>
+                  )}
+                </div>
+
+                <div className="form-field">
+                  <label htmlFor="userName">User Name</label>
+                  <input
+                    className={formErrors.userName.length > 0 ? "error" : null}
+                    placeholder="User Name for your account"
+                    type="text"
+                    name="userName"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.userName.length > 0 && (
+                    <span className="errorMessage">{formErrors.userName}</span>
+                  )}
+                </div>
+
+                <div className="form-field">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    className={formErrors.password.length > 0 ? "error" : null}
+                    placeholder="Password for your account"
+                    type="password"
+                    name="password"
+                    noValidate
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.password.length > 0 && (
+                    <span className="errorMessage">{formErrors.password}</span>
+                  )}
+                </div>
+
+                <div className="form-field" style={{ padding: "1rem" }}>
+                  <button
+                    className="btn-large green accent-3 .center-align"
+                    style={{ width: "100%", color: "black" }}
+                  >
+                    Register
+                  </button>
+                </div>
+                <Link
+                  to="/"
+                  className="FormField__Link center-align"
+                  style={{ color: "black", padding: "1rem" }}
+                >
+                  <p>Or click here to Login to your account</p>
+                </Link>
+              </div>
+            </form>
+          </div>
         </div>
-        <div className="col s12 m4 l2"></div>
+        <div className="col s3"></div>
       </div>
     );
   }
 }
 
-export default Login;
+export default Register;
