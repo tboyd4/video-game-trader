@@ -41,7 +41,7 @@ require("./config/passport")(passport, models.User);
 
 // route that servers our production build out
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
 
 // Syncing our sequelize models and then starting our Express app
