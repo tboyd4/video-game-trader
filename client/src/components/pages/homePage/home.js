@@ -85,6 +85,8 @@ function Home(props) {
             price={game.price}
             year={game.year}
             image={game.image}
+            addCart={props.addCart}
+            game={game}
             //  
             />
             ))}

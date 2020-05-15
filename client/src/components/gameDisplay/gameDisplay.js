@@ -6,7 +6,7 @@ import gamesAPI from "../../utils/gamesAPI";
 
 function GameDisplay(props) {
 
-  const { title, console, price, year, image } = useContext(GameContext);
+  const { testsData } = useContext(GameContext);
 
   return (
           <div className="row grey darken-2 game-style">
@@ -30,7 +30,7 @@ function GameDisplay(props) {
                      <p className="text-spacing" id="para">Console: {props.console}</p>
                   </div>
                   <div>
-                    {/* <a className="waves-effect waves-light green accent-3 black-text btn-large" onClick={() => props.addCart(game)}>Purchase</a> */}
+                    <a className="waves-effect waves-light green accent-3 black-text btn-large" onClick={() => props.addCart(props.game)}>Purchase</a>
                   </div>
                 </div>
               </div>
