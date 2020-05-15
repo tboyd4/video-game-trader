@@ -58,11 +58,10 @@ class Register extends Component {
       };
 
       register(newUser).then((res) => {
-        this.props.history.push(`/login`);
+        this.props.history.push("/home");
       });
 
-      console.log(`
-        --SUBMITTING--
+      console.log(`--SUBMITTING--
         First Name: ${this.state.firstName}
         Last Name: ${this.state.lastName}
         Email: ${this.state.email}

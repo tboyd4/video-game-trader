@@ -10,6 +10,7 @@ class Login extends Component {
     this.state = {
       userName: "",
       password: "",
+      isValidated: false,
     };
 
     this.handleuserNameChange = this.handleuserNameChange.bind(this);
@@ -45,7 +46,7 @@ class Login extends Component {
     };
 
     login(user).then((res) => {
-      this.props.history.push(`/login`);
+      this.props.history.push("/home");
     });
   }
 
@@ -100,7 +101,7 @@ class Login extends Component {
                   </button>
                 </div>
                 <Link
-                  to="/"
+                  to="/register"
                   className="FormField__Link center-align"
                   style={{ color: "black", padding: "1rem" }}
                 >
