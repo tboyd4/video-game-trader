@@ -71,7 +71,7 @@ function Home(props) {
     return (
         <GameContext.Provider value={games}>
         <main>
-            <h1>I am Home Page</h1>
+            <h1>I am a pretty centaur. Hear me roar.</h1>
             <SearchBar
                 handleFormSubmit={handleFormSubmit}
                 handleInputChange={handleInputChange}
