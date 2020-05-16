@@ -45,7 +45,7 @@ function App() {
         price: 16,
       },
     ],
-    userCart: [],
+    userCart: [], sellerData: [],
   });
 
   function addToCart(game) {

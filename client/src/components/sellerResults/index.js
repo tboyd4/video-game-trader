@@ -1,16 +1,22 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import API from "../../utils/API";
+import Popup from "reactjs-popup"
+
+import SellDisplay from "../gameDisplay/sellDisplay";
+import GameContext from "../../utils/GameContext"
+
+
+// const { sellerData } = useContext(GameContext);
 
 class SellerResults extends Component {
 
     state = {
         savedGames: [],
-    }
+    };
+
 
     componentDidMount() {
-        // API.savedGames()
-        //     .then(savedGames => this.setState({ savedGames: savedGames }))
-        //     .catch(err => console.error(err));
+        // this.fuckingsearch();
     }
 
     handleSave = game => {
@@ -26,6 +32,37 @@ class SellerResults extends Component {
         }
     }
 
+    // displayGame = gameInfo => {
+    //     return {
+    //         image: gameInfo.results.aliases,
+    //         description: gameInfo.results.description,
+    //     }
+    // };
+
+    // gbInfo = gameName => {
+    //     API.gbsearch(gameName)
+    //         .then(res => this.setState({ game: res.data.map(gameInfo => this.displayGame(gameInfo)),
+    //             gameObject : [
+    //                 title = results.name,
+    //                 description = results.description,
+    //                 image = results.image.medium_url,
+    //             ],
+    //         },)
+    //         )
+    //         sellerData.push(gameObject)
+    //         .catch (err => console.log(err));
+    // };
+
+
+
+    // sellerData [{
+    //     id: result.id,
+    //     title: result.title,
+    //     description : gameInfo.description,
+    //     image: gameInfo.image.medium_url,
+    //     price: result.price * .5
+    // }]
+
 
     render() {
         return (
@@ -40,15 +77,18 @@ class SellerResults extends Component {
                                         <div className="col-md-10">
                                             <div className="card-body green accent-3">
                                                 <h5 className="card-title">{result.title}</h5>
-                                                  <h6> Console: {result.console}</h6>
+                                                <h6> Console: {result.console}</h6>
                                                 <p className="card-text">Trade Value: {result.price * .5} Centaurs</p>
                                                 <div>
-                                                    <a href={result.link} className="btn badge-pill btn-outline-dark mt-3">View</a>
-                                                    <button onClick={() => this.handleSave(result)} 
-                                                    className="btn badge-pill btn-outline-warning mt-3 ml-3" >
+                                                    <Popup modal trigger={<a className="btn badge-pill btn-outline-dark mt-3">View</a>}>
+                                                        {close => <SellDisplay close={close} />}
+                                                    </Popup>
+
+                                                    <button onClick={() => this.handleSave(result)}
+                                                        className="btn badge-pill btn-outline-warning mt-3 ml-3" >
                                                         {this.state.savedGames.map(game => game._id).includes(result._id) ? "Unsave" : "Save"}
                                                     </button>
-                                                </div> 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -60,5 +100,6 @@ class SellerResults extends Component {
         )
     }
 }
+
 
 export default SellerResults; 
