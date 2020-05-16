@@ -80,6 +80,15 @@ function App() {
     });
   }
 
+  function purchaseCart(totalPrice) {
+    // this will be the fuction that takes everything in the cart, and lets the user "buy it". 
+    // this will remove games from cart, and remove them from the database of available games
+    // this will also deduct users credits by the amount of the total price of cart
+    
+    alert('You bought this cart, and it will cost you $' + totalPrice);
+    setGameState({...gameState, userCart: []})
+  }
+
   return (
     <div className="container">
       <GameContext.Provider value={gameState}>
@@ -106,7 +115,7 @@ function App() {
               exact
               path="/cart"
               component={(props) => (
-                <Cart {...props} removeCart={removeFromCart} />
+                <Cart {...props} removeCart={removeFromCart} purchaseCart={purchaseCart} />
               )}
             />
           </Switch>
