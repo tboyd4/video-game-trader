@@ -12,6 +12,7 @@ const GameContext = createContext({
     }
   ],
   userCart: [""],
+  sellerData: [""],
 });
 
 export default GameContext;
