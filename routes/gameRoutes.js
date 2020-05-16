@@ -1,3 +1,5 @@
+const sequelize = require("sequelize")
+
 
 // Requiring our Games model
 var db = require("../models");
@@ -8,11 +10,20 @@ module.exports = function(app) {
 
   // GET route for getting all of the games
   app.get("/api/games", function(req, res) {
-      console.log("find all")
+      if (req.params.search) {
+        db.Game.findAll({
+          title: {[sequelize.Op.like]: `%${req.params.search}%`}
+        })
+        .then(function(data) {
+          res.json(data);
+        });
+      }
+      else {
     db.Game.findAll({})
       .then(function(data) {
         res.json(data);
       });
+    }
   });
 
   // Get route for retrieving a single game
@@ -35,7 +46,6 @@ module.exports = function(app) {
       console: req.body.body,
       price: req.body.price,
       year: req.body.year,
-      description: req.body.description,
       image: req.body.image
 
     })

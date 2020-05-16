@@ -3,6 +3,8 @@ import "./authenticationPages.css";
 import { Link } from "react-router-dom";
 import { register } from "./userFunctions";
 
+import './authenticationPages.css'
+
 const emailRegect = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -109,7 +111,7 @@ class Register extends Component {
     const { formErrors } = this.state;
 
     return (
-      <div className="row">
+      <div className="row" id="login-mod">
         <div className="col s3"></div>
         <div className="col s6 center-align">
           <div className="card">

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { login } from "./userFunctions";
+import './authenticationPages.css'
 
 const initialState = {
   userName: "",
@@ -78,7 +79,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="row" id="login-mod">
         <div className="col s3"></div>
         <div className="col s6 center-align">
           <div className="card">
