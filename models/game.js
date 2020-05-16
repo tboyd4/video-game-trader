@@ -14,7 +14,6 @@ module.exports = function (sequelize, DataTypes) {
 
     console: {
       type: DataTypes.STRING,
-      allowNull: false
     },
 
     price: {
