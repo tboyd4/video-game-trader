@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import UserAPI from "../../../utils/UserAPI";
 import { login } from "./userFunctions";
+import './authenticationPages.css'
 
 class Login extends Component {
   constructor() {
@@ -51,7 +52,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="row" id="login-mod">
         <div className="col s3"></div>
         <div className="col s6 center-align">
           <div className="card">
@@ -100,7 +101,7 @@ class Login extends Component {
                   </button>
                 </div>
                 <Link
-                  to="/"
+                  to="/register"
                   className="FormField__Link center-align"
                   style={{ color: "black", padding: "1rem" }}
                 >

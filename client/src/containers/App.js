@@ -72,7 +72,7 @@ function App() {
     // idRemove is the id of the game we are removing
     let idRemove = event.target.dataset.tag;
 
-    let newCart = gameState.userCart.filter((game) => game.id !== idRemove);
+    let newCart = gameState.userCart.filter((game) => game.id != idRemove);
 
     setGameState({
       ...gameState,
