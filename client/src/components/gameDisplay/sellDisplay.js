@@ -6,17 +6,7 @@ import GameContext from '../../utils/GameContext'
 function SellDisplay(props) {
 
     const { testData } = useContext(GameContext);
-
-//   displayGame = gameInfo => {
-//     return {
-//         image: gameInfo.aliases,
-//         description: gameInfo.description,
-//     }
-// };
-
-  // API.gbsearch()
-  // .then(res => this.setState({ game: res.data.results.map(gameInfo => this.displayGame(gameInfo))  }))
-  // .catch(err => console.log(err));
+    
 
 
 return (

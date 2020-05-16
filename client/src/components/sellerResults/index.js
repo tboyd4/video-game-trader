@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import API from "../../utils/API";
 import Popup from "reactjs-popup"
 
@@ -6,13 +6,13 @@ import SellDisplay from "../gameDisplay/sellDisplay";
 import GameContext from "../../utils/GameContext"
 
 
+// const { sellerData } = useContext(GameContext);
 
 class SellerResults extends Component {
 
     state = {
         savedGames: [],
     };
-
 
 
     componentDidMount() {
@@ -32,19 +32,37 @@ class SellerResults extends Component {
         }
     }
 
-    displayGame = gameInfo => {
-        return {
-            image: gameInfo.aliases,
-            description: gameInfo.description,
-        }
-    };
+    // displayGame = gameInfo => {
+    //     return {
+    //         image: gameInfo.results.aliases,
+    //         description: gameInfo.results.description,
+    //     }
+    // };
 
-     gbInfo = gameName => {
-        API.gbsearch(gameName)
-            .then(res => this.setState({ game: res.data.results.map(gameInfo => this.displayGame(gameInfo)) }))
-            .catch(err => console.log(err));
-    };
-    
+    // gbInfo = gameName => {
+    //     API.gbsearch(gameName)
+    //         .then(res => this.setState({ game: res.data.map(gameInfo => this.displayGame(gameInfo)),
+    //             gameObject : [
+    //                 title = results.name,
+    //                 description = results.description,
+    //                 image = results.image.medium_url,
+    //             ],
+    //         },)
+    //         )
+    //         sellerData.push(gameObject)
+    //         .catch (err => console.log(err));
+    // };
+
+
+
+    // sellerData [{
+    //     id: result.id,
+    //     title: result.title,
+    //     description : gameInfo.description,
+    //     image: gameInfo.image.medium_url,
+    //     price: result.price * .5
+    // }]
+
 
     render() {
         return (
@@ -83,14 +101,5 @@ class SellerResults extends Component {
     }
 }
 
-const { sellerData } = useContext(GameContext);
-
-sellerData [{
-    id: result.id,
-    title: result.title,
-    released: gameInfo.description,
-    image: gameInfo.image.medium_url,
-    price: result.price * .5
-}]
 
 export default SellerResults; 

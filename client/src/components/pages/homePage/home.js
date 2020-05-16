@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import GameDisplay from '../../gameDisplay/gameDisplay';
 import SearchBar from "./SearchBar/SearchBar"
 import GameContext from "../../../utils/GameContext";
-import gamesAPI from "../../../utils/gamesAPI";
+import gamesAPI from "../../../utils/GamesAPI";
 
 function Home(props) {
 
