@@ -100,7 +100,7 @@ class Login extends Component {
                   </button>
                 </div>
                 <Link
-                  to="/"
+                  to="/register"
                   className="FormField__Link center-align"
                   style={{ color: "black", padding: "1rem" }}
                 >
