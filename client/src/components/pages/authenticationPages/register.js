@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-
 import "./authenticationPages.css";
 import { Link } from "react-router-dom";
-import UserAPI from "../../../utils/UserAPI";
 import { register } from "./userFunctions";
 
 const emailRegect = RegExp(

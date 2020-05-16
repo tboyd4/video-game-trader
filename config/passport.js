@@ -11,7 +11,7 @@ module.exports = function (passport, user) {
 
   // used to deserialize the user
   passport.deserializeUser(function (id, done) {
-    user.findById(id).then(function (user) {
+    User.findByPk(id).then(function (user) {
       if (user) {
         done(null, user.get());
       } else {
