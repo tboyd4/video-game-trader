@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import UserAPI from "../../../utils/UserAPI";
 import { login } from "./userFunctions";
 import './authenticationPages.css'
 
-class Login extends Component {
-  constructor() {
-    super();
+const initialState = {
+  userName: "",
+};
 
+class Login extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       userName: "",
       password: "",
+      userNameError: "",
+      passwordError: "",
     };
 
     this.handleuserNameChange = this.handleuserNameChange.bind(this);
@@ -34,20 +38,43 @@ class Login extends Component {
     });
   }
 
+  validate = () => {
+    let userNameError = "";
+    let passwordError = "";
+
+    if (!this.state.userName) {
+      userNameError = "user name cannot be blank";
+    }
+    if (!this.state.password) {
+      passwordError = "password cannot be blank";
+    }
+    if (userNameError || passwordError) {
+      this.setState({ userNameError, passwordError });
+      return false;
+    }
+
+    return true;
+  };
+
   handleSubmit(e) {
     e.preventDefault();
 
-    console.log("The form was submitted with the following data:");
-    console.log(this.state);
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state);
+      this.setState();
+      const user = {
+        userName: this.state.userName,
+        password: this.state.password,
+      };
 
-    const user = {
-      userName: this.state.userName,
-      password: this.state.password,
-    };
+      login(user).then((res) => {
+        this.props.history.push("/home");
+      });
 
-    login(user).then((res) => {
-      this.props.history.push(`/login`);
-    });
+      console.log("The form was submitted with the following data:");
+      console.log(this.state);
+    }
   }
 
   render() {
@@ -65,31 +92,29 @@ class Login extends Component {
                 <div className="form-field">
                   <label htmlFor="userName">User Name</label>
                   <input
-                    //className={formErrors.userName.length > 0 ? "error" : null}
                     placeholder="Enter your User Name"
                     type="text"
                     name="userName"
                     noValidate
                     onChange={this.handleuserNameChange}
                   />
-                  {/* {formErrors.userName.length > 0 && (
-                    <span className="errorMessage">{formErrors.userName}</span>
-                  )} */}
+                  <span className="errorMessage">
+                    {this.state.userNameError}
+                  </span>
                 </div>
 
                 <div className="form-field">
                   <label htmlFor="password">Password</label>
                   <input
-                    // className={formErrors.password.length > 0 ? "error" : null}
                     placeholder="Enter your Password"
                     type="password"
                     name="password"
                     noValidate
                     onChange={this.handlePWChange}
                   />
-                  {/* {formErrors.password.length > 0 && (
-                    <span className="errorMessage">{formErrors.password}</span>
-                  )} */}
+                  <span className="errorMessage">
+                    {this.state.passwordError}
+                  </span>
                 </div>
 
                 <div className="form-field" style={{ padding: "1rem" }}>

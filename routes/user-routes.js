@@ -9,11 +9,9 @@ module.exports = function (app) {
     req,
     res
   ) {
-    console.log(req.body);
-    res.json({
-      email: req.user.email,
-      id: req.user.id,
-    });
+    console.log(req.body, "passport Authenticate");
+    res.json({ email: req.user.email, id: req.user.id });
+    console.log({ email: req.user.email, id: req.user.id });
   });
 
   app.post("/register", passport.authenticate("local-signup"), function (

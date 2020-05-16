@@ -27,15 +27,18 @@ module.exports = function (Sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    centaurs: {
+      type: DataTypes.DECIMAL(10, 2),
+    },
   });
 
-  // User.associate = function (models) {
-  //   // Associating User with their character
-  //   // When a User is deleted, also delete any associated characters
-  //   User.hasMany(models.Game, {
-  //     onDelete: "cascade",
-  //   });
-  // };
+  User.associate = function (models) {
+    // Associating User with their character
+    // When a User is deleted, also delete any associated characters
+    User.hasMany(models.Game, {
+      onDelete: "cascade",
+    });
+  };
 
   return User;
 };

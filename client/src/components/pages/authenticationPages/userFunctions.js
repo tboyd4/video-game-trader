@@ -23,7 +23,7 @@ export const login = (user) => {
     .then((response) => {
       localStorage.setItem("usertoken", response.data);
       console.log(response.data, "responsedata");
-      console.log("login post");
+      console.log("logged in");
       return response.data;
     })
     .catch((err) => {
