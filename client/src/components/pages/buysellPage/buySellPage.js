@@ -4,12 +4,16 @@ import SellerForm from '../../sellerForm/index';
 import SellerResults from '../../sellerResults/index'
 
 
+
 class BuySell extends React.Component {
     state = {
         value: 'Game Search',
         games: []
     };
     
+    
+
+
     componentDidMount() {
         this.searchGames();
     }
@@ -28,6 +32,7 @@ class BuySell extends React.Component {
         API.multisearch(query)
             .then(res => this.setState({ games: res.data.products.map(gameData => this.makeGame(gameData))  }))
             .catch(err => console.log(err));
+            
     };
 
     handleInputChange =event => {
