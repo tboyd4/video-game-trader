@@ -2,13 +2,13 @@ import axios from "axios";
 
 export default {
   // Gets all games
-  getGames: function() {
+  getGames: function(search) {
       console.log("trying to get!")
-    return axios.get("/api/games");
+    return axios.get(`/api/games${search && search.length > 3 ? "?search=" +search : ""}`);
   },
   // Gets the games with the given id
   getGame: function(id) {
-    console.log("trying to get!")
+    console.log("trying to get " + id)
     return axios.get("/api/games/" + id);
   },
   // Deletes the games with the given id
