@@ -80,6 +80,11 @@ function App() {
     });
   }
 
+  function purchaseCart(totalPrice) {
+    alert('You bought this cart, and it will cost you $' + totalPrice);
+    setGameState({...gameState, userCart: []})
+  }
+
   return (
     <div className="container">
       <GameContext.Provider value={gameState}>
@@ -106,7 +111,7 @@ function App() {
               exact
               path="/cart"
               component={(props) => (
-                <Cart {...props} removeCart={removeFromCart} />
+                <Cart {...props} removeCart={removeFromCart} purchaseCart={purchaseCart} />
               )}
             />
           </Switch>
