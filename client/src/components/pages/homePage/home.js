@@ -7,48 +7,7 @@ import gamesAPI from "../../../utils/gamesAPI";
 function Home(props) {
 
     // Setting our component's initial state
-    const [games, setGames] = useState([
-        // {
-        //     title: "Zelda Ocarina of Time",
-        //     console: "Nintendo 64",
-        //     price: 50,
-        //     year: 1996,
-        //     image: "http://localhost:3000/images/zeldaOcarina.png"
-        // },
-
-        // {
-        //     title: "Zelda Ocarina of Time",
-        //     console: "Nintendo 64",
-        //     price: 50,
-        //     year: 1996,
-        //     image: "http://localhost:3000/images/zeldaOcarina.png"
-        // },
-
-        // {
-        //     title: "Zelda Ocarina of Time",
-        //     console: "Nintendo 64",
-        //     price: 50,
-        //     year: 1996,
-        //     image: "http://localhost:3000/images/zeldaOcarina.png"
-        // },
-
-        // {
-        //     title: "Zelda Ocarina of Time",
-        //     console: "Nintendo 64",
-        //     price: 50,
-        //     year: 1996,
-        //     image: "http://localhost:3000/images/zeldaOcarina.png"
-        // },
-
-        // {
-        //     title: "Zelda Ocarina of Time",
-        //     console: "Nintendo 64",
-        //     price: 50,
-        //     year: 1996,
-        //     image: "http://localhost:3000/images/zeldaOcarina.png"
-        // }
-
-    ]);
+    const [games, setGames] = useState([]);
 
     useEffect( () =>  {
         gamesAPI.getGames()
@@ -64,9 +23,6 @@ function Home(props) {
         setGames(res.data))
         .catch(err => console.log(err));
         };
-
-
-        
 
     // const handleInputChange = event => {
     //     const search = event.target.value;
