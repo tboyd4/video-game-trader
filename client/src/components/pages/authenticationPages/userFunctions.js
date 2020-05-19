@@ -14,10 +14,6 @@ export const register = (newUser) => {
       console.log(response.data, "responsedata");
       console.log("Registered");
       return response.data;
-      // })console.log("Registered");
-      // .catch((err) => {
-      //   console.log(err);
-      //   return err;
     })
     .catch((err) => {
       console.log(err);
@@ -41,4 +37,8 @@ export const login = (user) => {
       console.log(err);
       return err;
     });
+};
+
+export const logout = () => {
+  return axios.get("/api/logout");
 };

@@ -10,7 +10,7 @@ function Cart(props) {
     return (
         <main>
             <h1 class="black-text center-align cart-title">Your Cart</h1>
-            <CartDisplay removeCart={props.removeCart}/>            
+            <CartDisplay removeCart={props.removeCart} purchaseCart={props.purchaseCart} />            
         </main>
     )
 }

@@ -23,16 +23,6 @@ module.exports = function (app) {
     res.json(req.user);
   });
 
-  // app.get("/loginauthenticate", function (req, res) {
-  //   if (req.user) {
-  //     console.log("login check server side" + req.user);
-  //     let user = {
-  //       user: req.user,
-  //     };
-  //     res.send(user);
-  //   }
-  // });
-
   //Route to authenticate login
   app.get("/loginauthenticate", function (req, res) {
     if (!req.User) {
