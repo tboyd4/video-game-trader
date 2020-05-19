@@ -40,11 +40,11 @@ function Home(props) {
     return (
         <GameContext.Provider value={games}>
         <main>
-            <h1>I am a pretty centaur. Hear me roar.</h1>
             <SearchBar
                 handleFormSubmit={handleFormSubmit}
                 // handleInputChange={handleInputChange}
             />
+            {/* <img src="https://66.media.tumblr.com/tumblr_m2n0av6Sbd1r085xlo1_500.gifv"></img> */}
 
             {games.map(game => (
             <GameDisplay 
