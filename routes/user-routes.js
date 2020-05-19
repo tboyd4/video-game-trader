@@ -9,9 +9,9 @@ module.exports = function (app) {
     req,
     res
   ) {
-    console.log(req.body, "passport Authenticate");
-    res.json({ email: req.user.email, id: req.user.id });
-    console.log({ email: req.user.email, id: req.user.id });
+    console.log(req.body);
+    console.log("passport Authenticate local signin");
+    res.json(req.user);
   });
 
   app.post("/register", passport.authenticate("local-signup"), function (
@@ -23,6 +23,16 @@ module.exports = function (app) {
     res.json(req.user);
   });
 
+  // app.get("/loginauthenticate", function (req, res) {
+  //   if (req.user) {
+  //     console.log("login check server side" + req.user);
+  //     let user = {
+  //       user: req.user,
+  //     };
+  //     res.send(user);
+  //   }
+  // });
+
   //Route to authenticate login
   app.get("/loginauthenticate", function (req, res) {
     if (!req.User) {
@@ -32,7 +42,8 @@ module.exports = function (app) {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       let user = db.User.findOne({
-        where: { email: req.body.email },
+        where: { userName: req.body.userName },
+        //where: { email: req.body.email },
       });
       if (user === null) {
         console.log("Not found!");
