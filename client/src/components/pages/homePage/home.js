@@ -2,14 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import GameDisplay from '../../gameDisplay/gameDisplay';
 import SearchBar from "./SearchBar/SearchBar"
 import GameContext from "../../../utils/GameContext";
-import gamesAPI from "../../../utils/GamesAPI";
+import gamesAPI from "../../../utils/gamesAPI";
 
 function Home(props) {
 
     // Setting our component's initial state
     const [games, setGames] = useState([]);
 
-    useEffect( () =>  {
+    useEffect(() =>  {
         gamesAPI.getGames()
         .then(res =>
             setGames(res.data))
@@ -43,7 +43,6 @@ function Home(props) {
             <h1>I am a pretty centaur. Hear me roar.</h1>
             <SearchBar
                 handleFormSubmit={handleFormSubmit}
-                title={games.title}
                 // handleInputChange={handleInputChange}
             />
 

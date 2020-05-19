@@ -7,7 +7,6 @@ function SearchBar(props) {
             <form>
                 <div className="input-field green accent-3">
                     <input
-                        value={props.title}
                         onChange={props.handleFormSubmit}
                         id="search"
                         type="search"
