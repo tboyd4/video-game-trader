@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import GameDisplay from '../../gameDisplay/gameDisplay';
-import SearchBar from "./SearchBar/SearchBar"
+import GameDisplay from "../../gameDisplay/gameDisplay";
+import SearchBar from "./SearchBar/SearchBar";
 import GameContext from "../../../utils/GameContext";
 import gamesAPI from "../../../utils/gamesAPI";
 
 function Home(props) {
 
-    // Setting our component's initial state
+// Setting our component's initial state
     const [games, setGames] = useState([]);
 
     useEffect(() =>  {
@@ -56,13 +56,12 @@ function Home(props) {
             image={game.image}
             addCart={props.addCart}
             game={game}
-            //  
-            />
-            ))}
-
-        </main>
-        </GameContext.Provider>
-    )
+            //
+          />
+        ))}
+      </main>
+    </GameContext.Provider>
+  );
 }
 
 export default Home;
