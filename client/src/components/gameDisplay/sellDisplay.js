@@ -5,45 +5,48 @@ import GameContext from '../../utils/GameContext'
 
 function SellDisplay(props) {
 
-    const { testData } = useContext(GameContext);
+    const { sellerData } = useContext(GameContext);
     
 
-
-return (
-  <div>
-    {testData.map((game, i) => {
       return (
-        <div className="row grey darken-2 game-style" key={i}>
-            <div className="col s12 m6">
-              <div className="card">
-                <div className="card-image">
-                  <img src={game.image} alt="hello"></img>
-                </div>
-              </div>
-            </div>
-            <div className="col s12 m6  ">
-              <div className="card z-depth-0 black-text game-style grey darken-2">
-                <div className="card-content green accent-3 text-content">
-                  <p className="card-title text-spacing" id="title">
-                    {game.title}
-                  </p>
-                </div>
-                <div className="card-content green accent-3 text-content">
-                  <p className="text-spacing" id="para">Released: {game.released}</p>
-                  <p className="text-spacing" id="para">Price: {game.price}</p>
-                  <p className="text-spacing" id="para">Game Details</p>
-                  <p className="text-spacing" id="para">Game Details</p>
-                </div>
-                <div>
-                  <a className="waves-effect waves-light green accent-3 black-text btn-large" onClick={() => props.addCart(game)}>Purchase</a>
-                </div>
-              </div>
-            </div>
+    <div className="row grey darken-2 game-style">
+      <div className="col s12 m6">
+        <div className="card">
+          <div className="card-image">
+            <img src={props.image} alt="hello"></img>
+          </div>
         </div>
-      );
-    })}
-  </div>
-);
-};
+      </div>
+      <div className="col s12 m6  ">
+        <div className="card z-depth-0 black-text game-style grey darken-2">
+          <div className="card-content green accent-3 text-content">
+            <p className="card-title text-spacing" id="title">
+              {props.title}
+            </p>
+          </div>
+          <div className="card-content green accent-3 text-content">
+            <p className="text-spacing" id="para">
+              Released: {props.year}
+            </p>
+            <p className="text-spacing" id="para">
+              Price: {props.price}
+            </p>
+            <p className="text-spacing" id="para">
+              Console: {props.console}
+            </p>
+          </div>
+          <div>
+            <a
+              className="waves-effect waves-light green accent-3 black-text btn-large"
+              onClick={() => props.addCart(props.game)}
+            >
+              Purchase
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default SellDisplay;
