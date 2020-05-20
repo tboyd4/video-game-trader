@@ -11,28 +11,19 @@ import GameContext from "../../utils/GameContext"
 class SellerResults extends Component {
 
     state = {
-        savedGames: [],
+        savedGames: {},
     };
 
 
-    componentDidMount() {
-        // API.saveGame()
-        //     .then(savedBooks => this.setState({ savedGames: savedGames }))
-        //     .catch(err => console.error(err));
-    }
+
 
     handleSave = game => {
 
-        if (this.state.savedGames.map(game => game.id).includes(game.id)) {
-            API.deleteGame(game.id)
-                .then(deletedGame => this.setState({ savedGames: this.state.savedGames.filter(game => game.id !== deletedGame.id) }))
-                .catch(err => console.error(err));
-        } else {
             API.saveGame(game)
                 .then(savedGame => this.setState({ savedGames: this.state.savedGames.concat([savedGame]) }))
                 .catch(err => console.error(err));
                 console.log(game.title + "saved")
-        }
+        
     }
 
 
@@ -59,7 +50,7 @@ class SellerResults extends Component {
                                                     </Popup>
                                                     <button onClick={() => this.handleSave(result)}
                                                         className="btn badge-pill btn-outline-warning mt-3 ml-3" >
-                                                        {this.state.savedGames.map(game => game.id).includes(result.id) ? "Unsave" : "Save"}
+                                                        {/* {this.state.savedGames.map(game => game.id).includes(result.id) ? "Unsave" : "Save"} */}
                                                     </button>
                                                 </div>
                                             </div>
