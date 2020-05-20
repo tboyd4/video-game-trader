@@ -65,8 +65,8 @@ module.exports = function (app) {
   // to add and remove credits routes
 
   // will take users id to get into database, and deduct the cart amount
-  app.post("/api/removemoney/:id", function (req, res) {
-    let userId = req.params.id;
+  app.post("/api/removemoney", function (req, res) {
+    let userId = req.user.id;
     let cartTotal = req.body.total;
 
     console.log(req.body);
