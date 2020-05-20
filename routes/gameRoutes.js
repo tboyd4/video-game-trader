@@ -10,21 +10,23 @@ module.exports = function(app) {
 
   // GET route for getting all of the games
   app.get("/api/games", function(req, res) {
-      if (req.params.search) {
+      // if (req.params.search) {
         db.Game.findAll({
-          title: {[sequelize.Op.like]: `%${req.params.search}%`}
-        })
+          where: {
+          title: {[sequelize.Op.like]: `%${req.query.search}%`}  //<==== was req.params.search
+        }
+      })
         .then(function(data) {
           res.json(data);
         });
-      }
-      else {
-    db.Game.findAll({})
-      .then(function(data) {
-        res.json(data);
-      });
-    }
-  });
+      })
+    //   else {
+    // db.Game.findAll({})
+    //   .then(function(data) {
+    //     res.json(data);
+    //   });
+    // }
+  // });
 
   // Get route for retrieving a single game
   app.get("/api/games/:id", function(req, res) {
@@ -43,11 +45,11 @@ module.exports = function(app) {
     console.log(req.body);
     db.Game.create({
       title: req.body.title,
-      console: req.body.body,
+      console: req.body.console,
       price: req.body.price,
       year: req.body.year,
-      image: req.body.image
-
+      image: req.body.image,
+      user_id: 1
     })
       .then(function(data) {
         res.json(data);

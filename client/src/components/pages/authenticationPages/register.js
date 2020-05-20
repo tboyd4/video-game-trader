@@ -3,13 +3,18 @@ import "./authenticationPages.css";
 import { Link } from "react-router-dom";
 import { register } from "./userFunctions";
 
-import './authenticationPages.css'
-
 const emailRegect = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
 
-const formValid = ({ formErrors, ...rest }) => {
+const formValid = ({
+  formErrors,
+  firstName,
+  lastName,
+  userName,
+  email,
+  password,
+}) => {
   let valid = true;
 
   // validate form errors being empty
@@ -18,9 +23,11 @@ const formValid = ({ formErrors, ...rest }) => {
   });
 
   // validate the form was filled out
-  Object.values(rest).forEach((val) => {
-    val === null && (valid = false);
-  });
+  Object.values(firstName, lastName, userName, email, password).forEach(
+    (val) => {
+      val === null && (valid = false);
+    }
+  );
 
   return valid;
 };
@@ -30,6 +37,7 @@ class Register extends Component {
     super(props);
 
     this.state = {
+      formTouched: false,
       firstName: "",
       lastName: "",
       userName: "",
@@ -104,11 +112,13 @@ class Register extends Component {
         break;
     }
 
-    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+    this.setState({ formErrors, [name]: value, formTouched: true }, () =>
+      console.log(this.state)
+    );
   };
 
   render() {
-    const { formErrors } = this.state;
+    const { formErrors, formTouched } = this.state;
 
     return (
       <div className="row" id="login-mod">
@@ -199,6 +209,7 @@ class Register extends Component {
 
                 <div className="form-field" style={{ padding: "1rem" }}>
                   <button
+                    disabled={!formTouched}
                     className="btn-large green accent-3 .center-align"
                     style={{ width: "100%", color: "black" }}
                   >

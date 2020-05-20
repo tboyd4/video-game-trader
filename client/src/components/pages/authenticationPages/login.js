@@ -1,68 +1,43 @@
 import React, { Component } from "react";
+import "./authenticationPages.css";
 import { Link } from "react-router-dom";
 import { login } from "./userFunctions";
-import './authenticationPages.css'
 
-const initialState = {
-  userName: "",
+const formValid = ({ formErrors, userName, password }) => {
+  let valid = true;
+
+  // validate form errors being empty
+  Object.values(formErrors).forEach((val) => {
+    val.length > 0 && (valid = false);
+  });
+
+  // validate the form was filled out
+  Object.values(userName, password).forEach((val) => {
+    val === null && (valid = false);
+  });
+
+  return valid;
 };
 
 class Login extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
+      formTouched: false,
       userName: "",
       password: "",
-      userNameError: "",
-      passwordError: "",
+      formErrors: {
+        userName: "",
+        password: "",
+      },
     };
-
-    this.handleuserNameChange = this.handleuserNameChange.bind(this);
-    this.handlePWChange = this.handlePWChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  // This checks the email address
-  handleuserNameChange(e) {
-    console.log(e.target.value);
-
-    this.setState({
-      userName: e.target.value,
-    });
   }
 
-  handlePWChange(e) {
-    console.log(e.target.value);
-
-    this.setState({
-      password: e.target.value,
-    });
-  }
-
-  validate = () => {
-    let userNameError = "";
-    let passwordError = "";
-
-    if (!this.state.userName) {
-      userNameError = "user name cannot be blank";
-    }
-    if (!this.state.password) {
-      passwordError = "password cannot be blank";
-    }
-    if (userNameError || passwordError) {
-      this.setState({ userNameError, passwordError });
-      return false;
-    }
-
-    return true;
-  };
-
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
 
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      this.setState();
+    if (formValid(this.state)) {
       const user = {
         userName: this.state.userName,
         password: this.state.password,
@@ -72,12 +47,41 @@ class Login extends Component {
         this.props.history.push("/home");
       });
 
-      console.log("The form was submitted with the following data:");
-      console.log(this.state);
+      console.log(`--LOGGING IN--
+        User Name: ${this.state.userName}
+        Password: ${this.state.password}
+      `);
+    } else {
+      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
-  }
+  };
+
+  handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    let formErrors = { ...this.state.formErrors };
+
+    switch (name) {
+      case "userName":
+        formErrors.userName =
+          value.length === 0 ? "please enter your user name" : "";
+        break;
+      case "password":
+        formErrors.password =
+          value.length === 0 ? "please enter your password" : "";
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ formErrors, [name]: value, formTouched: true }, () =>
+      console.log(this.state)
+    );
+  };
 
   render() {
+    const { formErrors, formTouched } = this.state;
+
     return (
       <div className="row" id="login-mod">
         <div className="col s3"></div>
@@ -92,37 +96,40 @@ class Login extends Component {
                 <div className="form-field">
                   <label htmlFor="userName">User Name</label>
                   <input
-                    placeholder="Enter your User Name"
+                    className={formErrors.userName.length > 0 ? "error" : null}
+                    placeholder="User Name for your account"
                     type="text"
                     name="userName"
                     noValidate
-                    onChange={this.handleuserNameChange}
+                    onChange={this.handleChange}
                   />
-                  <span className="errorMessage">
-                    {this.state.userNameError}
-                  </span>
+                  {formErrors.userName.length > 0 && (
+                    <span className="errorMessage">{formErrors.userName}</span>
+                  )}
                 </div>
 
                 <div className="form-field">
                   <label htmlFor="password">Password</label>
                   <input
-                    placeholder="Enter your Password"
+                    className={formErrors.password.length > 0 ? "error" : null}
+                    placeholder="Password for your account"
                     type="password"
                     name="password"
                     noValidate
-                    onChange={this.handlePWChange}
+                    onChange={this.handleChange}
                   />
-                  <span className="errorMessage">
-                    {this.state.passwordError}
-                  </span>
+                  {formErrors.password.length > 0 && (
+                    <span className="errorMessage">{formErrors.password}</span>
+                  )}
                 </div>
 
                 <div className="form-field" style={{ padding: "1rem" }}>
                   <button
+                    disabled={!formTouched}
                     className="btn-large green accent-3 .center-align"
                     style={{ width: "100%", color: "black" }}
                   >
-                    Login
+                    LOGIN
                   </button>
                 </div>
                 <Link
