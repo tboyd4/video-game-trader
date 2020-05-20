@@ -61,7 +61,7 @@ function App() {
       API.deleteGame(game.id).then((res) => console.log(res));
     });
 
-    API.removeMoney({id: 4, total: 100}).then((res) => console.log(res) )
+    API.removeMoney({id: 4, total: totalPrice}).then((res) => console.log(res) )
 
     // clears the cart of any games
     setGameState({ ...gameState, userCart: [] });

@@ -87,4 +87,8 @@ module.exports = function (app) {
       });
     });
   })
+
+  app.get("/tyler/test/route", (req, res) => {
+    res.json(req.user);
+  })
 };
