@@ -14,45 +14,17 @@ import Cart from "../components/pages/cartPage/cartPage";
 
 // utility imports
 import GameContext from "../utils/GameContext";
-import Pic1 from "../images/test-img.jpg";
-import Pic2 from "../images/dis-pic.jpg";
-import Pic3 from "../images/resi-pic.jpg";
 import M from "materialize-css";
+import API from '../utils/GamesAPI';
 
 // class component
 function App() {
   const [gameState, setGameState] = useState({
-    testData: [
-      {
-        id: 1,
-        title: "Game1",
-        released: "2001",
-        image: Pic1,
-        price: 15,
-      },
-      {
-        id: 2,
-        title: "Game2",
-        released: "2005",
-        image: Pic2,
-        price: 45,
-      },
-      {
-        id: 3,
-        title: "Game3",
-        released: "2011",
-        image: Pic3,
-        price: 16,
-      },
-    ],
-    userCart: [], sellerData: [],
+    testData: [],userCart: [], sellerData: [],
   });
 
   function addToCart(game) {
     // THIS FUNCTION WILL TAKE THE DATA BEING DISPLAYED FROM THE DATABASE, AND WILL ADD THAT GAME CHOSEN TO THE REACT STATE CART
-
-    // idRemove is the id of the game we are removing from the test data
-    let idRemove = game.id;
 
     // we are going to push the game being added to the cart THIS WILL EVENTUALLY PULL FROM DATABASE AND PUSH INTO CART STATE
     gameState.userCart.push(game);
@@ -85,7 +57,16 @@ function App() {
     // this will remove games from cart, and remove them from the database of available games
     // this will also deduct users credits by the amount of the total price of cart
     
-    alert('You bought this cart, and it will cost you $' + totalPrice);
+    // grabs the cart, and loops through it, deleting each game that the user just purchased
+    let purchasedArray = gameState.userCart;
+    purchasedArray.forEach(game => {
+      API.deleteGame(game.id)
+      .then(res => console.log(res))
+    })
+
+
+
+
     setGameState({...gameState, userCart: []})
   }
 
