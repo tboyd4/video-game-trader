@@ -1,7 +1,7 @@
 import React, { Component, useContext } from "react";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 import Popup from "reactjs-popup"
-
+import API from "../../utils/GamesAPI"
 import SellDisplay from "../gameDisplay/sellDisplay";
 import GameContext from "../../utils/GameContext"
 
@@ -11,57 +11,22 @@ import GameContext from "../../utils/GameContext"
 class SellerResults extends Component {
 
     state = {
-        savedGames: [],
+        savedGames: {},
     };
 
 
-    componentDidMount() {
-        // this.fuckingsearch();
-    }
+
 
     handleSave = game => {
 
-        if (this.state.savedGames.map(game => game.id).includes(game.id)) {
-            API.deleteBook(game.id)
-                .then(deletedGame => this.setState({ savedGames: this.state.savedGames.filter(game => game.id !== deletedGame.id) }))
-                .catch(err => console.error(err));
-        } else {
             API.saveGame(game)
                 .then(savedGame => this.setState({ savedGames: this.state.savedGames.concat([savedGame]) }))
                 .catch(err => console.error(err));
-        }
+                console.log(game.title + "saved")
+        
     }
 
-    // displayGame = gameInfo => {
-    //     return {
-    //         image: gameInfo.results.aliases,
-    //         description: gameInfo.results.description,
-    //     }
-    // };
 
-    // gbInfo = gameName => {
-    //     API.gbsearch(gameName)
-    //         .then(res => this.setState({ game: res.data.map(gameInfo => this.displayGame(gameInfo)),
-    //             gameObject : [
-    //                 title = results.name,
-    //                 description = results.description,
-    //                 image = results.image.medium_url,
-    //             ],
-    //         },)
-    //         )
-    //         sellerData.push(gameObject)
-    //         .catch (err => console.log(err));
-    // };
-
-
-
-    // sellerData [{
-    //     id: result.id,
-    //     title: result.title,
-    //     description : gameInfo.description,
-    //     image: gameInfo.image.medium_url,
-    //     price: result.price * .5
-    // }]
 
 
     render() {
@@ -83,10 +48,9 @@ class SellerResults extends Component {
                                                     <Popup modal trigger={<a className="btn badge-pill btn-outline-dark mt-3">View</a>}>
                                                         {close => <SellDisplay close={close} />}
                                                     </Popup>
-
                                                     <button onClick={() => this.handleSave(result)}
                                                         className="btn badge-pill btn-outline-warning mt-3 ml-3" >
-                                                        {this.state.savedGames.map(game => game._id).includes(result._id) ? "Unsave" : "Save"}
+                                                        {/* {this.state.savedGames.map(game => game.id).includes(result.id) ? "Unsave" : "Save"} */}
                                                     </button>
                                                 </div>
                                             </div>
@@ -99,6 +63,7 @@ class SellerResults extends Component {
             </div>
         )
     }
+
 }
 
 

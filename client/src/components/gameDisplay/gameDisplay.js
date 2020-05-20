@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import "./gameDisplay.css";
 import GameContext from "../../utils/GameContext";
-import gamesAPI from "../../utils/gamesAPI";
+import gamesAPI from "../../utils/GamesAPI";
 
 
 function GameDisplay(props) {
