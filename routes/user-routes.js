@@ -61,4 +61,30 @@ module.exports = function (app) {
       })
       .catch((err) => res.send(err));
   });
+
+  // to add and remove credits routes
+
+  // will take users id to get into database, and deduct the cart amount
+  app.post("/api/removemoney", function (req, res) {
+    let userId = req.body.id;
+    let cartTotal = req.body.total;
+
+    console.log(req.body);
+
+    db.User.findOne({attributes: ['centaurs'], where: {id: userId}})
+    .then((results) => {
+      
+      let currentMoneys = results.dataValues.centaurs
+      let newMoneys = currentMoneys - cartTotal
+
+      db.User.update({ centaurs: newMoneys }, {
+        where: {
+          id: userId
+        }
+      }).then(() => {
+        console.log("Done");
+        res.send("ok")
+      });
+    });
+  })
 };

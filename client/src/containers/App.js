@@ -15,12 +15,14 @@ import Cart from "../components/pages/cartPage/cartPage";
 // utility imports
 import GameContext from "../utils/GameContext";
 import M from "materialize-css";
-import API from '../utils/GamesAPI';
+import API from "../utils/GamesAPI";
 
 // class component
 function App() {
   const [gameState, setGameState] = useState({
-    testData: [],userCart: [], sellerData: [],
+    testData: [],
+    userCart: [],
+    sellerData: [],
   });
 
   function addToCart(game) {
@@ -35,8 +37,6 @@ function App() {
     });
     M.toast({ html: "Added to Cart!" });
   }
-
-  // NOTE FOR TYLER -- THERE WILL BE A BOUGHT or a SOLD FUNCTION THAT REMOVES OR ADDS THE GAME TO THE DATABASE. ALL THE CART FUNCTIONS SHOULD DO IS MOVE GAMES TO AND FROM THE CART STATE
 
   function removeFromCart(event) {
     // ALL THIS FUNCTION WILL DO IS REMOVE THE GAME FROM THE CART STATE
@@ -53,21 +53,18 @@ function App() {
   }
 
   function purchaseCart(totalPrice) {
-    // this will be the fuction that takes everything in the cart, and lets the user "buy it". 
-    // this will remove games from cart, and remove them from the database of available games
-    // this will also deduct users credits by the amount of the total price of cart
-    
+    // this will be the fuction that takes everything in the cart, and lets the user "buy it".
+
     // grabs the cart, and loops through it, deleting each game that the user just purchased
     let purchasedArray = gameState.userCart;
-    purchasedArray.forEach(game => {
-      API.deleteGame(game.id)
-      .then(res => console.log(res))
-    })
+    purchasedArray.forEach((game) => {
+      API.deleteGame(game.id).then((res) => console.log(res));
+    });
 
+    API.removeMoney({id: 4, total: 100}).then((res) => console.log(res) )
 
-
-
-    setGameState({...gameState, userCart: []})
+    // clears the cart of any games
+    setGameState({ ...gameState, userCart: [] });
   }
 
   return (
@@ -96,7 +93,11 @@ function App() {
               exact
               path="/cart"
               component={(props) => (
-                <Cart {...props} removeCart={removeFromCart} purchaseCart={purchaseCart} />
+                <Cart
+                  {...props}
+                  removeCart={removeFromCart}
+                  purchaseCart={purchaseCart}
+                />
               )}
             />
           </Switch>

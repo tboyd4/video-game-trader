@@ -21,5 +21,10 @@ export default {
   },
   savedGames: function () {
     return axios.get("/api/game").then(result => result.data);
+  },
+
+  // money functions
+  removeMoney: function (payload) {
+    return axios.post("/api/removemoney", payload).then(result => result)
   }
 };
