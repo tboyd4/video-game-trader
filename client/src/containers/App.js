@@ -62,7 +62,10 @@ function App() {
       API.deleteGame(game.id).then((res) => console.log(res));
     });
 
-    API.removeMoney({id: 5, total: totalPrice}).then((res) => console.log(res) )
+    let loggedUserId = localStorage.getItem('usertoken')
+    console.log(loggedUserId);
+
+    API.removeMoney({id: loggedUserId, total: totalPrice}).then((res) => console.log(res) )
 
     // clears the cart of any games
     setGameState({ ...gameState, userCart: [] });

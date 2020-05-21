@@ -28,7 +28,7 @@ export const login = (user) => {
       password: user.password,
     })
     .then((response) => {
-      localStorage.setItem("usertoken", JSON.stringify(response.data.id));
+      localStorage.setItem("usertoken", response.data.id);
       console.log(response.data.id);
       console.log("logged in");
       return response.data;
