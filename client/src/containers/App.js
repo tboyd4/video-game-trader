@@ -23,6 +23,7 @@ function App() {
     testData: [],
     userCart: [],
     sellerData: [],
+    userId: ''
   });
 
   function addToCart(game) {

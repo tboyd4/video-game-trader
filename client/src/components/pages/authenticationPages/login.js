@@ -3,6 +3,7 @@ import "./authenticationPages.css";
 import { Link } from "react-router-dom";
 import { login } from "./userFunctions";
 
+
 const formValid = ({ formErrors, userName, password }) => {
   let valid = true;
 
@@ -20,6 +21,7 @@ const formValid = ({ formErrors, userName, password }) => {
 };
 
 class Login extends Component {
+
   constructor(props) {
     super(props);
 

@@ -10,7 +10,7 @@ export const register = (newUser) => {
       password: newUser.password,
     })
     .then((response) => {
-      localStorage.setItem("usertoken", response.data);
+      localStorage.setItem("usertoken", JSON.stringify(response.data.id));
       console.log(response.data, "responsedata");
       console.log("Registered");
       return response.data;
@@ -28,8 +28,8 @@ export const login = (user) => {
       password: user.password,
     })
     .then((response) => {
-      localStorage.setItem("usertoken", response.data);
-      console.log(response.data, "responsedata");
+      localStorage.setItem("usertoken", JSON.stringify(response.data.id));
+      console.log(response.data.id);
       console.log("logged in");
       return response.data;
     })
