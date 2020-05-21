@@ -1,12 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import "./gameDisplay.css";
-import GameContext from "../../utils/GameContext";
-import gamesAPI from "../../utils/GamesAPI";
-
 
 function GameDisplay(props) {
-  const { testsData } = useContext(GameContext);
 
   return (
     <div className="row grey darken-2 game-style">
@@ -40,7 +36,7 @@ function GameDisplay(props) {
               className="waves-effect waves-light green accent-3 black-text btn-large"
               onClick={() => props.addCart(props.game)}
             >
-              Purchase
+              Add to Cart
             </a>
           </div>
         </div>
