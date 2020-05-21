@@ -44,6 +44,7 @@ module.exports = function (app) {
   });
 
   app.get("/logout", function (req, res) {
+    console.log("back end logged out")
     req.logout();
     res.send("userlogged out");
     req.redirect("/");
@@ -88,7 +89,4 @@ module.exports = function (app) {
     });
   })
 
-  app.get("/tyler/test/route", (req, res) => {
-    res.json(req.user);
-  })
 };
