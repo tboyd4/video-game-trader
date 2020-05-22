@@ -35,6 +35,7 @@ export default {
   },
 
   getMoney: function (userId) {
-    return axios.get("Users/" + userId).then((result) => result);
+    console.log(userId);
+    return axios.get("api/getMoney/" + userId).then((result) => result);
   },
 };

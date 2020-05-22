@@ -65,16 +65,16 @@ module.exports = function (app) {
   });
   // to add and remove credits routes
 
-  app.get("Users/:id", function (req, res) {
+  app.get("/api/getMoney/:id", function (req, res) {
     db.User.findOne({
       where: {
         id: req.params.id,
       },
     }).then(function (dbUser) {
       //we don't want the whole user object, just the centaur number
+      console.log(dbUser.dataValues.centaurs);
       res.send(dbUser.centaurs);
     });
-    console.log(dbUser.centaurs);
   });
 
   // will take users id to get into database, and deduct the cart amount

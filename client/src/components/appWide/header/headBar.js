@@ -1,38 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../../../components/pages/authenticationPages/userFunctions";
 import API from "../../../utils/GamesAPI.js";
 import "./headBar.css";
-
-// function centaurBalance() {
-//   let loggedUserId = localStorage.getItem("usertoken");
-//   if (loggedUserId) {
-//     API.getMoney(loggedUserId)
-//       .then((result) => {
-//         let balance;
-//         if (result.data.centaurs === null) {
-//           balance = 0;
-//         } else {
-//           console.log(result.data.centaurs);
-//           balance = result.data.centaurs;
-//         }
-//         console.log(balance);
-//         return balance;
-//       })
-//       .catch((err) => console.log(err));
-//   } else {
-//     console.log(0);
-//     return 0;
-//   }
-// }
-
-async function balance() {
-  let loggedUserId = localStorage.getItem("usertoken");
-  console.log(localStorage.getItem("usertoken"));
-  console.log("loggedUserId", loggedUserId);
-  console.log(balance);
-  return !loggedUserId ? 0 : await API.getMoney(loggedUserId);
-}
 
 function HeadBar() {
   function logOut() {
@@ -41,8 +11,14 @@ function HeadBar() {
     localStorage.clear();
   }
 
-  //let centaurs = balance();
-  // console.log(centaurs);
+  const [centaurState, setCentaurState] = useState([]);
+
+  useEffect(() => {
+    let loggedUserId = localStorage.getItem("usertoken");
+    API.getMoney(loggedUserId)
+      .then((res) => setCentaurState(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <header>
@@ -86,7 +62,7 @@ function HeadBar() {
               }}
               id="centaur"
             >
-              Centaur Balance:{balance}
+              Centaur Balance:{centaurState}
             </li>
           </ul>
         </div>
