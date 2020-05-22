@@ -61,21 +61,25 @@ function App() {
     if (checkingUser) {
       // grabs the cart, and loops through it, deleting each game that the user just purchased
       let purchasedArray = gameState.userCart;
-      purchasedArray.forEach((game) => {
-        API.deleteGame(game.id).then((res) => console.log(res));
-      });
+      
 
       let loggedUserId = localStorage.getItem("usertoken");
       console.log(loggedUserId);
 
-      API.removeMoney({ id: loggedUserId, total: totalPrice }).then((res) =>
-        console.log(res)
-      );
+      API.removeMoney({ id: loggedUserId, total: totalPrice }).then((res) => {
+        if (res.data === 'moneypass') {
+          purchasedArray.forEach((game) => {
+            API.deleteGame(game.id).then((res) => console.log(res));
+          });
+        } else {
+          M.toast({ html: "Please add funds to purchase!" });
+        }
+      });
 
       // clears the cart of any games
       setGameState({ ...gameState, userCart: [] });
     } else {
-      // modal that asks the user to log in before they make purchases
+      // toasti boi tellin how it be
       M.toast({ html: "Please Login to Purchase!" });
     }
   }
