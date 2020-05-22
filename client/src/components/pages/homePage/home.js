@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import GameDisplay from "../../gameDisplay/gameDisplay";
 import SearchBar from "./SearchBar/SearchBar";
 import GamesAPI from "../../../utils/GamesAPI";
@@ -28,9 +28,6 @@ function Home(props) {
       .catch(err => console.log("ERRUH:", err));
   };
 
-  // const handleInputChange = event => {
-  //     const search = event.target.value;
-  //   };
 
   //submits search form
   const handleFormSubmit = event => {
@@ -87,7 +84,6 @@ function Home(props) {
         <Dashboard />
       )
     }
-
 
     </main>
   );
