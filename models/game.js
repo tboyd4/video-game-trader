@@ -30,12 +30,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
     },
 
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      foreignKey: true
-    },
-
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,
@@ -50,9 +44,7 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Game.associate = (models) => {
-    Game.belongsTo(models.User, {
-      foreignKey: 'user_id'
-    });
+    Game.belongsTo(models.User);
   }
 
   return Game;

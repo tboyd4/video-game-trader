@@ -3,9 +3,9 @@ import axios from "axios";
 export default {
   // Gets all games
   getGames: function (search) {
-    console.log(`trying to get ${search}`);
+    console.log("trying to get!", search);
     return axios.get(
-      `/api/games${search && search.length > 3 ? "?search=" + search : ""}`
+      `/api/games?${search && search.length > 3 ? "search=" + search : ""}`
     );
   },
   // Gets the games with the given id
@@ -18,8 +18,8 @@ export default {
     return axios.delete("/api/games/" + id);
   },
   // Saves a game to the database
-  saveGame: function (data) {
-    return axios.post("/api/games", data);
+  saveGame: function (gameData) {
+    return axios.post("/api/games", gameData).then((result) => result.data);
   },
   savedGames: function () {
     return axios.get("/api/game").then((result) => result.data);

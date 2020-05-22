@@ -2,6 +2,7 @@ import React from 'react';
 import API from '../../../utils/API';
 import SellerForm from '../../sellerForm/index';
 import SellerResults from '../../sellerResults/index'
+import './buysellPage.css'
 
 // const { sellerData } = useContext(GameContext);
 
@@ -54,6 +55,7 @@ class BuySell extends React.Component {
 
     render() {
         return (
+            <main className="inner-cont">
             <div>
                 <SellerForm
                     search={this.state.search}
@@ -65,6 +67,7 @@ class BuySell extends React.Component {
                     <SellerResults games={this.state.games} />
                 </div>
             </div>
+            </main>
         )
     }
 }

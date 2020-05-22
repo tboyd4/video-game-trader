@@ -95,6 +95,7 @@ class Login extends Component {
     const { formErrors, formTouched } = this.state;
 
     return (
+      <main className="inner-cont">
       <div className="row" id="login-mod">
         <div className="col s3"></div>
         <div className="col s6 center-align">
@@ -159,6 +160,7 @@ class Login extends Component {
         </div>
         <div className="col s3"></div>
       </div>
+      </main>
     );
   }
 }

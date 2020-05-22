@@ -20,10 +20,9 @@ import API from "../utils/GamesAPI";
 // class component
 function App() {
   const [gameState, setGameState] = useState({
-    testData: [],
     userCart: [],
     sellerData: [],
-    userId: ''
+    userId: "",
   });
 
   function addToCart(game) {
@@ -32,10 +31,6 @@ function App() {
     // we are going to push the game being added to the cart THIS WILL EVENTUALLY PULL FROM DATABASE AND PUSH INTO CART STATE
     gameState.userCart.push(game);
 
-    // we are setting the state, so that what they add to cart will be removed from data.
-    setGameState({
-      ...gameState,
-    });
     M.toast({ html: "Added to Cart!" });
   }
 
@@ -56,62 +51,78 @@ function App() {
   function purchaseCart(totalPrice) {
     // this will be the fuction that takes everything in the cart, and lets the user "buy it".
 
-    // grabs the cart, and loops through it, deleting each game that the user just purchased
-    let purchasedArray = gameState.userCart;
-    purchasedArray.forEach((game) => {
-      API.deleteGame(game.id).then((res) => console.log(res));
-    });
+    let checkingUser = localStorage.getItem("usertoken");
 
-    let loggedUserId = localStorage.getItem('usertoken')
-    console.log(loggedUserId);
+    if (checkingUser) {
+      // grabs the cart, and loops through it, deleting each game that the user just purchased
+      let purchasedArray = gameState.userCart;
 
-    API.removeMoney({id: loggedUserId, total: totalPrice}).then((res) => console.log(res) )
+      let loggedUserId = localStorage.getItem("usertoken");
+      console.log(loggedUserId);
 
-    // clears the cart of any games
-    setGameState({ ...gameState, userCart: [] });
+      API.removeMoney({ id: loggedUserId, total: totalPrice }).then((res) => {
+        if (res.data === "moneypass") {
+          purchasedArray.forEach((game) => {
+            API.deleteGame(game.id).then((res) => console.log(res));
+          });
+        } else {
+          M.toast({ html: "Please add funds to purchase!" });
+        }
+      });
+
+      // clears the cart of any games
+      setGameState({ ...gameState, userCart: [] });
+    } else {
+      // toasti boi tellin how it be
+      M.toast({ html: "Please Login to Purchase!" });
+    }
   }
 
   return (
-    <div className="container">
-      <GameContext.Provider value={gameState}>
-        <BrowserRouter>
-          <HeadBar />
-          <Switch>
-            <Route exact path="/" component={(props) => <Login {...props} />} />
-            <Route
-              exact
-              path="/register"
-              component={(props) => <Register {...props} />}
-            />
-            <Route
-              exact
-              path="/home"
-              component={(props) => <Home {...props} addCart={addToCart} />}
-            />
-            <Route
-              exact
-              path="/buysell"
-              component={(props) => <BuySell {...props} />}
-            />
-            <Route
-              exact
-              path="/cart"
-              component={(props) => (
-                <Cart
-                  {...props}
-                  removeCart={removeFromCart}
-                  purchaseCart={purchaseCart}
-                />
-              )}
-            />
-          </Switch>
-        </BrowserRouter>
-      </GameContext.Provider>
+    <main className="the-main">
+      <div className="container">
+        <GameContext.Provider value={gameState}>
+          <BrowserRouter>
+            <HeadBar />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                component={(props) => <Login {...props} />}
+              />
+              <Route
+                exact
+                path="/register"
+                component={(props) => <Register {...props} />}
+              />
+              <Route
+                exact
+                path="/home"
+                component={(props) => <Home {...props} addCart={addToCart} />}
+              />
+              <Route
+                exact
+                path="/buysell"
+                component={(props) => <BuySell {...props} />}
+              />
+              <Route
+                exact
+                path="/cart"
+                component={(props) => (
+                  <Cart
+                    {...props}
+                    removeCart={removeFromCart}
+                    purchaseCart={purchaseCart}
+                  />
+                )}
+              />
+            </Switch>
+          </BrowserRouter>
+        </GameContext.Provider>
 
-      <div className="filler"></div>
-
-      <FootBar />
-    </div>
+        <FootBar />
+      </div>
+    </main>
   );
 }
 

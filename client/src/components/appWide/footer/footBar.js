@@ -1,8 +1,12 @@
 import React from 'react';
 
+import './footBar.css'
+
 function FootBar() {
     return (
-        <footer className="page-footer green accent-3">
+      <div>
+        <div className="ghost"></div>
+        <footer className="page-footer green accent-3" id="the-foot">
           <div className="container">
           </div>
           <div className="footer-copyright">
@@ -11,6 +15,7 @@ function FootBar() {
             </div>
           </div>
         </footer>
+      </div>
     )
 }
 

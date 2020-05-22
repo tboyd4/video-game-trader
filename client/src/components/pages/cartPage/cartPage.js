@@ -8,7 +8,7 @@ import './cartPage.css'
 
 function Cart(props) {
     return (
-        <main>
+        <main className="inner-cont">
             <h1 class="black-text center-align cart-title">Your Cart</h1>
             <CartDisplay removeCart={props.removeCart} purchaseCart={props.purchaseCart} />            
         </main>
