@@ -23,7 +23,7 @@ function App() {
     testData: [],
     userCart: [],
     sellerData: [],
-    userId: ''
+    userId: "",
   });
 
   function addToCart(game) {
@@ -56,62 +56,73 @@ function App() {
   function purchaseCart(totalPrice) {
     // this will be the fuction that takes everything in the cart, and lets the user "buy it".
 
-    // grabs the cart, and loops through it, deleting each game that the user just purchased
-    let purchasedArray = gameState.userCart;
-    purchasedArray.forEach((game) => {
-      API.deleteGame(game.id).then((res) => console.log(res));
-    });
+    let checkingUser = localStorage.getItem("usertoken");
 
-    let loggedUserId = localStorage.getItem('usertoken')
-    console.log(loggedUserId);
+    if (checkingUser) {
+      // grabs the cart, and loops through it, deleting each game that the user just purchased
+      let purchasedArray = gameState.userCart;
+      purchasedArray.forEach((game) => {
+        API.deleteGame(game.id).then((res) => console.log(res));
+      });
 
-    API.removeMoney({id: loggedUserId, total: totalPrice}).then((res) => console.log(res) )
+      let loggedUserId = localStorage.getItem("usertoken");
+      console.log(loggedUserId);
 
-    // clears the cart of any games
-    setGameState({ ...gameState, userCart: [] });
+      API.removeMoney({ id: loggedUserId, total: totalPrice }).then((res) =>
+        console.log(res)
+      );
+
+      // clears the cart of any games
+      setGameState({ ...gameState, userCart: [] });
+    } else {
+      alert('YOU CAN"T BUY STUFF YOUR NOT ReAL')
+    }
   }
 
   return (
     <main className="the-main">
-    <div className="container">
-      <GameContext.Provider value={gameState}>
-        <BrowserRouter>
-          <HeadBar />
-          <Switch>
-            <Route exact path="/" component={(props) => <Login {...props} />} />
-            <Route
-              exact
-              path="/register"
-              component={(props) => <Register {...props} />}
-            />
-            <Route
-              exact
-              path="/home"
-              component={(props) => <Home {...props} addCart={addToCart} />}
-            />
-            <Route
-              exact
-              path="/buysell"
-              component={(props) => <BuySell {...props} />}
-            />
-            <Route
-              exact
-              path="/cart"
-              component={(props) => (
-                <Cart
-                  {...props}
-                  removeCart={removeFromCart}
-                  purchaseCart={purchaseCart}
-                />
-              )}
-            />
-          </Switch>
-        </BrowserRouter>
-      </GameContext.Provider>
+      <div className="container">
+        <GameContext.Provider value={gameState}>
+          <BrowserRouter>
+            <HeadBar />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                component={(props) => <Login {...props} />}
+              />
+              <Route
+                exact
+                path="/register"
+                component={(props) => <Register {...props} />}
+              />
+              <Route
+                exact
+                path="/home"
+                component={(props) => <Home {...props} addCart={addToCart} />}
+              />
+              <Route
+                exact
+                path="/buysell"
+                component={(props) => <BuySell {...props} />}
+              />
+              <Route
+                exact
+                path="/cart"
+                component={(props) => (
+                  <Cart
+                    {...props}
+                    removeCart={removeFromCart}
+                    purchaseCart={purchaseCart}
+                  />
+                )}
+              />
+            </Switch>
+          </BrowserRouter>
+        </GameContext.Provider>
 
-
-      <FootBar />
-    </div>
+        <FootBar />
+      </div>
     </main>
   );
 }
