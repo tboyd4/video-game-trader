@@ -1,8 +1,38 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../../../components/pages/authenticationPages/userFunctions";
-
+import API from "../../../utils/GamesAPI.js";
 import "./headBar.css";
+
+// function centaurBalance() {
+//   let loggedUserId = localStorage.getItem("usertoken");
+//   if (loggedUserId) {
+//     API.getMoney(loggedUserId)
+//       .then((result) => {
+//         let balance;
+//         if (result.data.centaurs === null) {
+//           balance = 0;
+//         } else {
+//           console.log(result.data.centaurs);
+//           balance = result.data.centaurs;
+//         }
+//         console.log(balance);
+//         return balance;
+//       })
+//       .catch((err) => console.log(err));
+//   } else {
+//     console.log(0);
+//     return 0;
+//   }
+// }
+
+async function balance() {
+  let loggedUserId = localStorage.getItem("usertoken");
+  console.log(localStorage.getItem("usertoken"));
+  console.log("loggedUserId", loggedUserId);
+  console.log(balance);
+  return !loggedUserId ? 0 : await API.getMoney(loggedUserId);
+}
 
 function HeadBar() {
   function logOut() {
@@ -10,6 +40,9 @@ function HeadBar() {
     logout();
     localStorage.clear();
   }
+
+  //let centaurs = balance();
+  // console.log(centaurs);
 
   return (
     <header>
@@ -43,6 +76,17 @@ function HeadBar() {
               <a href="/" onClick={logOut} className="black-text">
                 Logout
               </a>
+            </li>
+            <li
+              className="black-text"
+              style={{
+                marginRight: "12px",
+                marginLeft: "12px",
+                paddingRight: "12px",
+              }}
+              id="centaur"
+            >
+              Centaur Balance:{balance}
             </li>
           </ul>
         </div>

@@ -29,6 +29,8 @@ module.exports = function (Sequelize, DataTypes) {
     },
     centaurs: {
       type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+      defaultValue: 0,
     },
   });
 

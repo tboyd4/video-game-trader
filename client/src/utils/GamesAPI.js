@@ -29,4 +29,12 @@ export default {
   removeMoney: function (payload) {
     return axios.post("/api/removemoney", payload).then((result) => result);
   },
+
+  addMoney: function (user) {
+    return axios.put("api/addMoney", user).then((result) => result);
+  },
+
+  getMoney: function (userId) {
+    return axios.get("Users/" + userId).then((result) => result);
+  },
 };

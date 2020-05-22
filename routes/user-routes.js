@@ -59,10 +59,23 @@ module.exports = function (app) {
       .then(function (dbUser) {
         console.log(dbUser);
         res.send(dbUser);
+        console.log(dbUser);
       })
       .catch((err) => res.send(err));
   });
   // to add and remove credits routes
+
+  app.get("Users/:id", function (req, res) {
+    db.User.findOne({
+      where: {
+        id: req.params.id,
+      },
+    }).then(function (dbUser) {
+      //we don't want the whole user object, just the centaur number
+      res.send(dbUser.centaurs);
+    });
+    console.log(dbUser.centaurs);
+  });
 
   // will take users id to get into database, and deduct the cart amount
   app.post("/api/removemoney", function (req, res) {
@@ -95,5 +108,19 @@ module.exports = function (app) {
         }
       }
     );
+  });
+
+  app.put("/api/addMoney", function (req, res) {
+    //expects whole user object with added centaurs
+    //do spread operator when you add centaurs
+    //{...user, centaurs: new amount}
+    let userId = req.body.id;
+    db.User.update(req.body, {
+      where: {
+        id: req.body.id,
+      },
+    }).then(function (dbUser) {
+      res.json(dbUser);
+    });
   });
 };
