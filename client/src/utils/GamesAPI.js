@@ -2,11 +2,9 @@ import axios from "axios";
 
 export default {
   // Gets all games
-  getGames: function (search) {
-    console.log("trying to get!");
-    return axios.get(
-      `/api/games${search && search.length > 3 ? "?search=" + search : ""}`
-    );
+  getGames: function(search) {
+      console.log("trying to get!", search)
+    return axios.get(`/api/games?${search && search.length > 3 ? "search=" +search : ""}`);
   },
   // Gets the games with the given id
   getGame: function (id) {
