@@ -58,7 +58,7 @@ module.exports = function (app) {
     })
       .then(function (dbUser) {
         console.log(dbUser);
-        res.send(dbUser);S
+        res.send(dbUser);
       })
       .catch((err) => res.send(err));
   });
@@ -96,5 +96,4 @@ module.exports = function (app) {
       }
     );
   });
-};
 };
