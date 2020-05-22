@@ -44,10 +44,7 @@ function Home(props) {
         <main className="inner-cont">
             <SearchBar
                 handleFormSubmit={handleFormSubmit}
-                // handleInputChange={handleInputChange}
             />
-            {/* <img src="https://66.media.tumblr.com/tumblr_m2n0av6Sbd1r085xlo1_500.gifv"></img> */}
-
             {games.map(game => (
             <GameDisplay 
             key={game.id}

@@ -20,7 +20,6 @@ import API from "../utils/GamesAPI";
 // class component
 function App() {
   const [gameState, setGameState] = useState({
-    testData: [],
     userCart: [],
     sellerData: [],
     userId: "",
@@ -32,10 +31,6 @@ function App() {
     // we are going to push the game being added to the cart THIS WILL EVENTUALLY PULL FROM DATABASE AND PUSH INTO CART STATE
     gameState.userCart.push(game);
 
-    // we are setting the state, so that what they add to cart will be removed from data.
-    setGameState({
-      ...gameState,
-    });
     M.toast({ html: "Added to Cart!" });
   }
 
