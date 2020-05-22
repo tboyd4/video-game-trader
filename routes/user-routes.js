@@ -57,11 +57,10 @@ module.exports = function (app) {
     })
       .then(function (dbUser) {
         console.log(dbUser);
-        res.send(dbUser);
+        res.send(dbUser);S
       })
       .catch((err) => res.send(err));
   });
-
   // to add and remove credits routes
 
   // will take users id to get into database, and deduct the cart amount
@@ -91,4 +90,5 @@ module.exports = function (app) {
   app.get("/tyler/test/route", (req, res) => {
     res.json(req.user);
   })
+};
 };
