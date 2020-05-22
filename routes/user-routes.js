@@ -62,7 +62,6 @@ module.exports = function (app) {
       })
       .catch((err) => res.send(err));
   });
-
   // to add and remove credits routes
 
   // will take users id to get into database, and deduct the cart amount
@@ -80,35 +79,6 @@ module.exports = function (app) {
         if (currentMoneys > cartTotal) {
           let newMoneys = currentMoneys - cartTotal;
 
-<<<<<<< HEAD
-// will take users id into database and add the cart ammount
-  app.post("/api/addmoney", function (req, res) {
-    let userId = req.user.id;
-    let cartTotal = req.body.total;
-
-    console.log(req.body);
-
-    db.User.findOne({attributes: ['centaurs'], where: {id: userId}})
-    .then((results) => {
-      
-      let currentMoneys = results.dataValues.centaurs
-      let newMoneys = currentMoneys + cartTotal
-
-      db.User.update({ centaurs: newMoneys }, {
-        where: {
-          id: userId
-        }
-      }).then(() => {
-        console.log("Done");
-        res.send("ok")
-      });
-    });
-  })
-
-  app.get("/tyler/test/route", (req, res) => {
-    res.json(req.user);
-  })
-=======
           db.User.update(
             { centaurs: newMoneys },
             {
@@ -126,5 +96,4 @@ module.exports = function (app) {
       }
     );
   });
->>>>>>> a0fc5622a69c7cfe2778a55d1128f35461cfad56
 };

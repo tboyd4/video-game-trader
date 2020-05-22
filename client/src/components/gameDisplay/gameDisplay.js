@@ -3,7 +3,6 @@ import React from "react";
 import "./gameDisplay.css";
 
 function GameDisplay(props) {
-
   return (
     <div className="row grey darken-2 game-style">
       <div className="col s12 m6">

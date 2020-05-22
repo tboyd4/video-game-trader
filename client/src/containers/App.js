@@ -79,48 +79,6 @@ function App() {
   }
 
   return (
-<<<<<<< HEAD
-    <div className="container">
-      <GameContext.Provider value={gameState}>
-        <BrowserRouter>
-          <HeadBar />
-          <Switch>
-            <Route exact path="/" component={(props) => <Login {...props} />} />
-            <Route
-              exact
-              path="/register"
-              component={(props) => <Register {...props} />}
-            />
-            <Route
-              exact
-              path="/home"
-              component={(props) => <Home {...props} addCart={addToCart} />}
-            />
-            <Route
-              exact
-              path="/buysell"
-              component={(props) => <BuySell {...props} addCart={addToCart} />}
-            />
-            <Route
-              exact
-              path="/cart"
-              component={(props) => (
-                <Cart
-                  {...props}
-                  removeCart={removeFromCart}
-                  purchaseCart={purchaseCart}
-                />
-              )}
-            />
-          </Switch>
-        </BrowserRouter>
-      </GameContext.Provider>
-
-      <div className="filler"></div>
-
-      <FootBar />
-    </div>
-=======
     <main className="the-main">
       <div className="container">
         <GameContext.Provider value={gameState}>
@@ -165,7 +123,6 @@ function App() {
         <FootBar />
       </div>
     </main>
->>>>>>> a0fc5622a69c7cfe2778a55d1128f35461cfad56
   );
 }
 

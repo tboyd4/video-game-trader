@@ -2,9 +2,11 @@ import axios from "axios";
 
 export default {
   // Gets all games
-  getGames: function(search) {
-      console.log("trying to get!", search)
-    return axios.get(`/api/games?${search && search.length > 3 ? "search=" +search : ""}`);
+  getGames: function (search) {
+    console.log("trying to get!", search);
+    return axios.get(
+      `/api/games?${search && search.length > 3 ? "search=" + search : ""}`
+    );
   },
   // Gets the games with the given id
   getGame: function (id) {
@@ -25,15 +27,10 @@ export default {
 
   // money functions
   removeMoney: function (payload) {
-<<<<<<< HEAD
     return axios.post("/api/removemoney", payload).then(result => result)
   },
 
   addMoney: function (payload) {
     return axios.post("/api/addmoney", payload).then(result => result)
   }
-=======
-    return axios.post("/api/removemoney", payload).then((result) => result);
-  },
->>>>>>> a0fc5622a69c7cfe2778a55d1128f35461cfad56
 };
