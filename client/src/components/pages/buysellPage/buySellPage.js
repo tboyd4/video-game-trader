@@ -21,7 +21,7 @@ class BuySell extends React.Component {
 
     makeGame = gameData => {
         return {
-            _id: gameData.id,
+            id: gameData.id,
             title: gameData['product-name'],
             console: gameData['console-name'],
             price: gameData['loose-price']

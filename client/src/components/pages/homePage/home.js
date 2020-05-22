@@ -2,22 +2,20 @@ import React, { useState, useEffect, useContext } from "react";
 import GameDisplay from "../../gameDisplay/gameDisplay";
 import SearchBar from "./SearchBar/SearchBar";
 import GameContext from "../../../utils/GameContext";
-import gamesAPI from "../../../utils/GamesAPI";
+import GamesAPI from "../../../utils/GamesAPI";
 
 function Home(props) {
   // Setting our component's initial state
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    gamesAPI
-      .getGames()
+    GamesAPI.getGames()
       .then((res) => setGames(res.data))
       .catch((err) => console.log(err));
   }, []);
 
   function searchGame(search) {
-    gamesAPI
-      .getGames(search)
+    GamesAPI.getGames(search)
       .then((res) => setGames(res.data))
       .catch((err) => console.log(err));
   }

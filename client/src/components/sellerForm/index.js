@@ -1,6 +1,6 @@
-
 import React from "react";
 
+import "./index.css"
 
 function SellerForm(props){
 return (
@@ -13,11 +13,10 @@ return (
         value={props.search}
         name="search"
         type="text"
-        className="form-control"
-        placeholder="Search a Game to sell"
+        className="form-control white-text"
         id="search"
       />
-      <button onClick={props.handleFormSubmit} className="btn btn-dark mt-3 mb-5">
+      <button onClick={props.handleFormSubmit} className="waves-effect waves-light green accent-3 black-text btn">
         Search
         </button>
     </div>

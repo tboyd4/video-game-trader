@@ -43,8 +43,8 @@ function GameDisplay(props) {
       ) : (
         <h1>Your Cart is Empty!! Go add some games!</h1>
       )}
-      <div className="filler"></div>
-      <div>
+
+      {userCart.length > 0 ? (<div>
         <h1 className="black-text center-align cart-title cart-games">
           TOTAL COST: ${cartPrice}
         </h1>
@@ -54,7 +54,9 @@ function GameDisplay(props) {
         >
           Confirm Purchase
         </a>
-      </div>
+      </div>) : <div></div>}
+      <div className="filler"></div>
+      
       <div className="filler"></div>
     </div>
   );

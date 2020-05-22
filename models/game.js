@@ -14,6 +14,7 @@ module.exports = function (sequelize, DataTypes) {
 
     console: {
       type: DataTypes.STRING,
+      allowNull: true
     },
 
     price: {
@@ -29,11 +30,11 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
     },
 
-    // user_id: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   foreignKey: true
-    // },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      foreignKey: true
+    },
 
     createdAt: {
       allowNull: false,
@@ -48,19 +49,11 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  // Game.associate = (models) => {
-  //   Game.belongsTo(models.User, {
-  //     foreignKey: 'user_id'
-  //   });
-  // }
-   
-    // Game.associate = (models) => {
-    //     Game.belongsTo(models.User, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
-    // };
+  Game.associate = (models) => {
+    Game.belongsTo(models.User, {
+      foreignKey: 'user_id'
+    });
+  }
 
   return Game;
 };

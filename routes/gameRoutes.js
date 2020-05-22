@@ -45,11 +45,11 @@ module.exports = function(app) {
     console.log(req.body);
     db.Game.create({
       title: req.body.title,
-      console: req.body.body,
+      console: req.body.console,
       price: req.body.price,
       year: req.body.year,
-      image: req.body.image
-
+      image: req.body.image,
+      user_id: 1
     })
       .then(function(data) {
         res.json(data);
