@@ -25,6 +25,7 @@ class Login extends Component {
 
     this.state = {
       formTouched: false,
+      loggedIn: false,
       userName: "",
       password: "",
       formErrors: {
@@ -43,7 +44,16 @@ class Login extends Component {
         password: this.state.password,
       };
 
-      login(user).then((res) => {
+      login(user).then((res, err) => {
+        console.log(res.err);
+        // if (res.err === undefined) {
+        //   console.log("user doesnt exist");
+        //   var popup = document.getElementById("popup");
+        //   popup.innerText = "User name doesnt exist ";
+        // } else {
+        //   this.props.history.push("/home");
+        //   console.log("does exist");
+        // }
         this.props.history.push("/home");
       });
 
@@ -90,7 +100,9 @@ class Login extends Component {
             <div className="black-text center-align">
               <h3>Login</h3>
             </div>
-
+            <div>
+              <p id="popup" style={{ color: "red" }}></p>
+            </div>
             <form onSubmit={this.handleSubmit} noValidate>
               <div className="card-content">
                 <div className="form-field">
