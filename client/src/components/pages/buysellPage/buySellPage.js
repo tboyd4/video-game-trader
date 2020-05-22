@@ -82,6 +82,7 @@ class BuySell extends React.Component {
     render() {
         this.gameImages(this.state.games)
         return (
+            <main className="inner-cont">
             <div>
                 <SellerForm
                     search={this.state.search}
@@ -93,6 +94,7 @@ class BuySell extends React.Component {
                     <SellerResults games={this.state.games} />
                 </div>
             </div>
+            </main>
         )
     }
 }

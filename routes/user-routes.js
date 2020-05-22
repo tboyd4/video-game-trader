@@ -44,6 +44,7 @@ module.exports = function (app) {
   });
 
   app.get("/logout", function (req, res) {
+    console.log("back end logged out");
     req.logout();
     res.send("userlogged out");
     req.redirect("/");
@@ -61,34 +62,38 @@ module.exports = function (app) {
       })
       .catch((err) => res.send(err));
   });
-
   // to add and remove credits routes
 
   // will take users id to get into database, and deduct the cart amount
   app.post("/api/removemoney", function (req, res) {
-    let userId = req.user.id;
+    let userId = req.body.id;
     let cartTotal = req.body.total;
 
     console.log(req.body);
 
-    db.User.findOne({attributes: ['centaurs'], where: {id: userId}})
-    .then((results) => {
-      
-      let currentMoneys = results.dataValues.centaurs
-      let newMoneys = currentMoneys - cartTotal
+    db.User.findOne({ attributes: ["centaurs"], where: { id: userId } }).then(
+      (results) => {
+        let currentMoneys = results.dataValues.centaurs;
 
-      db.User.update({ centaurs: newMoneys }, {
-        where: {
-          id: userId
+        // this will make sure the user has enough money to purchase
+        if (currentMoneys > cartTotal) {
+          let newMoneys = currentMoneys - cartTotal;
+
+          db.User.update(
+            { centaurs: newMoneys },
+            {
+              where: {
+                id: userId,
+              },
+            }
+          ).then(() => {
+            res.send("moneypass");
+          });
+        } else {
+          // this will happen if they don't have enough money for the purchase
+          res.send("moneyfail");
         }
-      }).then(() => {
-        console.log("Done");
-        res.send("ok")
-      });
-    });
-  })
-
-  app.get("/tyler/test/route", (req, res) => {
-    res.json(req.user);
-  })
+      }
+    );
+  });
 };
