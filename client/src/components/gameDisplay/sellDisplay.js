@@ -1,14 +1,10 @@
-import React, { useContext, useEffect } from "react";
-import API from '../../utils/API'
+import React from "react";
+
 import "./gameDisplay.css";
-import GameContext from '../../utils/GameContext'
 
 function SellDisplay(props) {
 
-    const { sellerData } = useContext(GameContext);
-    
-
-      return (
+  return (
     <div className="row grey darken-2 game-style">
       <div className="col s12 m6">
         <div className="card">
@@ -29,7 +25,7 @@ function SellDisplay(props) {
               Released: {props.year}
             </p>
             <p className="text-spacing" id="para">
-              Price: {props.price}
+              Trade in Value: {props.price * -.5}
             </p>
             <p className="text-spacing" id="para">
               Console: {props.console}
@@ -40,8 +36,8 @@ function SellDisplay(props) {
               className="waves-effect waves-light green accent-3 black-text btn-large"
               onClick={() => props.addCart(props.game)}
             >
-              Purchase
-            </a>
+              Trade in Game
+              </a>
           </div>
         </div>
       </div>

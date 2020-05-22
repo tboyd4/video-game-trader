@@ -88,6 +88,30 @@ module.exports = function (app) {
     });
   })
 
+// will take users id into database and add the cart ammount
+  app.post("/api/addmoney", function (req, res) {
+    let userId = req.user.id;
+    let cartTotal = req.body.total;
+
+    console.log(req.body);
+
+    db.User.findOne({attributes: ['centaurs'], where: {id: userId}})
+    .then((results) => {
+      
+      let currentMoneys = results.dataValues.centaurs
+      let newMoneys = currentMoneys + cartTotal
+
+      db.User.update({ centaurs: newMoneys }, {
+        where: {
+          id: userId
+        }
+      }).then(() => {
+        console.log("Done");
+        res.send("ok")
+      });
+    });
+  })
+
   app.get("/tyler/test/route", (req, res) => {
     res.json(req.user);
   })

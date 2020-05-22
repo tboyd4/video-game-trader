@@ -5,7 +5,6 @@ module.exports = function (Sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true,
     },
-
     userName: {
       type: DataTypes.TEXT,
     },

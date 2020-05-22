@@ -91,7 +91,7 @@ function App() {
             <Route
               exact
               path="/buysell"
-              component={(props) => <BuySell {...props} />}
+              component={(props) => <BuySell {...props} addCart={addToCart} />}
             />
             <Route
               exact

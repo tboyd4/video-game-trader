@@ -26,5 +26,9 @@ export default {
   // money functions
   removeMoney: function (payload) {
     return axios.post("/api/removemoney", payload).then(result => result)
+  },
+
+  addMoney: function (payload) {
+    return axios.post("/api/addmoney", payload).then(result => result)
   }
 };

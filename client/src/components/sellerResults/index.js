@@ -4,6 +4,7 @@ import Popup from "reactjs-popup"
 import API from "../../utils/GamesAPI"
 import SellDisplay from "../gameDisplay/sellDisplay";
 import GameContext from "../../utils/GameContext"
+import App from  "../../containers/App"
 
 
 // const { sellerData } = useContext(GameContext);
@@ -16,17 +17,14 @@ class SellerResults extends Component {
 
 
 
-
     handleSave = game => {
 
             API.saveGame(game)
-                .then(savedGame => this.setState({ savedGames: this.state.savedGames.concat([savedGame]) }))
+                .then(savedGame => this.setState({ savedGames: this.state.savedGames.push([savedGame]) }))
                 .catch(err => console.error(err));
-                console.log(game.title + "saved")
+                console.log(game.title + " saved")
         
     }
-
-
 
 
     render() {
@@ -48,9 +46,9 @@ class SellerResults extends Component {
                                                     <Popup modal trigger={<a className="btn badge-pill btn-outline-dark mt-3">View</a>}>
                                                         {close => <SellDisplay close={close} />}
                                                     </Popup>
-                                                    <button onClick={() => this.handleSave(result)}
+                                                    <button onClick={() => this.addCart(result)}
                                                         className="btn badge-pill btn-outline-warning mt-3 ml-3" >
-                                                        {/* {this.state.savedGames.map(game => game.id).includes(result.id) ? "Unsave" : "Save"} */}
+                                                            Trade Game
                                                     </button>
                                                 </div>
                                             </div>
