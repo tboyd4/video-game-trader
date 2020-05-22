@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
-    "password": "ilbid64=",
-=======
-    "password": "mypassword",
->>>>>>> 151fbd7c7e9ed9aec5f3568ff26e217cdb8242f3
+    "password": "Password",
     "database": "games_db",
     "host": "127.0.0.1",
     "dialect": "mysql"

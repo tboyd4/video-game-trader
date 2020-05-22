@@ -49,7 +49,7 @@ module.exports = function(app) {
       price: req.body.price,
       year: req.body.year,
       image: req.body.image,
-      user_id: 1
+      user_id: req.body.user_id
     })
       .then(function(data) {
         res.json(data);
