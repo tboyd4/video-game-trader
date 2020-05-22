@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../../../components/pages/authenticationPages/userFunctions";
+<<<<<<< HEAD
 import API from "../../../utils/GamesAPI.js";
+=======
+
+import M from "materialize-css";
+
+>>>>>>> master
 import "./headBar.css";
 
 function HeadBar() {
   function logOut() {
-    alert("You are logging out!");
+    M.toast({ html: "You have logged out!" });
     logout();
     localStorage.clear();
   }
