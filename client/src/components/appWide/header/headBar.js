@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../../../components/pages/authenticationPages/userFunctions";
-
-import M from "materialize-css";
-
+import API from "../../../utils/GamesAPI.js";
 import "./headBar.css";
 
 function HeadBar() {
@@ -12,6 +10,15 @@ function HeadBar() {
     logout();
     localStorage.clear();
   }
+
+  const [centaurState, setCentaurState] = useState([]);
+
+  useEffect(() => {
+    let loggedUserId = localStorage.getItem("usertoken");
+    API.getMoney(loggedUserId)
+      .then((res) => setCentaurState(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <header>
@@ -45,6 +52,17 @@ function HeadBar() {
               <a href="/" onClick={logOut} className="black-text">
                 Logout
               </a>
+            </li>
+            <li
+              className="black-text"
+              style={{
+                marginRight: "12px",
+                marginLeft: "12px",
+                paddingRight: "12px",
+              }}
+              id="centaur"
+            >
+              Centaur Balance:{centaurState}
             </li>
           </ul>
         </div>

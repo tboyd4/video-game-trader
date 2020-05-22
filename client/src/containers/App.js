@@ -14,6 +14,7 @@ import Cart from "../components/pages/cartPage/cartPage";
 
 // utility imports
 import GameContext from "../utils/GameContext";
+import CentaurContext from "../utils/CentaurContext";
 import M from "materialize-css";
 import API from "../utils/GamesAPI";
 
@@ -23,6 +24,10 @@ function App() {
     userCart: [],
     sellerData: [],
     userId: "",
+  });
+
+  const [centaurState, setCentaurState] = useState({
+    centaurs: 0,
   });
 
   function addToCart(game) {
@@ -82,42 +87,44 @@ function App() {
     <main className="the-main">
       <div className="container">
         <GameContext.Provider value={gameState}>
-          <BrowserRouter>
-            <HeadBar />
-            <Switch>
-              <Route
-                exact
-                path="/"
-                component={(props) => <Login {...props} />}
-              />
-              <Route
-                exact
-                path="/register"
-                component={(props) => <Register {...props} />}
-              />
-              <Route
-                exact
-                path="/home"
-                component={(props) => <Home {...props} addCart={addToCart} />}
-              />
-              <Route
-                exact
-                path="/buysell"
-                component={(props) => <BuySell {...props} />}
-              />
-              <Route
-                exact
-                path="/cart"
-                component={(props) => (
-                  <Cart
-                    {...props}
-                    removeCart={removeFromCart}
-                    purchaseCart={purchaseCart}
-                  />
-                )}
-              />
-            </Switch>
-          </BrowserRouter>
+          <CentaurContext.Provider value={centaurState}>
+            <BrowserRouter>
+              <HeadBar />
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  component={(props) => <Login {...props} />}
+                />
+                <Route
+                  exact
+                  path="/register"
+                  component={(props) => <Register {...props} />}
+                />
+                <Route
+                  exact
+                  path="/home"
+                  component={(props) => <Home {...props} addCart={addToCart} />}
+                />
+                <Route
+                  exact
+                  path="/buysell"
+                  component={(props) => <BuySell {...props} />}
+                />
+                <Route
+                  exact
+                  path="/cart"
+                  component={(props) => (
+                    <Cart
+                      {...props}
+                      removeCart={removeFromCart}
+                      purchaseCart={purchaseCart}
+                    />
+                  )}
+                />
+              </Switch>
+            </BrowserRouter>
+          </CentaurContext.Provider>
         </GameContext.Provider>
 
         <FootBar />
