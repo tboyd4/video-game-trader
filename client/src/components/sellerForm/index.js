@@ -4,6 +4,7 @@ import "./index.css"
 
 function SellerForm(props){
 return (
+  <main>
   <div className="container">
   <form>
     <div className="form-group">
@@ -22,6 +23,7 @@ return (
     </div>
   </form>
   </div>
+  </main>
 );
 }
 

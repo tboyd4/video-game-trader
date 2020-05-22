@@ -4,6 +4,8 @@ import SearchBar from "./SearchBar/SearchBar";
 import GameContext from "../../../utils/GameContext";
 import GamesAPI from "../../../utils/GamesAPI";
 
+import './home.css'
+
 function Home(props) {
 
 // Setting our component's initial state
@@ -39,7 +41,7 @@ function Home(props) {
 
     return (
         <GameContext.Provider value={games}>
-        <main>
+        <main className="inner-cont">
             <SearchBar
                 handleFormSubmit={handleFormSubmit}
                 // handleInputChange={handleInputChange}

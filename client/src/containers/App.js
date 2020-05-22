@@ -72,6 +72,7 @@ function App() {
   }
 
   return (
+    <main className="the-main">
     <div className="container">
       <GameContext.Provider value={gameState}>
         <BrowserRouter>
@@ -108,10 +109,10 @@ function App() {
         </BrowserRouter>
       </GameContext.Provider>
 
-      <div className="filler"></div>
 
       <FootBar />
     </div>
+    </main>
   );
 }
 
