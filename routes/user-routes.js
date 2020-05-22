@@ -62,7 +62,6 @@ module.exports = function (app) {
       })
       .catch((err) => res.send(err));
   });
-
   // to add and remove credits routes
 
   // will take users id to get into database, and deduct the cart amount
