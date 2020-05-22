@@ -121,7 +121,7 @@ class Register extends Component {
     const { formErrors, formTouched } = this.state;
 
     return (
-      <main className="inner-cont">
+      <main className="verticleHeight2">
       <div className="row" id="login-mod">
         <div className="col s3"></div>
         <div className="col s6 center-align">

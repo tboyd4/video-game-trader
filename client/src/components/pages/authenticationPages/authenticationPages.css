@@ -34,9 +34,17 @@ input::placeholder {
   margin-bottom: 15px;
 }
 
-/* #login-mod {
+#login-mod {
   margin-top: 35px;
   margin-bottom: 300px;
-} */
+}
+
+.verticalHeight1 {
+  height: 87vh;
+}
+
+.verticalHeight2 {
+  height: 10vh;
+}
 
 
