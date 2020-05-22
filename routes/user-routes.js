@@ -88,11 +88,11 @@ module.exports = function (app) {
               },
             }
           ).then(() => {
-            res.send('moneypass');
+            res.send("moneypass");
           });
         } else {
           // this will happen if they don't have enough money for the purchase
-          res.send('moneyfail')
+          res.send("moneyfail");
         }
       }
     );

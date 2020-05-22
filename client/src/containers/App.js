@@ -61,13 +61,12 @@ function App() {
     if (checkingUser) {
       // grabs the cart, and loops through it, deleting each game that the user just purchased
       let purchasedArray = gameState.userCart;
-      
 
       let loggedUserId = localStorage.getItem("usertoken");
       console.log(loggedUserId);
 
       API.removeMoney({ id: loggedUserId, total: totalPrice }).then((res) => {
-        if (res.data === 'moneypass') {
+        if (res.data === "moneypass") {
           purchasedArray.forEach((game) => {
             API.deleteGame(game.id).then((res) => console.log(res));
           });

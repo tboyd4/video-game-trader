@@ -3,18 +3,8 @@ import { Link } from "react-router-dom";
 import { logout } from "../../../components/pages/authenticationPages/userFunctions";
 
 import "./headBar.css";
-// import Logo from '../../../images/proj3log.png';
 
 function HeadBar() {
-  // let checkUser = false;
-
-  // useEffect(() => {
-  //   let localCheck = localStorage.getItem('usertoken');
-  //   if (localCheck) {
-  //     checkUser = true;
-  //   }
-  // }, []);
-
   function logOut() {
     alert("You are logging out!");
     logout();
@@ -53,9 +43,6 @@ function HeadBar() {
               <a href="/" onClick={logOut} className="black-text">
                 Logout
               </a>
-            </li>
-            <li>
-              <p>CENTAURS</p>
             </li>
           </ul>
         </div>
