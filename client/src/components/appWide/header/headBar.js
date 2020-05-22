@@ -6,7 +6,7 @@ import "./headBar.css";
 
 function HeadBar() {
   function logOut() {
-    alert("You are logging out!");
+    M.toast({ html: "You have logged out!" });
     logout();
     localStorage.clear();
   }
