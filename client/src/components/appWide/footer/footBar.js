@@ -5,7 +5,6 @@ import './footBar.css'
 function FootBar() {
     return (
       <div>
-        <div className="ghost"></div>
         <footer className="page-footer green accent-3" id="the-foot">
           <div className="container">
           </div>
