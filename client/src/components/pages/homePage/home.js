@@ -5,6 +5,8 @@ import GamesAPI from "../../../utils/GamesAPI";
 import HomeNav from "./HomeNav/HomeNav"
 import Dashboard from "./Dashboard/Dashboard"
 
+import './home.css'
+
 function Home(props) {
 
   // Setting our component's initial state

@@ -1,0 +1,16 @@
+
+
+#the-foot {
+  padding: "20px";
+  position: "fixed";
+  left: "0";
+  height: "60px";
+  width: "100%";
+}
+
+.ghost {
+  display: 'block';
+  padding: '20px';
+  height: '60px';
+  width: '100%'; 
+}
