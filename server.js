@@ -36,6 +36,7 @@ var models = require("./models");
 // Add routes
 require("./routes/gameRoutes")(app);
 require("./routes/user-routes")(app);
+require("./routes/imageAPI")(app);
 
 require("./config/passport")(passport, models.User);
 

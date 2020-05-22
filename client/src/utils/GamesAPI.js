@@ -23,8 +23,15 @@ export default {
     return axios.get("/api/game").then(result => result.data);
   },
 
+  // Gets images from backend API call
+  getImages: function(games) {
+    console.log("trying to get " + games)
+    return axios.get("/api/images/" + games);
+  },
+
   // money functions
   removeMoney: function (payload) {
     return axios.post("/api/removemoney", payload).then(result => result)
   }
+
 };
