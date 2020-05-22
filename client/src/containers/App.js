@@ -75,7 +75,8 @@ function App() {
       // clears the cart of any games
       setGameState({ ...gameState, userCart: [] });
     } else {
-      alert('YOU CAN"T BUY STUFF YOUR NOT ReAL')
+      // modal that asks the user to log in before they make purchases
+      M.toast({ html: "Please Login to Purchase!" });
     }
   }
 
