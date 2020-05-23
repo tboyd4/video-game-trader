@@ -35,16 +35,13 @@ class SellerResults extends Component {
     }
   }
 
-  Trade = (game) => {
-    localStorage.setItem(`${game.id}`, JSON.stringify(game));
-  };
-
   handleSave = (game) => {
     API.saveGame(game)
       .then((savedGame) =>
         this.setState({ savedGames: this.state.savedGames.concat([savedGame]) })
       )
       .catch((err) => console.error(err));
+    localStorage.setItem(`${game.id}`, JSON.stringify(game));
     console.log(game.title + "saved");
   };
 
