@@ -122,114 +122,130 @@ class Register extends Component {
 
     return (
       <main className="verticleHeight2">
-      <div className="row" id="login-mod">
-        <div className="col s3"></div>
-        <div className="col s6 center-align">
-          <div className="card">
-            <div className="black-text center-align">
-              <h3>Register</h3>
-            </div>
-
-            <form onSubmit={this.handleSubmit} noValidate>
-              <div className="card-content">
-                <div className="form-field">
-                  <label htmlFor="firstName">First Name</label> */}
-                  <input
-                    className={formErrors.firstName.length > 0 ? "error" : null}
-                    placeholder="Enter your First Name"
-                    style={{ color: "black" }}
-                    type="text"
-                    name="firstName"
-                    noValidate
-                    onChange={this.handleChange}
-                  />
-                  {formErrors.firstName.length > 0 && (
-                    <span className="errorMessage">{formErrors.firstName}</span>
-                  )}
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="lastName">Last Name</label>
-                  <input
-                    className={formErrors.lastName.length > 0 ? "error" : null}
-                    placeholder="Enter your Last Name"
-                    type="text"
-                    name="lastName"
-                    noValidate
-                    onChange={this.handleChange}
-                  />
-                  {formErrors.lastName.length > 0 && (
-                    <span className="errorMessage">{formErrors.lastName}</span>
-                  )}
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="email">Email</label>
-                  <input
-                    className={formErrors.email.length > 0 ? "error" : null}
-                    placeholder="Enter your Email"
-                    type="email"
-                    name="email"
-                    noValidate
-                    onChange={this.handleChange}
-                  />
-                  {formErrors.email.length > 0 && (
-                    <span className="errorMessage">{formErrors.email}</span>
-                  )}
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="userName">User Name</label>
-                  <input
-                    className={formErrors.userName.length > 0 ? "error" : null}
-                    placeholder="User Name for your account"
-                    type="text"
-                    name="userName"
-                    noValidate
-                    onChange={this.handleChange}
-                  />
-                  {formErrors.userName.length > 0 && (
-                    <span className="errorMessage">{formErrors.userName}</span>
-                  )}
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="password">Password</label>
-                  <input
-                    className={formErrors.password.length > 0 ? "error" : null}
-                    placeholder="Password for your account"
-                    type="password"
-                    name="password"
-                    noValidate
-                    onChange={this.handleChange}
-                  />
-                  {formErrors.password.length > 0 && (
-                    <span className="errorMessage">{formErrors.password}</span>
-                  )}
-                </div>
-
-                <div className="form-field" style={{ padding: "1rem" }}>
-                  <button
-                    disabled={!formTouched}
-                    className="btn-large green accent-3 .center-align"
-                    style={{ width: "100%", color: "black" }}
-                  >
-                    Register
-                  </button>
-                </div>
-                <Link
-                  to="/"
-                  className="FormField__Link center-align"
-                  style={{ color: "black", padding: "1rem" }}
-                >
-                  <p>Or click here to Login to your account</p>
-                </Link>
+        <div className="row" id="login-mod">
+          <div className="col s3"></div>
+          <div className="col s6 center-align">
+            <div className="card">
+              <div className="black-text center-align">
+                <h3>Register</h3>
               </div>
-            </form>
+
+              <form onSubmit={this.handleSubmit} noValidate>
+                <div className="card-content">
+                  <div className="form-field">
+                    <label htmlFor="firstName">First Name</label> */}
+                    <input
+                      className={
+                        formErrors.firstName.length > 0 ? "error" : null
+                      }
+                      placeholder="Enter your First Name"
+                      style={{ color: "black" }}
+                      type="text"
+                      name="firstName"
+                      noValidate
+                      onChange={this.handleChange}
+                    />
+                    {formErrors.firstName.length > 0 && (
+                      <span className="errorMessage">
+                        {formErrors.firstName}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="lastName">Last Name</label>
+                    <input
+                      className={
+                        formErrors.lastName.length > 0 ? "error" : null
+                      }
+                      placeholder="Enter your Last Name"
+                      type="text"
+                      name="lastName"
+                      noValidate
+                      onChange={this.handleChange}
+                    />
+                    {formErrors.lastName.length > 0 && (
+                      <span className="errorMessage">
+                        {formErrors.lastName}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="email">Email</label>
+                    <input
+                      className={formErrors.email.length > 0 ? "error" : null}
+                      placeholder="Enter your Email"
+                      type="email"
+                      name="email"
+                      noValidate
+                      onChange={this.handleChange}
+                    />
+                    {formErrors.email.length > 0 && (
+                      <span className="errorMessage">{formErrors.email}</span>
+                    )}
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="userName">User Name</label>
+                    <input
+                      className={
+                        formErrors.userName.length > 0 ? "error" : null
+                      }
+                      placeholder="User Name for your account"
+                      type="text"
+                      name="userName"
+                      noValidate
+                      onChange={this.handleChange}
+                    />
+                    {formErrors.userName.length > 0 && (
+                      <span className="errorMessage">
+                        {formErrors.userName}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="form-field">
+                    <label htmlFor="password">Password</label>
+                    <input
+                      className={
+                        formErrors.password.length > 0 ? "error" : null
+                      }
+                      placeholder="Password for your account"
+                      type="password"
+                      name="password"
+                      noValidate
+                      onChange={this.handleChange}
+                    />
+                    {formErrors.password.length > 0 && (
+                      <span className="errorMessage">
+                        {formErrors.password}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="form-field" style={{ padding: "1rem" }}>
+                    <button
+                      disabled={!formTouched}
+                      className="btn-large green accent-3 .center-align"
+                      style={{ width: "100%", color: "black" }}
+                    >
+                      Register
+                    </button>
+                  </div>
+                  <Link
+                    to="/"
+                    className="FormField__Link center-align"
+                    style={{ color: "black", padding: "1rem" }}
+                  >
+                    <p>Or click here to Login to your account</p>
+                  </Link>
+                </div>
+              </form>
+            </div>
           </div>
+          <div className="col s3"></div>
         </div>
-        <div className="col s3"></div>
-      </div>
       </main>
     );
   }

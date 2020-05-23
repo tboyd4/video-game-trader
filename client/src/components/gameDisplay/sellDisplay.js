@@ -1,14 +1,11 @@
-import React, { useContext, useEffect } from "react";
-import API from '../../utils/API'
+import React, { useContext } from "react";
 import "./gameDisplay.css";
-import GameContext from '../../utils/GameContext'
+import GameContext from "../../utils/GameContext";
 
 function SellDisplay(props) {
+  const { sellerData } = useContext(GameContext);
 
-    const { sellerData } = useContext(GameContext);
-    
-
-      return (
+  return (
     <div className="row grey darken-2 game-style">
       <div className="col s12 m6">
         <div className="card">

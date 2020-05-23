@@ -44,18 +44,21 @@ function GameDisplay(props) {
         <h1>Your Cart is Empty!! Go add some games!</h1>
       )}
 
-      {userCart.length > 0 ? (<div>
-        <h1 className="black-text center-align cart-title cart-games">
-          TOTAL COST: ${cartPrice}
-        </h1>
-        <a
-          className="waves-effect waves-light green accent-3 black-text btn"
-          onClick={() => props.purchaseCart(cartPrice)}
-        >
-          Confirm Purchase
-        </a>
-      </div>) : <div></div>}
-      
+      {userCart.length > 0 ? (
+        <div>
+          <h1 className="black-text center-align cart-title cart-games">
+            TOTAL COST: ${cartPrice}
+          </h1>
+          <a
+            className="waves-effect waves-light green accent-3 black-text btn"
+            onClick={() => props.purchaseCart(cartPrice)}
+          >
+            Confirm Purchase
+          </a>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }

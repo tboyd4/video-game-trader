@@ -26,8 +26,8 @@ export default {
   },
 
   // Gets images from backend API call
-  getImages: function(games) {
-    console.log("trying to get " + games)
+  getImages: function (games) {
+    console.log("trying to get " + games);
     return axios.get("/api/images/" + games);
   },
 

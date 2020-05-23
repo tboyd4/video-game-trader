@@ -1,11 +1,8 @@
-import React, { Component, useContext } from "react";
+import React, { Component } from "react";
 // import API from "../../utils/API";
 import Popup from "reactjs-popup";
 import API from "../../utils/GamesAPI";
 import SellDisplay from "../gameDisplay/sellDisplay";
-import GameContext from "../../utils/GameContext";
-
-// const { sellerData } = useContext(GameContext);
 
 class SellerResults extends Component {
   state = {

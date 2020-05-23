@@ -1,6 +1,5 @@
 import { createContext } from "react";
 
-
 const GameContext = createContext({
   testData: [
     {
@@ -8,12 +7,12 @@ const GameContext = createContext({
       console: "",
       price: 0,
       year: 0,
-      image: ""
-    }
+      image: "",
+    },
   ],
   userCart: [""],
   sellerData: [""],
-  userId: ''
+  userId: "",
 });
 
 export default GameContext;
