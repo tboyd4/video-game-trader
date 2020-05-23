@@ -1,0 +1,37 @@
+
+.text-spacing {
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 15px;
+}
+
+.game-style {
+    border-radius: 10px;
+}
+
+.gameDisplay {
+    height: 300px;
+    float: left;
+}
+
+.text-content {
+    margin-bottom: 15px;
+}
+
+#title {
+    font-size: 50px;
+    font-weight: thin;
+}
+
+#para {
+    font-size: 30px;
+}
+
+.filler {
+    margin-bottom: 225px;
+  }
+
+  .featured {
+      border-bottom: 1px, #00e676, dashed;
+  }
+

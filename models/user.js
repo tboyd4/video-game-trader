@@ -30,6 +30,10 @@ module.exports = function (Sequelize, DataTypes) {
     centaurs: {
       type: DataTypes.DECIMAL(10, 2),
     },
+    saved: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    }
   });
 
   User.associate = function (models) {

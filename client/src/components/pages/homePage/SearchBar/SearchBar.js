@@ -4,6 +4,7 @@ function SearchBar(props) {
 
     return (
         <div className="nav-wrapper" >
+            <h1>Search Our Games</h1>
             <form>
                 <div className="input-field green accent-3">
                     <input

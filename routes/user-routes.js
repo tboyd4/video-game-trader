@@ -64,6 +64,38 @@ module.exports = function (app) {
   });
   // to add and remove credits routes
 
+  //will get pinned games from users to display on homepage
+  app.get("/Users/:id", function (req, res) {
+    db.User.findOne({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then(function (dbUser) {
+        console.log(dbUser);
+        res.send(dbUser);
+      })
+      .catch((err) => res.send(err));
+  });
+
+
+  // route for getting pinned games out of database for front end use
+
+  app.get("/api/save/:id", function(req, res) {
+    db.User.findAll(
+        {where: {id: req.params.id} }
+      )
+      .then(function(data) {
+        let parsedData = JSON.parse(data[0].saved);
+        res.json(parsedData);
+      })
+      .catch(function(err) {
+        res.status(401).json(err);
+      });
+  });
+
+
+
   // will take users id to get into database, and deduct the cart amount
   app.post("/api/removemoney", function (req, res) {
     let userId = req.body.id;
