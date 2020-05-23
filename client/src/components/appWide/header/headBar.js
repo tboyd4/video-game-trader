@@ -22,7 +22,7 @@ function HeadBar() {
   }, []);
 
   return (
-    <header>
+    <header className="head-boi">
       <nav>
         <div className="nav-wrapper green accent-3">
           <a href="/home" className="brand-logo black-text" id="header-title">
