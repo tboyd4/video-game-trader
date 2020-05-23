@@ -1,20 +1,44 @@
-import React from "react";
-import API from "../../../utils/API";
-import SellerForm from "../../sellerForm/index";
-import SellerResults from "../../sellerResults/index";
-import GamesAPI from "../../../utils/GamesAPI";
+import React, { useState, useContext } from 'react';
+import API from '../../../utils/API';
+import SellerForm from '../../sellerForm/index';
+import SellerResults from '../../sellerResults/index'
+import GamesAPI from '../../../utils/GamesAPI'
+import GameContext from "../../../utils/GameContext";
 
-// const { sellerData } = useContext(GameContext);
 
 class BuySell extends React.Component {
-  state = {
-    value: "Game Search",
-    games: [],
-  };
 
-  componentDidMount() {
-    this.searchGames();
-  }
+        // sellerData  = useContext(GameContext);
+        sellerData;
+        constructor(props) {
+            super(props);
+            this.state = {
+                games: []
+            };
+        }
+    
+    
+    
+        componentDidMount() {
+            this.sellerData = JSON.parse(localStorage.getItem('game'));
+    
+            if (localStorage.getItem('game')) {
+                this.setState({
+                    id: this.sellerData.id,
+                    title: this.sellerData.title,
+                    console: this.sellerData.console,
+                    price: this.sellerData.price,
+                    userid: localStorage.getItem('usertoken')
+                })
+            } else {
+                this.setState({
+                    id: '',
+                    title: '',
+                    console: '',
+                    price: '',
+                })
+            }
+        }
 
   makeGame = (gameData) => {
     return {
@@ -28,17 +52,6 @@ class BuySell extends React.Component {
   //send the original game object and then the new image to add to it here
   // imageGame = (gameData, image) => {
   //   return { ...gameData, image: image };
-  // };
-
-  // searchGames = query => {
-  //     API.multisearch(query)
-  //         .then(res =>
-  //             this.setState({ games: res.data.products.map(gameData =>
-  //                 console.log(gameData),
-  //                 this.makeGame(gameData))
-  //          }))
-  //         .catch(err => console.log(err));
-
   // };
 
   searchGames = (query) => {

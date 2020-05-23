@@ -36,6 +36,7 @@ module.exports = function (app) {
     });
   });
 
+  
   // POST route for saving a new game
   app.post("/api/games", function (req, res) {
     console.log(req.body);
@@ -45,10 +46,11 @@ module.exports = function (app) {
       price: req.body.price,
       year: req.body.year,
       image: req.body.image,
-      user_id: 1,
-    }).then(function (data) {
-      res.json(data);
-    });
+      user_id: req.body.userid
+    })
+      .then(function(data) {
+        res.json(data);
+      });
   });
 
   // DELETE route for deleting games
