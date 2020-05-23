@@ -109,17 +109,33 @@ module.exports = function (app) {
     );
   });
 
-  app.put("/api/addMoney", function (req, res) {
+  app.post("/api/addMoney", function (req, res) {
     //expects whole user object with added centaurs
     //do spread operator when you add centaurs
     //{...user, centaurs: new amount}
     let userId = req.body.id;
-    db.User.update(req.body, {
-      where: {
-        id: req.body.id,
-      },
-    }).then(function (dbUser) {
-      res.json(dbUser);
-    });
+    
+    let total = req.body.total;
+
+    db.User.findOne({ attributes: ["centaurs"], where: { id: userId } }).then(
+      (results) => {
+        let currentMoneys = results.dataValues.centaurs;
+
+        // this will make sure the user has enough money to purchase
+
+        let newMoneys = parseInt(total) + parseInt(currentMoneys)
+
+        db.User.update(
+          { centaurs: newMoneys },
+          {
+            where: {
+              id: userId,
+            },
+          }
+        ).then(() => {
+          res.send("moneypass");
+        });
+      }
+    );
   });
 };

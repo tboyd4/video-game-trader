@@ -36,10 +36,16 @@ class SellerResults extends Component {
   }
 
   handleSave = (game) => {
+    let currentUser = localStorage.getItem('usertoken');
     API.saveGame(game)
-      .then((savedGame) =>
+      .then((savedGame) => {
         this.setState({ savedGames: this.state.savedGames.concat([savedGame]) })
-      )
+        API.addMoney({id: game.userid, total: game.price })
+        .then(response => {
+          console.log(response)
+          window.location.reload();
+        })
+      })
       .catch((err) => console.error(err));
     localStorage.setItem(`${game.id}`, JSON.stringify(game));
     console.log(game.title + "saved");
