@@ -1,23 +1,45 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import API from '../../../utils/API';
 import SellerForm from '../../sellerForm/index';
 import SellerResults from '../../sellerResults/index'
 import GamesAPI from '../../../utils/GamesAPI'
-
-// const { sellerData } = useContext(GameContext);
+import GameContext from "../../../utils/GameContext";
 
 
 class BuySell extends React.Component {
-    state = {
-        value: 'Game Search',
-        games: []
-    };
-
+    // sellerData  = useContext(GameContext);
+    sellerData;
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleInputChange.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.state = {
+            games: []
+        };
+    }
 
 
 
     componentDidMount() {
-        this.searchGames();
+        this.sellerData = JSON.parse(localStorage.getItem('game'));
+
+        if (localStorage.getItem('game')) {
+            this.setState({
+                id: this.sellerData.id,
+                title: this.sellerData.title,
+                console: this.sellerData.console,
+                price: this.sellerData.price,
+                user_Id: this.sellerData.user_Id
+            })
+        } else {
+            this.setState({
+                id: '',
+                title: '',
+                console: '',
+                price: '',
+                user_Id: ''
+            })
+        }
     }
 
     makeGame = gameData => {
@@ -26,11 +48,13 @@ class BuySell extends React.Component {
             title: gameData['product-name'],
             console: gameData['console-name'],
             price: gameData['loose-price'],
+            user_Id: localStorage.getItem('usertoken')
+
         }
     };
 
-        //send the original game object and then the new image to add to it here 
-        imageGame = (gameData, image) => { return {...gameData, image: image} }
+    //send the original game object and then the new image to add to it here 
+    imageGame = (gameData, image) => { return { ...gameData, image: image } }
 
 
     // searchGames = query => {
@@ -48,9 +72,10 @@ class BuySell extends React.Component {
         API.multisearch(query)
             .then(res =>
                 this.setState({
-                    games: res.data.products.slice(0, 20).map(game => 
-                            this.makeGame(game)
-                )}))
+                    games: res.data.products.slice(0, 20).map(game =>
+                        this.makeGame(game)
+                    )
+                }))
             .catch(err => console.log(err));
     }
 
@@ -58,13 +83,14 @@ class BuySell extends React.Component {
     gameImages = games => {
         games.forEach(game => {
             GamesAPI.getImages(game.title)
-            .then(res => {
-                console.log(res)
-                this.imageGame(game, res.image)
-            })
-            .catch(err => console.log(err));
-    })}
-    
+                .then(res => {
+                    console.log(res)
+                    this.imageGame(game, res.image)
+                })
+                .catch(err => console.log(err));
+        })
+    }
+
 
 
     handleInputChange = event => {
@@ -75,25 +101,26 @@ class BuySell extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        this.searchGames(this.state.search);
+        this.searchGames(this.state.search)
+
     };
 
 
     render() {
-        this.gameImages(this.state.games)
+        // this.gameImages(this.state.games)
         return (
             <main className="inner-cont">
-            <div>
-                <SellerForm
-                    search={this.state.search}
-                    handleInputChange={this.handleInputChange}
-                    handleFormSubmit={this.handleFormSubmit}
-                />
-                <div className="container">
-                    <h2>Results</h2>
-                    <SellerResults games={this.state.games} />
+                <div>
+                    <SellerForm
+                        search={this.state.search}
+                        handleInputChange={this.handleInputChange}
+                        handleFormSubmit={this.handleFormSubmit}
+                    />
+                    <div className="container">
+                        <h2>Results</h2>
+                        <SellerResults games={this.state.games} />
+                    </div>
                 </div>
-            </div>
             </main>
         )
     }
