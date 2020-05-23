@@ -18,11 +18,11 @@ function HeadBar() {
 
   useEffect(() => {
     let loggedUserId = localStorage.getItem("usertoken");
-    API.getMoney(loggedUserId.toString())
+    API.getMoney(loggedUserId)
       .then((res) => {
         setCentaurState({ ...centaurState, centaurs: res.data });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
   }, []);
 
   function toast() {
