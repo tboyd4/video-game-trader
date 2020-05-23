@@ -46,6 +46,7 @@ class BuySell extends React.Component {
       title: gameData["product-name"],
       console: gameData["console-name"],
       price: gameData["loose-price"],
+      userid: localStorage.getItem('usertoken')
     };
   };
 

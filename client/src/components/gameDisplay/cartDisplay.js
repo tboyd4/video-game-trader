@@ -16,11 +16,8 @@ function GameDisplay(props) {
       {userCart.length > 0 ? (
         userCart.map((game, i) => {
           return (
-            <div class="col s12 m7">
+            <div class="col s12 m12">
               <div class="card horizontal small grey darken-2 cart-games">
-                <div class="card-image">
-                  <img src={game.image} alt="hello"></img>
-                </div>
                 <div class="card-stacked">
                   <div class="card-content">
                     <h2 class="header white-text">{game.title}</h2>
