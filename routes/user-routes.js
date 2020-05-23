@@ -59,42 +59,22 @@ module.exports = function (app) {
       .then(function (dbUser) {
         console.log(dbUser);
         res.send(dbUser);
+        console.log(dbUser);
       })
       .catch((err) => res.send(err));
   });
   // to add and remove credits routes
 
-  //will get pinned games from users to display on homepage
-  app.get("/Users/:id", function (req, res) {
+  app.get("/api/getMoney/:id", function (req, res) {
     db.User.findOne({
       where: {
         id: req.params.id,
       },
-    })
-      .then(function (dbUser) {
-        console.log(dbUser);
-        res.send(dbUser);
-      })
-      .catch((err) => res.send(err));
+    }).then(function (dbUser) {
+      //we don't want the whole user object, just the centaur number
+      res.send(dbUser.centaurs);
+    });
   });
-
-
-  // route for getting pinned games out of database for front end use
-
-  app.get("/api/save/:id", function(req, res) {
-    db.User.findAll(
-        {where: {id: req.params.id} }
-      )
-      .then(function(data) {
-        let parsedData = JSON.parse(data[0].saved);
-        res.json(parsedData);
-      })
-      .catch(function(err) {
-        res.status(401).json(err);
-      });
-  });
-
-
 
   // will take users id to get into database, and deduct the cart amount
   app.post("/api/removemoney", function (req, res) {
@@ -125,6 +105,36 @@ module.exports = function (app) {
           // this will happen if they don't have enough money for the purchase
           res.send("moneyfail");
         }
+      }
+    );
+  });
+
+  app.post("/api/addMoney", function (req, res) {
+    //expects whole user object with added centaurs
+    //do spread operator when you add centaurs
+    //{...user, centaurs: new amount}
+    let userId = req.body.id;
+    
+    let total = req.body.total;
+
+    db.User.findOne({ attributes: ["centaurs"], where: { id: userId } }).then(
+      (results) => {
+        let currentMoneys = results.dataValues.centaurs;
+
+        // this will make sure the user has enough money to purchase
+
+        let newMoneys = parseInt(total) + parseInt(currentMoneys)
+
+        db.User.update(
+          { centaurs: newMoneys },
+          {
+            where: {
+              id: userId,
+            },
+          }
+        ).then(() => {
+          res.send("moneypass");
+        });
       }
     );
   });

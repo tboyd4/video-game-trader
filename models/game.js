@@ -4,22 +4,22 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
 
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
 
     console: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
 
     price: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
 
     year: {
@@ -33,19 +33,19 @@ module.exports = function (sequelize, DataTypes) {
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,
-      defaultValue: new Date()
+      defaultValue: new Date(),
     },
 
     updatedAt: {
       allowNull: false,
       type: DataTypes.DATE,
-      defaultValue: new Date()
-    }
+      defaultValue: new Date(),
+    },
   });
 
   Game.associate = (models) => {
     Game.belongsTo(models.User);
-  }
+  };
 
   return Game;
 };

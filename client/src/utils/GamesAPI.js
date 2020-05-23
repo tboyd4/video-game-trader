@@ -27,13 +27,25 @@ export default {
 
   // Gets images from backend API call
   getImages: function (games) {
-    // console.log("trying to get " + games)
+    console.log("trying to get " + games);
     return axios.get("/api/images/" + games);
   },
 
   // money functions
   removeMoney: function (payload) {
-    return axios.post("/api/removemoney", payload).then((result) => result);
+    return axios.post("/api/removemoney", payload).then(result => result)
+  },
+
+  addMoney: function (payload) {
+    return axios.post("/api/addMoney", payload).then((result) => result);
+  },
+
+  getMoney: function (userId) {
+    console.log(userId);
+    return axios.get("/api/getMoney/" + userId).then((result) => {
+      console.log(result)
+      return result
+    });
   },
 
   //get featured games

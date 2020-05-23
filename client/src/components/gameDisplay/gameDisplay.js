@@ -3,16 +3,10 @@ import React from "react";
 import "./gameDisplay.css";
 
 function GameDisplay(props) {
+
   return (
     <div className="row grey darken-2 game-style">
-      <div className="col s12 m6">
-        <div className="card">
-          <div className="card-image">
-            <img src={props.image} alt="hello"></img>
-          </div>
-        </div>
-      </div>
-      <div className="col s12 m6  ">
+      <div className="col s12 m12  ">
         <div className="card z-depth-0 black-text game-style grey darken-2">
           <div className="card-content green accent-3 text-content">
             <p className="card-title text-spacing" id="title">
@@ -20,9 +14,6 @@ function GameDisplay(props) {
             </p>
           </div>
           <div className="card-content green accent-3 text-content">
-            <p className="text-spacing" id="para">
-              Released: {props.year}
-            </p>
             <p className="text-spacing" id="para">
               Price: {props.price}
             </p>

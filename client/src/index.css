@@ -7,16 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #212121;
   color: white;
-  font-family: 'Noto Sans', sans-serif;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
+  font-family: "Noto Sans", sans-serif;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-

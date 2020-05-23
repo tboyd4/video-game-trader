@@ -1,25 +1,55 @@
-import React, { Component, useContext } from "react";
+import React, { Component } from "react";
 // import API from "../../utils/API";
 import Popup from "reactjs-popup";
 import API from "../../utils/GamesAPI";
 import SellDisplay from "../gameDisplay/sellDisplay";
-import GameContext from "../../utils/GameContext";
-
-// const { sellerData } = useContext(GameContext);
 
 class SellerResults extends Component {
-    state = {
-        savedGames: {},
+  constructor(props) {
+    super(props);
+    this.handleSave = this.handleSave.bind(this);
+    this.state = {
+      savedGames: [],
     };
+  }
 
-    handleSave = (game) => {
-        API.saveGame(game)
-            .then((savedGame) =>
-                this.setState({ savedGames: this.state.savedGames.concat([savedGame]) })
-            )
-            .catch((err) => console.error(err));
-        console.log(game.title + "saved");
-    };
+  componentDidMount() {
+    this.sellerData = JSON.parse(localStorage.getItem("game"));
+    let loggedid = localStorage.getItem("usertoken");
+
+    if (localStorage.getItem("game")) {
+      this.setState({
+        id: this.sellerData.id,
+        title: this.sellerData.title,
+        console: this.sellerData.console,
+        price: this.sellerData.price,
+      });
+    } else {
+      let loggedid = localStorage.getItem("usertoken");
+      this.setState({
+        id: "",
+        title: "",
+        description: "",
+        price: "",
+      });
+    }
+  }
+
+  handleSave = (game) => {
+    let currentUser = localStorage.getItem('usertoken');
+    API.saveGame(game)
+      .then((savedGame) => {
+        this.setState({ savedGames: this.state.savedGames.concat([savedGame]) })
+        API.addMoney({id: game.userid, total: game.price })
+        .then(response => {
+          console.log(response)
+          window.location.reload();
+        })
+      })
+      .catch((err) => console.error(err));
+    localStorage.setItem(`${game.id}`, JSON.stringify(game));
+    console.log(game.title + "saved");
+  };
 
     render() {
         return (
@@ -41,6 +71,7 @@ class SellerResults extends Component {
                                                 <p className="card-text">
                                                     Trade Value: {result.price * 0.5} Centaurs
                       </p>
+<<<<<<< HEAD
                                                 <div>
                                                     <Popup
                                                         modal
@@ -78,6 +109,34 @@ class SellerResults extends Component {
         //     )
         //     .catch((err) => console.error(err));
     }
+=======
+                      <div>
+                        {/* <Popup
+                            modal
+                            trigger={
+                              <a className="btn badge-pill btn-outline-dark mt-3">
+                                View
+                            </a>
+                            }
+                          >
+                            {(close) => <SellDisplay close={close} />}
+                          </Popup> */}
+                        <button
+                          onClick={() => this.handleSave(result)}
+                          className="btn badge-pill btn-outline-warning mt-3 ml-3"
+                        >Sell Game</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+>>>>>>> 42d08980b595ac6c5c9488d4452f6c729944d8d1
 }
 
 export default SellerResults;

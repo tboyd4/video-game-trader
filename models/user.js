@@ -5,7 +5,6 @@ module.exports = function (Sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true,
     },
-
     userName: {
       type: DataTypes.TEXT,
     },
@@ -29,6 +28,8 @@ module.exports = function (Sequelize, DataTypes) {
     },
     centaurs: {
       type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+      defaultValue: 0,
     },
     saved: {
       type: DataTypes.TEXT,
