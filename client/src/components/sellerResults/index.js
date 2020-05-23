@@ -43,7 +43,6 @@ class SellerResults extends Component {
         API.addMoney({id: game.userid, total: game.price })
         .then(response => {
           console.log(response)
-          window.location.reload();
         })
       })
       .catch((err) => console.error(err));

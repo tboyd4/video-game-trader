@@ -70,7 +70,6 @@ function App() {
             API.deleteGame(game.id).then((res) => {
               console.log(res)
               M.toast({ html: "Purchase Complete!" });
-              window.location.reload();
             });
           });
         } else {
