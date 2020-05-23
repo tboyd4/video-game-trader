@@ -18,6 +18,8 @@ function Home(props) {
       .catch((err) => console.log(err));
   }, []);
 
+  let activeSearch = false;
+
   function searchGame(search) {
     console.log("search games...", search);
     GamesAPI.getGames(search)
@@ -26,6 +28,7 @@ function Home(props) {
         setGames(res.data);
       })
       .catch((err) => console.log("ERRUH:", err));
+    activeSearch = true;
   }
 
   //submits search form
@@ -63,24 +66,44 @@ function Home(props) {
     });
   }, [games]);
 
-  return (
-    <main>
-      <HomeNav
-        handleSearchToggle={handleSearchToggle}
-        handleDashboardToggle={handleDashboardToggle}
-      />
+  if (gamelist.length < 1) {
+    return (
+      <main className="verticalHeight">
+        <HomeNav
+          handleSearchToggle={handleSearchToggle}
+          handleDashboardToggle={handleDashboardToggle}
+        />
 
-      {nav.dashboard === false ? (
-        <>
-          <SearchBar handleFormSubmit={handleFormSubmit} />
+        {nav.dashboard === false ? (
+          <>
+            <SearchBar handleFormSubmit={handleFormSubmit} />
 
-          {gamelist}
-        </>
-      ) : (
-        <Dashboard />
-      )}
-    </main>
-  );
+            {gamelist}
+          </>
+        ) : (
+          <Dashboard />
+        )}
+      </main>
+    );
+  } else
+    return (
+      <main>
+        <HomeNav
+          handleSearchToggle={handleSearchToggle}
+          handleDashboardToggle={handleDashboardToggle}
+        />
+
+        {nav.dashboard === false ? (
+          <>
+            <SearchBar handleFormSubmit={handleFormSubmit} />
+
+            {gamelist}
+          </>
+        ) : (
+          <Dashboard />
+        )}
+      </main>
+    );
 }
 
 export default Home;

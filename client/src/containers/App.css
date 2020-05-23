@@ -13,11 +13,6 @@
   }
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -40,22 +35,4 @@ html, body {
   to {
     transform: rotate(360deg);
   }
-}
-
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
-.filler {
-  margin-bottom: 225px;
-}
-
-.the-main {
-  min-height: 100%;
 }

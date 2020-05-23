@@ -2,7 +2,6 @@
     background-color: #00e676;
 }
 
-.inner-cont {
-    padding: 20px;
-    padding-bottom: 50px;
-  }
+.verticalHeight {
+    height: 82vh;
+}

@@ -12,7 +12,7 @@ class SellerResults extends Component {
     super(props);
     this.handleSave = this.handleSave.bind(this);
     this.state = {
-      savedGames: []
+      savedGames: {}
     };
   }
 
@@ -35,10 +35,19 @@ class SellerResults extends Component {
         title: '',
         description: '',
         price: '',
-        user_Id: ''
+        user_Id: loggedid
       })
     }
   }
+
+  handleSave = (game) => {
+    API.saveGame(game)
+      .then((savedGame) =>
+        this.setState({ savedGames: this.state.savedGames.concat([savedGame]) })
+      )
+      .catch((err) => console.error(err));
+    console.log(game.title + "saved");
+  };
 
 
   handleSave = (game) => {

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../../../components/pages/authenticationPages/userFunctions";
 import API from "../../../utils/GamesAPI.js";
 import "./headBar.css";
+import M from 'materialize-css'
 
 function HeadBar() {
   function logOut() {

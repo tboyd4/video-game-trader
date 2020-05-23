@@ -55,9 +55,7 @@ function GameDisplay(props) {
           Confirm Purchase
         </a>
       </div>) : <div></div>}
-      <div className="filler"></div>
       
-      <div className="filler"></div>
     </div>
   );
 }
