@@ -30,10 +30,6 @@ module.exports = function (Sequelize, DataTypes) {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       defaultValue: 0,
-    },
-    saved: {
-      type: DataTypes.TEXT,
-      allowNull: true
     }
   });
 
