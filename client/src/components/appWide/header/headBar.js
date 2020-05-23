@@ -17,7 +17,9 @@ function HeadBar() {
   useEffect(() => {
     let loggedUserId = localStorage.getItem("usertoken");
     API.getMoney(loggedUserId)
-      .then((res) => setCentaurState(res.data))
+      .then((res) => {
+        setCentaurState(res.data)
+      })
       .catch((err) => console.log(err));
   }, []);
 

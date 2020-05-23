@@ -1,7 +1,5 @@
 import React from "react";
 
-import "./footBar.css";
-
 function FootBar() {
   return (
     <footer className="page-footer green accent-3" id="the-foot">

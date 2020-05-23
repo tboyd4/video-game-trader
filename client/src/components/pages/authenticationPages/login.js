@@ -55,6 +55,7 @@ class Login extends Component {
         //   console.log("does exist");
         // }
         this.props.history.push("/home");
+        window.location.reload();
       });
 
       console.log(`--LOGGING IN--

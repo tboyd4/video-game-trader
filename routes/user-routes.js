@@ -72,7 +72,6 @@ module.exports = function (app) {
       },
     }).then(function (dbUser) {
       //we don't want the whole user object, just the centaur number
-      console.log(dbUser.dataValues.centaurs);
       res.send(dbUser.centaurs);
     });
   });
