@@ -12,7 +12,7 @@ class SellerResults extends Component {
     super(props);
     this.handleSave = this.handleSave.bind(this);
     this.state = {
-      savedGames: {}
+      savedGames: []
     };
   }
 
@@ -26,7 +26,6 @@ class SellerResults extends Component {
         title: this.sellerData.title,
         console: this.sellerData.console,
         price: this.sellerData.price,
-        user_Id: this.sellerData.user_Id
       })
     } else {
       let loggedid = localStorage.getItem('usertoken')
@@ -35,28 +34,19 @@ class SellerResults extends Component {
         title: '',
         description: '',
         price: '',
-        user_Id: loggedid
       })
     }
+  }
+
+  Trade = (game) => {
+    localStorage.setItem(`${game.id}`, JSON.stringify(game))
   }
 
   handleSave = (game) => {
     API.saveGame(game)
       .then((savedGame) =>
-        this.setState({ savedGames: this.state.savedGames.concat([savedGame]) })
-      )
+        this.setState({ savedGames: this.state.savedGames.concat([savedGame]) }))
       .catch((err) => console.error(err));
-    console.log(game.title + "saved");
-  };
-
-
-  handleSave = (game) => {
-    API.saveGame(game)
-      .then((savedGame) =>
-        this.setState({ savedGames: this.state.savedGames.concat([savedGame]) })
-      )
-      .catch((err) => console.error(err));
-    localStorage.setItem(`${game.id}`, JSON.stringify(game))
     console.log(game.title + "saved");
   };
 
@@ -92,7 +82,8 @@ class SellerResults extends Component {
                             {(close) => <SellDisplay close={close} />}
                           </Popup>
                           <button
-                            onClick={() => this.handleSave(result)}
+                            onClick={() => this.Trade(result)
+                            }
 
                             className="btn badge-pill btn-outline-warning mt-3 ml-3"
                           >
