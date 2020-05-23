@@ -77,13 +77,15 @@ function Home(props) {
 
         {nav.dashboard === false ? (
           <>
+            <h1>Search Our Games</h1>
+
             <SearchBar handleFormSubmit={handleFormSubmit} />
 
             {gamelist}
           </>
         ) : (
-          <Dashboard />
-        )}
+            <DashContent />
+          )}
       </main>
     );
   } else
@@ -96,17 +98,18 @@ function Home(props) {
 
         {nav.dashboard === false ? (
           <>
+            <h1>Search Our Games</h1>
             <SearchBar handleFormSubmit={handleFormSubmit} />
 
-          {gamelist}
-        </>
-      ) : (
-      
-          <DashContent/>
-       
-      )}
-    </main>
-  );
+            {gamelist}
+          </>
+        ) : (
+
+            <DashContent />
+
+          )}
+      </main>
+    );
 }
 
 export default Home;

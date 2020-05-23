@@ -48,27 +48,6 @@ class BuySell extends React.Component {
       price: gameData["loose-price"],
       userid: localStorage.getItem('usertoken')
     };
-<<<<<<< HEAD
-
-
-    render() {
-        this.gameImages(this.state.games)
-        return (
-            <main className="inner-cont">
-                <div>
-                    <SellerForm
-                        search={this.state.search}
-                        handleInputChange={this.handleInputChange}
-                        handleFormSubmit={this.handleFormSubmit}
-                    />
-                    <div className="container">
-                        <h2>Results</h2>
-                        <SellerResults games={this.state.games} />
-                    </div>
-                </div>
-            </main>
-        )
-=======
   };
 
   //send the original game object and then the new image to add to it here
@@ -145,7 +124,6 @@ class BuySell extends React.Component {
           </div>
         </main>
       );
->>>>>>> 42d08980b595ac6c5c9488d4452f6c729944d8d1
     }
   }
 }

@@ -71,45 +71,6 @@ class SellerResults extends Component {
                                                 <p className="card-text">
                                                     Trade Value: {result.price * 0.5} Centaurs
                       </p>
-<<<<<<< HEAD
-                                                <div>
-                                                    <Popup
-                                                        modal
-                                                        trigger={
-                                                            <a className="btn badge-pill btn-outline-dark mt-3">
-                                                                View
-                            </a>
-                                                        }
-                                                    >
-                                                        {(close) => <SellDisplay close={close} />}
-                                                    </Popup>
-                                                    <button
-                                                        onClick={() => this.handleSave(result)}
-                                                        className="btn badge-pill btn-outline-warning mt-3 ml-3"
-                                                    >
-                                                        {/* {this.state.savedGames.map(game => game.id).includes(result.id) ? "Unsave" : "Save"} */}
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-            </div>
-        );
-        //     .catch((err) => console.error(err));
-        // } else {
-        //   API.saveGame(game)
-        //     .then((savedGame) =>
-        //       this.setState({
-        //         savedGames: this.state.savedGames.concat([savedGame]),
-        //       })
-        //     )
-        //     .catch((err) => console.error(err));
-    }
-=======
                       <div>
                         {/* <Popup
                             modal
@@ -136,7 +97,6 @@ class SellerResults extends Component {
       </div>
     );
   }
->>>>>>> 42d08980b595ac6c5c9488d4452f6c729944d8d1
 }
 
 export default SellerResults;
