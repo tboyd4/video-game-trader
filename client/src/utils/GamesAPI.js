@@ -26,8 +26,8 @@ export default {
   },
 
   // Gets images from backend API call
-  getImages: function(games) {
-    console.log("trying to get " + games)
+  getImages: function (games) {
+    console.log("trying to get " + games);
     return axios.get("/api/images/" + games);
   },
 
@@ -40,8 +40,8 @@ export default {
     return axios.put("api/addMoney", user).then((result) => result);
   },
 
-  getMoney: function (userId) {
-    console.log(userId);
-    return axios.get("api/getMoney/" + userId).then((result) => result);
+  getMoney: function (id) {
+    console.log(id);
+    return axios.get("api/getMoney/" + id).then((result) => result);
   },
 };

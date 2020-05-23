@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../../../components/pages/authenticationPages/userFunctions";
-<<<<<<< HEAD
 import API from "../../../utils/GamesAPI.js";
-=======
-
 import M from "materialize-css";
-
->>>>>>> master
 import "./headBar.css";
 
 function HeadBar() {
