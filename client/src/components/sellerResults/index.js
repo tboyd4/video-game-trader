@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Popup from "reactjs-popup";
 import API from "../../utils/GamesAPI";
 import SellDisplay from "../gameDisplay/sellDisplay";
+import M from 'materialize-css'
 
 class SellerResults extends Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class SellerResults extends Component {
         API.addMoney({id: game.userid, total: game.price })
         .then(response => {
           console.log(response)
+          M.toast({ html: "Your game has been sold!" });
         })
       })
       .catch((err) => console.error(err));

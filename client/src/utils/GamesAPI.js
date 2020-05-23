@@ -49,10 +49,10 @@ export default {
   },
 
   //get featured games
-  getFeaturedGames: function () {
-    console.log("trying to get! featured games");
-    return axios.get(
-      `/api/games?search=zelda`
-    );
-  },
+  // getFeaturedGames: function () {
+  //   console.log("trying to get! featured games");
+  //   return axios.get(
+  //     `/api/games?search=zelda`
+  //   );
+  // },
 };

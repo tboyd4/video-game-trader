@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../../../components/pages/authenticationPages/userFunctions";
 import API from "../../../utils/GamesAPI.js";
 import "./headBar.css";
-import M from 'materialize-css'
+import M from "materialize-css";
 
 function HeadBar() {
   function logOut() {
@@ -12,16 +12,22 @@ function HeadBar() {
     localStorage.clear();
   }
 
-  const [centaurState, setCentaurState] = useState([]);
+  const [centaurState, setCentaurState] = useState({
+    centaurs: 0,
+  });
 
   useEffect(() => {
     let loggedUserId = localStorage.getItem("usertoken");
-    API.getMoney(loggedUserId)
+    API.getMoney(loggedUserId.toString())
       .then((res) => {
-        setCentaurState(res.data)
+        setCentaurState({ ...centaurState, centaurs: res.data });
       })
       .catch((err) => console.log(err));
   }, []);
+
+  function toast() {
+    M.toast({ html: `You have ${centaurState.centaurs} Centaurs` });
+  }
 
   return (
     <header>
@@ -65,7 +71,9 @@ function HeadBar() {
               }}
               id="centaur"
             >
-              Centaur Balance:{centaurState}
+              <a className="black-text" onClick={toast}>
+                Check Balance
+              </a>
             </li>
           </ul>
         </div>
