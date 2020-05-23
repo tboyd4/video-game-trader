@@ -39,7 +39,7 @@ class SellerResults extends Component {
                         Trade Value: {result.price * 0.5} Centaurs
                       </p>
                       <div>
-                        <Popup
+                        {/* <Popup
                           modal
                           trigger={
                             <a className="btn badge-pill btn-outline-dark mt-3">
@@ -48,12 +48,12 @@ class SellerResults extends Component {
                           }
                         >
                           {(close) => <SellDisplay close={close} />}
-                        </Popup>
+                        </Popup> */}
                         <button
                           onClick={() => this.handleSave(result)}
                           className="btn badge-pill btn-outline-warning mt-3 ml-3"
                         >
-                          {/* {this.state.savedGames.map(game => game.id).includes(result.id) ? "Unsave" : "Save"} */}
+                          Sell Game
                         </button>
                       </div>
                     </div>

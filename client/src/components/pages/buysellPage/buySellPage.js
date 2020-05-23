@@ -26,9 +26,9 @@ class BuySell extends React.Component {
   };
 
   //send the original game object and then the new image to add to it here
-  imageGame = (gameData, image) => {
-    return { ...gameData, image: image };
-  };
+  // imageGame = (gameData, image) => {
+  //   return { ...gameData, image: image };
+  // };
 
   // searchGames = query => {
   //     API.multisearch(query)
@@ -54,16 +54,16 @@ class BuySell extends React.Component {
   };
 
   //when you get the
-  gameImages = (games) => {
-    games.forEach((game) => {
-      GamesAPI.getImages(game.title)
-        .then((res) => {
-          console.log(res);
-          this.imageGame(game, res.image);
-        })
-        .catch((err) => console.log(err));
-    });
-  };
+  // gameImages = (games) => {
+  //   games.forEach((game) => {
+  //     GamesAPI.getImages(game.title)
+  //       .then((res) => {
+  //         console.log(res);
+  //         this.imageGame(game, res.image);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   });
+  // };
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -76,7 +76,7 @@ class BuySell extends React.Component {
   };
 
   render() {
-    this.gameImages(this.state.games);
+    // this.gameImages(this.state.games);
 
     if (this.state.games < 1) {
       return (
