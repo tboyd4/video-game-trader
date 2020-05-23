@@ -39,4 +39,12 @@ input::placeholder {
   margin-bottom: 300px;
 }
 
+.verticalHeight1 {
+  height: 87vh;
+}
+
+.verticalHeight2 {
+  height: 10vh;
+}
+
 
