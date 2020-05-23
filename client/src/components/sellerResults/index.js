@@ -51,25 +51,25 @@ class SellerResults extends Component {
     console.log(game.title + "saved");
   };
 
-  render() {
-    return (
-      <div>
-        {!this.props.games.length ? (
-          <h1 className="text-center">No Results to Display</h1>
-        ) : (
-          <div>
-            {this.props.games.map((result) => (
-              <div
-                className="card card z-depth-0 black-text game-style grey darken-2 mb-3"
-                key={result.id}
-              >
-                <div className="row">
-                  <div className="col-md-10">
-                    <div className="card-body green accent-3">
-                      <h5 className="card-title">{result.title}</h5>
-                      <h6> Console: {result.console}</h6>
-                      <p className="card-text">
-                        Trade Value: {result.price * 0.5} Centaurs
+    render() {
+        return (
+            <div>
+                {!this.props.games.length ? (
+                    <h1 className="text-center">No Results to Display</h1>
+                ) : (
+                        <div>
+                            {this.props.games.map((result) => (
+                                <div
+                                    className="card card z-depth-0 black-text game-style grey darken-2 mb-3"
+                                    key={result.id}
+                                >
+                                    <div className="row">
+                                        <div className="col-md-10">
+                                            <div className="card-body green accent-3">
+                                                <h5 className="card-title">{result.title}</h5>
+                                                <h6> Console: {result.console}</h6>
+                                                <p className="card-text">
+                                                    Trade Value: {result.price * 0.5} Centaurs
                       </p>
                       <div>
                         {/* <Popup

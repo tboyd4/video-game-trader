@@ -31,6 +31,10 @@ module.exports = function (Sequelize, DataTypes) {
       allowNull: false,
       defaultValue: 0,
     },
+    saved: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    }
   });
 
   User.associate = function (models) {

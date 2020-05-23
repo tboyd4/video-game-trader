@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import GameDisplay from "../../gameDisplay/gameDisplay";
+// import FeaturedDisplay from "./Dashboard/FeaturedDisplay";
 import SearchBar from "./SearchBar/SearchBar";
 import GamesAPI from "../../../utils/GamesAPI";
 import HomeNav from "./HomeNav/HomeNav";
-import Dashboard from "./Dashboard/Dashboard";
+import GameDisplay from "../../gameDisplay/gameDisplay"
+import DashContent from "./Dashboard/DashContent"
 
 import "./home.css";
 
@@ -76,13 +77,15 @@ function Home(props) {
 
         {nav.dashboard === false ? (
           <>
+            <h1>Search Our Games</h1>
+
             <SearchBar handleFormSubmit={handleFormSubmit} />
 
             {gamelist}
           </>
         ) : (
-          <Dashboard />
-        )}
+            <DashContent />
+          )}
       </main>
     );
   } else
@@ -95,13 +98,16 @@ function Home(props) {
 
         {nav.dashboard === false ? (
           <>
+            <h1>Search Our Games</h1>
             <SearchBar handleFormSubmit={handleFormSubmit} />
 
             {gamelist}
           </>
         ) : (
-          <Dashboard />
-        )}
+
+            <DashContent />
+
+          )}
       </main>
     );
 }
