@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../../../components/pages/authenticationPages/userFunctions";
 import API from "../../../utils/GamesAPI.js";
 import "./headBar.css";
-import M from "materialize-css";
+import M from 'materialize-css'
 
 function HeadBar() {
   function logOut() {
@@ -17,12 +17,14 @@ function HeadBar() {
   useEffect(() => {
     let loggedUserId = localStorage.getItem("usertoken");
     API.getMoney(loggedUserId)
-      .then((res) => setCentaurState(res.data))
+      .then((res) => {
+        setCentaurState(res.data)
+      })
       .catch((err) => console.log(err));
   }, []);
 
   return (
-    <header className="head-boi">
+    <header>
       <nav>
         <div className="nav-wrapper green accent-3">
           <a href="/home" className="brand-logo black-text" id="header-title">

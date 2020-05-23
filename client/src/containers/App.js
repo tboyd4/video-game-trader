@@ -67,9 +67,11 @@ function App() {
       API.removeMoney({ id: loggedUserId, total: totalPrice }).then((res) => {
         if (res.data === "moneypass") {
           purchasedArray.forEach((game) => {
-            API.deleteGame(game.id).then((res) =>
-              M.toast({ html: "Thank you for your purchase!" })
-            );
+            API.deleteGame(game.id).then((res) => {
+              console.log(res)
+              M.toast({ html: "Purchase Complete!" });
+              window.location.reload();
+            });
           });
         } else {
           M.toast({ html: "Please add funds to purchase!" });
